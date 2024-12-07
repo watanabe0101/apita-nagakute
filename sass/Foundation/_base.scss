@@ -1,0 +1,147 @@
+@use "../Object/Utility" as *;
+
+:root {
+  // カラー
+  --color-white: #ffffff;
+  --color-black: #333333;
+  --color-yellow: #FFFCDF;
+  --color-green: #8EC11F;
+  --color-green2: #DADF04;
+  --color-green3: #EFF4ED;
+
+  // フォント
+  --base-font: "Noto Sans JP", sans-serif;
+
+  // 文字の太さ
+  --regular: 300;
+  --normal: 400;
+  --medium: 500;
+  --bold: 700;
+  --exBold: 900;
+
+  // remやvw計算式
+  --min-layout-width: 375; /* SPのデザインカンプの横幅 */
+  --medium-layout-width: 640; /* タブレットのデザインカンプの横幅 */
+  --large-layout-width: 1440; /* PCのデザインカンプの横幅 */
+  --max-layout-width: 1920; /* 最大幅のデザインカンプの横幅 */
+  --base-font-size: 16; /* デフォルトのフォントサイズ */
+
+  /* カスタムプロパティに計算式を格納すればそれ以降の指定が簡潔になる */
+  --min-fluid-ratio: calc(1 / var(--min-layout-width) * 100dvi);
+  --medium-fluid-ratio: calc(1 / var(--medium-layout-width) * 100dvi);
+  --large-fluid-ratio: calc(1 / var(--large-layout-width) * 100dvi);
+  --max-fluid-ratio: calc(1 / var(--max-layout-width) * 100dvi);
+  --rem-ratio: calc(1rem / var(--base-font-size));
+
+  // line-heightのハーフ・レディングを打ち消す
+  --leading-trim: calc((1em - 1lh) / 2);
+
+  // clamp関数で縮小する範囲
+  --_min-layout-width: 375;
+  --_max-layout-width: 640;
+
+  // ヘッダーのblock-size
+  --header-block-size: 120px;
+  --sp-header-block-size: calc(120 * var(--medium-fluid-ratio));
+
+  word-wrap: break-word;
+}
+
+// line-heightのハーフ・レディングを打ち消す
+@supports not (top: 1lh) {
+  :root {
+    --leading-trim: 0px; /* `px`などの単位が必要 */
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+// :where(:root, body) {
+//   overflow-x: clip;
+//   overflow-x: hidden;
+// }
+
+body {
+  position: relative;
+  font-family: var(--base-font);
+  font-weight: var(--regular);
+  color: var(--color-black);
+  font-size: calc(16 * var(--rem-ratio));
+  letter-spacing: calc(calc(50 / 1000) * 1em);
+}
+
+// PCでは電話番号のクリックを無効にする
+a[href^="tel:"] {
+  pointer-events: none;
+  @media screen and (max-width: 768px) {
+    pointer-events: auto;
+  }
+}
+
+a {
+  color: var(--color-black);
+}
+
+
+// フォームをオートコンプリート（自動で入力）した時に背景色を変えない
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #E9F4F6 inset;
+}
+
+// コンテンツの量が少ないページでもフッターを最下部に
+.sticky-footer-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+// テーブル要素をグリッドコンテナにするための記述
+tr,
+tbody,
+thead,
+tfoot {
+  display: contents;
+}
+th,
+td {
+  &[colspan="2"] {
+    grid-column: auto / span 2;
+  }
+  &[rowspan="2"] {
+    grid-row: auto / span 2;
+  }
+}
+
+article {
+  display: contents;
+}
+
+// PCのみ改行
+.br-pc {
+  display: block;
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+// スマホのみ改行
+.br-sp {
+  display: none;
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+// ビューポートの設定（--_pc-min-width 〜 (--_sp-min-width + 1px)は画面幅1250pxの縮小、--_sp-min-width以下は画面幅640pxの縮小）
+// body {
+//   --_pc-min-width: 1250px;
+// 	min-width: var(--_pc-min-width);
+// }
+// スマートフォンのブレイクポイント
+// @media screen and (max-width: 375px){
+// 	body {
+//     --_sp-min-width: 375px;
+//     min-width: var(--_sp-min-width);
+// 	}
+// }

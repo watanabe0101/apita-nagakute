@@ -1,0 +1,534 @@
+@use "../../Object/Utility" as *;
+
+
+/* ===============================================
+#  ヘッダーが上から出現
+=============================================== */
+.js-fixed {
+  --_translate: 0 -100%;
+  --_duration: .5s;
+
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  visibility: hidden;
+  translate: var(--_translate);
+  transition: var(--_duration);
+
+  &.js-show {
+    --_translate: 0;
+  
+    visibility: visible;
+  }
+}
+
+/* ===============================================
+# ループアニメーション
+=============================================== */
+// ループ画像
+.loopSlider__item {
+  display: none;
+  inline-size: 640px;
+}
+
+// ループテキスト
+.loop {
+  display: flex;
+  overflow: hidden;
+}
+
+.loop__left1 {
+  flex-shrink: 0;
+  animation: loop 80s -40s linear infinite;
+  padding-inline-start: 0.5em;
+
+  span {
+    padding-inline-start: 0.5em;
+  }
+}
+
+.loop__left2 {
+  flex-shrink: 0;
+  animation: loop2 80s linear infinite;
+  padding-inline-start: 0.5em;
+
+  span {
+    padding-inline-start: 0.5em;
+  }
+}
+
+.loop__right1 {
+  flex-shrink: 0;
+  animation: loop 170s -85s linear infinite;
+  animation-direction: reverse;
+  padding-inline-start: 0.5em;
+
+  span {
+    padding-inline-start: 0.5em;
+  }
+}
+
+.loop__right2 {
+  flex-shrink: 0;
+  animation: loop2 170s linear infinite;
+  animation-direction: reverse;
+  padding-inline-start: 0.5em;
+
+  span {
+    padding-inline-start: 0.5em;
+  }
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes loop2 {
+  0% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200%);
+  }
+}
+
+/* ===============================================
+# フワッと出現
+=============================================== */
+
+/* ===============================================
+# フェードのSP設定
+=============================================== */
+.js-fadeIn-sp,
+.js-fadeUp-sp,
+.js-fadeDown-sp,
+.js-fadeLeft-sp,
+.js-fadeRight-sp {
+  @include mq("md") {
+    opacity: 0;
+  }
+
+  &.js-show {
+    animation: none;
+    @include mq("md") {
+      animation: fadeUp 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+      animation-delay: 0s;
+    }
+  }
+}
+
+/* ===============================================
+# フェードイン
+=============================================== */
+.js-fadeIn,
+.js-fadeIn0ms,
+.js-fadeIn300ms,
+.js-fadeIn600ms,
+.js-fadeIn900ms,
+.js-fadeIn-sp,
+.js-fadeIn-sp0ms,
+.js-fadeIn-sp300ms,
+.js-fadeIn-sp600ms,
+.js-fadeIn-sp900ms {
+  opacity: 0;
+  &.js-show {
+    animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+}
+
+.js-fadeIn300ms {
+  &.js-show {
+    animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeIn600ms {
+  &.js-show {
+    animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeIn900ms {
+  &.js-show {
+    animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeIn-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeIn-sp600ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeIn-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+
+/* ===============================================
+# フェードアップ
+=============================================== */
+.js-fadeUp,
+.js-fadeUp0ms,
+.js-fadeUp300ms,
+.js-fadeUp600ms,
+.js-fadeUp900ms,
+.js-fadeUp-sp,
+.js-fadeUp-sp0ms,
+.js-fadeUp-sp300ms,
+.js-fadeUp-sp600ms,
+.js-fadeUp-sp900ms {
+  opacity: 0;
+  &.js-show {
+    animation: fadeUp 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+}
+
+.js-fadeUp300ms {
+  &.js-show {
+    animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeUp600ms {
+  &.js-show {
+    animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeUp900ms {
+  &.js-show {
+    animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeUp-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeUp-sp600ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeUp-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+
+/* ===============================================
+# フェードダウン
+=============================================== */
+.js-fadeDown,
+.js-fadeDown0ms,
+.js-fadeDown300ms,
+.js-fadeDown600ms,
+.js-fadeDown900ms,
+.js-fadeDown-sp,
+.js-fadeDown-sp0ms,
+.js-fadeDown-sp300ms,
+.js-fadeDown-sp600ms,
+.js-fadeDown-sp900ms {
+  opacity: 0;
+  &.js-show {
+    animation: fadeDown 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+}
+
+.js-fadeDown300ms {
+  &.js-show {
+    animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeDown600ms {
+  &.js-show {
+    animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeDown900ms {
+  &.js-show {
+    animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeDown-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeDown-sp600ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeDown-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+
+/* ===============================================
+# フェードレフト
+=============================================== */
+.js-fadeLeft,
+.js-fadeLeft0ms,
+.js-fadeLeft300ms,
+.js-fadeLeft600ms,
+.js-fadeLeft900ms,
+.js-fadeLeft-sp,
+.js-fadeUp-Left0ms,
+.js-fadeUp-Left300ms,
+.js-fadeUp-Left600ms,
+.js-fadeUp-Left900ms {
+  opacity: 0;
+  &.js-show {
+    animation: fadeLeft 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+}
+
+.js-fadeLeft300ms {
+  &.js-show {
+    animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeLeft600ms {
+  &.js-show {
+    animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeLeft900ms {
+  &.js-show {
+    animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeLeft-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeLeft-sp600ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeLeft-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+
+/* ===============================================
+# フェードライト
+=============================================== */
+.js-fadeRight,
+.js-fadeRight0ms,
+.js-fadeRight300ms,
+.js-fadeRight600ms,
+.js-fadeRight900ms,
+.js-fadeRight-sp,
+.js-fadeRight-sp0ms,
+.js-fadeRight-sp300ms,
+.js-fadeRight-sp600ms,
+.js-fadeRight-sp900ms {
+  opacity: 0;
+  &.js-show {
+    animation: fadeRight 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+}
+
+.js-fadeRight300ms {
+  &.js-show {
+    animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeRight600ms {
+  &.js-show {
+    animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeRight900ms {
+  &.js-show {
+    animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+
+    @include mq("md") {
+      animation-delay: 0s;
+    }
+  }
+}
+
+.js-fadeRight-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeRight-sp600ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1s, 1s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+.js-fadeRight-sp300ms {
+  @include mq("md") {
+    &.js-show {
+      animation-delay: 1.5s, 1.5s; // ここはそれぞれの遅延に応じて変更
+    }
+  }
+}
+
+/* ===============================================
+# フェードのアニメーション定義
+=============================================== */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

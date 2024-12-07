@@ -1,0 +1,22 @@
+/* ----- line-height, letter-spacing ----- */
+
+
+// Webpをサポートしていないブラウザの指定
+@mixin supports($property, $value) {
+  $style : "#{$property} : #{$value}";
+  $style : "(#{$style})";
+
+  @supports (#{$style}) {
+    #{$property} : #{$value};
+    @content;
+  }
+}
+
+@mixin unsupports($property, $value) {
+  $style : "#{$property} : #{$value}";
+  $style : "(#{$style})";
+
+  @supports not (#{$style}) {
+    @content;
+  }
+}

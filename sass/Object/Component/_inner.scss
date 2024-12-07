@@ -1,0 +1,26 @@
+@use "../../Object/Utility" as *;
+
+.inner {
+  --_inline-size: 1100px;
+  --_padding: 30px;
+  
+  box-sizing: initial;
+  max-inline-size: var(--_inline-size);
+  padding-inline: var(--_padding);
+  margin-inline: auto;
+}
+
+.inner-shrink {
+  --_inline-size: calc(1100 * var(--max-fluid-ratio));
+  --_padding: 30px;
+  
+  @include mq("xl") {
+    --_inline-size: 1100px;
+  }
+
+  
+  box-sizing: initial;
+  max-inline-size: var(--_inline-size);
+  padding-inline: var(--_padding);
+  margin-inline: auto;
+}

@@ -1,0 +1,147 @@
+@use "../Object/Utility" as *;
+
+
+/*========= 途中からハンバーガーメニューに変化するのためのCSS ===============*/
+.hamburger {
+  --_inline-size: 42px;
+  --_block-size: 42px;
+  --_gap: 10px;
+  --_duration: .5s;
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--_gap);
+  inline-size: var(--_inline-size);
+  block-size: var(--_block-size);
+  cursor: pointer;
+  top: 20px;
+  right: 25px;
+  z-index: 1001;
+  background: var(--color-blue);
+}
+
+.active.hamburger {
+  --_padding: 30;
+
+  position: fixed;
+  right: calc(var(--_padding) * 1px);
+}
+
+.hamburger__line {
+  --_inline-size: 30px;
+
+  inline-size: var(--_inline-size);
+  block-size: 1px;
+  background-color: var(--color-black);
+  transition: var(--_duration) ease-in-out;
+  translate: var(--_translate, 0);
+  background: var(--color-white);
+}
+
+.active .hamburger__line:nth-child(1) {
+  --_translate: 0 calc(var(--_gap) * 1.2);
+  transform: rotate(-45deg);
+}
+.active .hamburger__line:nth-child(2) {
+  --_translate: 0 calc(var(--_gap) * 0.1);
+  transform: rotate(45deg);
+}
+.active .hamburger__line:nth-child(3) {
+  --_translate: 0 calc(var(--_gap) * -1);
+  transform: rotate(45deg);
+}
+
+.active .header__menu {
+  font-size: calc(0 * var(--rem-ratio));
+
+  &::before {
+    font-size: calc(16 * var(--rem-ratio));
+    content: "CLOSE";
+  }
+}
+
+.headerDrawer {
+  --_duration: .6s;
+
+  inline-size: 100%;
+  block-size: 100%;
+  block-size: 100svh;
+  padding-top: 94px;
+  padding-bottom: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--color-black);
+  text-align: center;
+  transition: var(--_duration);
+  opacity: 0;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+// JSで操作する時のみ付ける
+.headerDrawer.panelactive {
+  opacity: .95;
+  visibility: visible;
+}
+
+.js-ScrollAllowed {
+  overflow: hidden
+}
+
+.headerDrawer__inner {
+  block-size: 100%;
+  overflow-y: scroll;
+}
+
+.headerDrawer__logo {
+  position: fixed;
+  top: 15px;
+  left: 30px;
+  z-index: 40;
+}
+
+.headerDrawer__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.headerDrawer__link {
+  position: relative;
+  color: var(--color-white);
+  transition: border-right 0.3s ease;
+  padding: 5px;
+
+  &::after {
+    --_scale: 0 1;
+
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    inline-size: 100%;
+    block-size: 1px;
+    background: var(--color-white);
+    transition: all .3s;
+    scale: var(--_scale);
+    transform-origin: left top;/*左上基点*/
+  }
+
+  &:any-link:hover::after {
+    @media (any-hover: hover) {
+      --_scale: 1 1;
+    }
+  }
+  
+  &:focus-visible::after {
+      --_scale: 1 1;
+  }
+
+  line-height: 1;
+}
