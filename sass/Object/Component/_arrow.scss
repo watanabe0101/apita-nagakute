@@ -1,1 +1,50 @@
 @use "../../Object/Utility" as *;
+
+  .splide__arrow--prev,
+  .splide__arrow--next {
+    --_inline-size: 40px;
+    --_block-size: 40px;
+    --_border-color: var(--color-gray);
+    --_duration: .5s;
+    
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    inline-size: var(--_inline-size);
+    block-size: var(--_block-size);
+    transition: all var(--_duration);
+
+    &::after {
+      content: "";
+      inline-size: calc(var(--_inline-size) * 0.35);
+      aspect-ratio: 1;
+      border-block-start: 2px solid var(--_border-color);
+      border-inline-end: 2px solid var(--_border-color);
+      rotate: -135deg;
+      translate: var(--_translate);
+      transition: all var(--_duration);
+    }
+
+    &:hover::after {
+      @media (any-hover: hover) {
+        opacity: .5;
+      }
+    }
+    
+    &:focus-visible::after {
+      opacity: .5;
+    }
+  }
+
+  .splide__arrow--prev {
+    left: -40px;
+  }
+
+  .splide__arrow--next {
+    right: -40px;
+    &::after {
+      rotate: 45deg;
+    }
+  }

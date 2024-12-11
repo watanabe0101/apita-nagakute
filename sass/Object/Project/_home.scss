@@ -1,1 +1,184 @@
 @use "../../Object/Utility" as *;
+
+.main {
+  background: var(--color-white);
+
+  @include mq("md") {
+    inline-size: 100%;
+  }
+}
+
+/* ===============================================
+# fv
+=============================================== */
+.fv {
+
+  .splide__slide {
+    img {
+      aspect-ratio: 375/250;
+      object-fit: cover;
+    }
+  }
+
+  // サムネイル
+  .splide--loop {
+    margin-block-start: 10px;
+    position: relative;
+    inline-size: 200px;
+    margin-inline: auto;
+
+    @include mq("md") {
+      margin-block-start: 20px;
+      inline-size: 380px;
+    }
+
+    @media screen and (max-width: 500px) {
+      margin-block-start: 10px;
+      inline-size: 200px;
+    }
+  }
+
+  .splide-sub {
+    margin-inline: auto;
+    inline-size: 100%;
+    position: relative;
+  }
+  
+  .splide-sub__list {
+    --_gap: 10px;
+    
+    column-gap: var(--_gap);
+    position: relative;
+    left: -10px;
+  }
+
+  .splide-sub__item {
+    --_duration: .5s;
+
+    cursor: pointer;
+    transition: all var(--_duration);
+
+    &:hover {
+      @media (any-hover: hover) {
+        opacity: .6;
+      }
+    }
+    
+    &:focus-visible {
+      opacity: .6;
+    }
+  }
+}
+
+/* ===============================================
+# menu
+=============================================== */
+.menu {
+  margin-block-start: 20px;
+}
+
+.menu__list {
+  position: relative;
+  display: block grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  max-inline-size: 600px;
+  margin-inline: auto;
+}
+
+.menu__link {
+  --_border-color: #EEEEEE;
+
+  padding-block-start: 10px;
+  padding-block-end: 13px;
+  display: block grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  row-gap: 16px;
+  justify-items: center;
+  border-block-end: 1px solid var(--_border-color);
+  inline-size: 100%;
+  @include link;
+}
+
+.menu__item {
+  display: contents;
+
+  &:nth-child(n+4) .menu__link {
+    border-block-end: 0;
+    padding-block-start: 14px;
+  }
+
+  &:nth-of-type(2) .menu__link,
+  &:nth-of-type(5) .menu__link {
+    border-inline: 1px solid var(--_border-color);
+  }
+}
+
+
+.menu__image {
+  inline-size: 50px;
+  align-self: end;
+}
+
+.menu__text {
+  margin-block: var(--leading-trim);
+  font-size: calc(11 * var(--rem-ratio));
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+  font-weight: var(--bold);
+  line-height: calc(20 / 11);
+}
+
+/* ===============================================
+# banner
+=============================================== */
+.banner {
+  margin-block-start: 20px;
+
+  .splide {
+    margin-inline: auto;
+    max-inline-size: 600px;
+  }
+  
+  .splide__arrows {
+  
+  }
+  
+  .splide__arrow {
+  
+  }
+
+  .splide__arrow--prev,
+  .splide__arrow--next {
+    --_inline-size: 45px;
+    --_block-size: 45px;
+
+    top: 47%;
+  }
+  
+  .splide__arrow--prev {
+    left: -28px;
+  }
+  
+  .splide__arrow--next {
+    right: -28px;
+  }
+  
+  .splide__track {
+  
+  }
+  
+  .splide__list {
+    column-gap: 10px;
+    position: relative;
+    left: -10px;
+  }
+  
+  .splide__slide {
+    img {
+      aspect-ratio: 335/100;
+      object-fit: cover;
+    }
+  }
+
+}

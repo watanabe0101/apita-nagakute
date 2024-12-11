@@ -202,108 +202,305 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="pc-background">
       <!-- welcome-banner -->
       <div class="welcome-banner">
-        <div class="welcome-banner__logo">
-          <picture>
-            <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.webp'); ?>" type="image/webp">
-            <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="lazy">
-          </picture>
-        </div>
-        <div class="welcome-banner__text">
-          <p class="welcome-banner__title">
+        <div class="welcome-banner__inner">
+          <a href="<?php echo esc_url(home_url('/')); ?>" class="welcome-banner__logo">
             <picture>
-              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.png'); ?>" alt="Welcome to Forest" loading="lazy">
+              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.webp'); ?>" type="image/webp">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.png'); ?>" alt="アピタ長久手店のロゴ">
             </picture>
-          </p>
-          <p class="welcome-banner__description">
-            自然豊かな街で、<br>
-            みんなが楽しさ・喜びを<br>
-            分かち合える森、<br>
-            アピタ長久手店へようこそ。<br>
-            楽しさあふれる森の中から<br>
-            あなたの<span>”たからもの</span>を<br>
-            見つけてください。
-          </p>
-        </div>
-        <div class="welcome-banner__graphic">
-          <picture>
-            <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.webp'); ?>" type="image/webp">
-            <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.png'); ?>" alt="自然をモチーフにした木と動物のイラスト" loading="lazy">
-          </picture>
+          </a>
+          <div class="welcome-banner__text">
+            <p class="welcome-banner__title">
+              <picture>
+                <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.webp'); ?>" type="image/webp">
+                <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.png'); ?>" alt="Welcome to Forest" loading="lazy">
+              </picture>
+            </p>
+            <p class="welcome-banner__description">
+              自然豊かな街で、<br>
+              みんなが楽しさ・喜びを<br>
+              分かち合える森、<br>
+              アピタ長久手店へようこそ。<br>
+              楽しさあふれる森の中から<br>
+              あなたの<span>”たからもの”</span>を<br>
+              見つけてください。
+            </p>
+          </div>
+          <div class="welcome-banner__graphic">
+            <picture>
+              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.webp'); ?>" type="image/webp">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.png'); ?>" alt="自然をモチーフにした木と動物のイラスト">
+            </picture>
+          </div>
         </div>
       </div>
       <!-- welcome-banner -->
       <!-- pc-navigation -->
       <div class="pc-navigation">
-        <a href="#" class="pc-navigation__link">
-          <img src="icon-restaurants.png" alt="レストランアイコン" loading="lazy">
-          <span>RESTAURANTS</span>
-        </a>
-        <a href="#" class="pc-navigation__link">
-          <img src="icon-floor-guide.png" alt="フロアガイドアイコン" loading="lazy">
-          <span>FLOOR GUIDE</span>
-        </a>
-        <a href="#" class="pc-navigation__link">
-          <img src="icon-shop-guide.png" alt="ショップガイドアイコン" loading="lazy">
-          <span>SHOP GUIDE</span>
-        </a>
-        <a href="#" class="pc-navigation__link">
-          <img src="icon-events.png" alt="イベントアイコン" loading="lazy">
-          <span>EVENTS</span>
-        </a>
-        <a href="#" class="pc-navigation__link">
-          <img src="icon-shop-news.png" alt="ショップニュースアイコン" loading="lazy">
-          <span>SHOP NEWS</span>
-        </a>
-        <a href="#" class="pc-navigation__link">
-          <img src="icon-about.png" alt="アバウトアイコン" loading="lazy">
-          <span>ABOUT</span>
-        </a>
-      </div>
-      <!-- pc-navigation -->
-
-      <header class="header">
-        <div class="header__inner">
-
-          <?php if (is_home() || is_front_page()): ?>
-            <h1 class="header__logo">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
-                <picture>
-                  <source srcset="<?php echo get_theme_file_uri('images/header/logo.webp'); ?>" type="image/webp">
-                  <img src="<?php echo get_theme_file_uri('images/header/logo.png'); ?>" alt="ロゴ">
-                </picture>
+        <div class="pc-navigation__inner">
+          <ul class="pc-navigation__list">
+            <li class="pc-navigation__item">
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+                <div class="pc-navigation__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.png'); ?>" alt="レストランアイコン">
+                  </picture>
+                </div>
+                <span class="pc-navigation__text">RESTAURANTS</span>
               </a>
-            </h1>
-          <?php else: ?>
-            <p class="header__logo">
-              <a href="<?php echo esc_url(home_url('/#home')); ?>" class="header__logo-link">
-                <picture>
-                  <source srcset="<?php echo get_theme_file_uri('images/header/logo.webp'); ?>" type="image/webp">
-                  <img src="<?php echo get_theme_file_uri('images/header/logo.png'); ?>" alt="ロゴ">
-                </picture>
+            </li>
+            <li class="pc-navigation__item">
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+                <div class="pc-navigation__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.png'); ?>" alt="フロアガイドアイコン">
+                  </picture>
+                </div>
+                <span class="pc-navigation__text">FLOOR GUIDE</span>
               </a>
-            </p>
-          <?php endif; ?>
-
-          <nav class="header__menu">
-            <ul class="header__list">
-              <li class="header__item"><a href="" class="header__link"></a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <button type="button" id="hamburger" class="hamburger js-hamburger" aria-expanded="false" aria-controls="headerDrawer" aria-label="メニューを開く">
-        <span class="hamburger__line"></span>
-        <span class="hamburger__line"></span>
-        <span class="hamburger__line"></span>
-        <!-- <p class="header__menu">MENU</p> -->
-      </button>
-      <nav id="headerDrawer" class="headerDrawer js-drawer" aria-label="スマホ用メニュー" aria-hidden="true">
-        <div class="headerDrawer__inner">
-          <ul class="headerDrawer__list">
-            <li class="headerDrawer__item">
-              <a href="" class="headerDrawer__link"></a>
+            </li>
+            <li class="pc-navigation__item">
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+                <div class="pc-navigation__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.png'); ?>" alt="ショップガイドアイコン">
+                  </picture>
+                </div>
+                <span class="pc-navigation__text">SHOP GUIDE</span>
+              </a>
+            </li>
+            <li class="pc-navigation__item">
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+                <div class="pc-navigation__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.png'); ?>" alt="イベントアイコン">
+                  </picture>
+                </div>
+                <span class="pc-navigation__text">EVENTS</span>
+              </a>
+            </li>
+            <li class="pc-navigation__item">
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+                <div class="pc-navigation__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.png'); ?>" alt="ショップニュースアイコン">
+                  </picture>
+                </div>
+                <span class="pc-navigation__text">SHOP NEWS</span>
+              </a>
+            </li>
+            <li class="pc-navigation__item">
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+                <div class="pc-navigation__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.png'); ?>" alt="アバウトアイコン">
+                  </picture>
+                </div>
+                <span class="pc-navigation__text">ABOUT</span>
+              </a>
             </li>
           </ul>
+          <div class="pc-navigation__payment">
+            <a href="#" class="pc-navigation__payment-link">
+              <picture>
+                <source srcset="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.webp'); ?>" type="image/webp">
+                <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.png'); ?>" alt="majica UCSカード利用可能店舗一覧">
+              </picture>
+            </a>
+          </div>
+          <div class="pc-navigation__graphic">
+            <picture>
+              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.webp'); ?>" type="image/webp">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.png'); ?>" alt="自然をモチーフにした木々と動物のイラスト">
+            </picture>
+          </div>
         </div>
-      </nav>
+      </div>
+      <!-- pc-navigation -->
+      <div class="main-content">
+
+        <header class="header">
+          <div class="header__inner">
+            <div class="header__left">
+              <?php if (is_home() || is_front_page()): ?>
+                <h1 class="header__logo">
+                  <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.png'); ?>" alt="アピタ長久手店のロゴ">
+                    </picture>
+                  </a>
+                </h1>
+              <?php else: ?>
+                <p class="header__logo">
+                  <a href="<?php echo esc_url(home_url('/#home')); ?>" class="header__logo-link">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.jpg'); ?>" alt="アピタ長久手店のロゴ">
+                    </picture>
+                  </a>
+                </p>
+              <?php endif; ?>
+              <a href="<?php echo esc_url(home_url('/')); ?>" class="header__eng">
+                <div class="header__eng-image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-eng.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/header/header-eng.png'); ?>" alt="Englishアイコン" loading="lazy">
+                  </picture>
+                </div>
+                <p class="header__eng-text">English</p>
+              </a>
+            </div>
+
+            <div class="header__right">
+              <div class="header__payment">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="header__majica">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="lazy">
+                  </picture>
+                </a>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="header__ucs">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="lazy">
+                  </picture>
+                </a>
+              </div>
+              <button type="button" id="hamburger" class="hamburger js-hamburger" aria-expanded="false" aria-controls="headerDrawer" aria-label="メニューを開く">
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <p class="hamburger__menu">menu</p>
+              </button>
+            </div>
+
+          </div>
+        </header>
+
+        <nav id="headerDrawer" class="headerDrawer js-drawer" aria-label="スマホ用メニュー" aria-hidden="true">
+          <div class="headerDrawer__inner">
+            <ul class="headerDrawer__list">
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__top">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-top.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-top.png'); ?>" alt="TOPアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">TOP</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-facility.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-facility.png'); ?>" alt="施設からのお知らせアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">施設からのお知らせ</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.png'); ?>" alt="イベント・キャンペーンアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">イベント・キャンペーン</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.png'); ?>" alt="ショップニュースアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">ショップニュース</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.png'); ?>" alt="フロアガイドアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">フロアガイド</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.png'); ?>" alt="ショップガイドアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">ショップガイド</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-recruit.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-recruit.png'); ?>" alt="求人情報アイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">求人情報</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__icon">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.png'); ?>" alt="施設情報アイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">施設情報</p>
+                </a>
+              </li>
+              <li class="headerDrawer__item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                  <div class="headerDrawer__car">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-car.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-car.png'); ?>" alt="交通アクセスアイコン" loading="lazy">
+                    </picture>
+                  </div>
+                  <p class="headerDrawer__menu">交通アクセス</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="headerDrawer__info">
+              <li class="headerDrawer__info-item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">サイトの利用について</a>
+              </li>
+              <li class="headerDrawer__info-item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">サイトマップ</a>
+              </li>
+              <li class="headerDrawer__info-item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">個人情報保護方針</a>
+              </li>
+              <li class="headerDrawer__info-item">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">SDGs・地域連携</a>
+              </li>
+            </ul>
+          </div>
+        </nav>

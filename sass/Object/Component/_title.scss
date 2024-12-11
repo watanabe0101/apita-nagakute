@@ -1,1 +1,22 @@
 @use "../../Object/Utility" as *;
+
+.title {
+
+}
+
+.title__eng {
+  display: block;
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+  line-height: calc(26 / 24);
+
+  &::first-line {
+    // color: var(--color-green);
+  }
+}
+
+.title__jp {
+
+}

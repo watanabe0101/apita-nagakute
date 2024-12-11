@@ -20,3 +20,19 @@
     @content;
   }
 }
+
+@mixin link {
+  --_duration: .5s;
+
+  transition: all var(--_duration);
+
+  &:any-link:hover {
+    @media (any-hover: hover) {
+      opacity: .6;
+    }
+  }
+  
+  &:focus-visible {
+      opacity: .6;
+  }
+}

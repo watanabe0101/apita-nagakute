@@ -32,13 +32,11 @@
                 <p class="news-card__title"><?php the_title(); ?></p>
                 <div class="news-card__content"><?php the_content(); ?></div>
                 <?php taxonomies_label() ?>
-                <?php display_urgent_label(); ?>
               </article>
             </li>
         <?php endwhile;
         endif; ?>
       </ul>
-      <?php custom_paginate_links($the_query, $paged); ?>
     </div>
   </div>
 
