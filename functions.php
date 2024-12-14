@@ -9,6 +9,7 @@ $function_files = [
   '/src/assets/functions/load_css_async.php',
   '/src/assets/functions/custom_breadcrumb.php',
   '/src/assets/functions/custom_labels.php',
+  '/src/assets/functions/custom-function.php',
 ];
 
 foreach ($function_files as $file) {

@@ -23,6 +23,7 @@
   grid-template-columns: auto auto;
   column-gap: 9px;
   flex-shrink: 0;
+  @include link;
 }
 
 .footer__image1 {

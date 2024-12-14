@@ -1,0 +1,75 @@
+@use "../../Object/Utility" as *;
+
+/* ===============================================
+# shop-guide-card
+=============================================== */
+.shop-guide-card {
+  margin-block-start: 22px;
+  display: block grid;
+  grid-template-columns: repeat(2,1fr);
+  column-gap: 15px;
+  row-gap: 30px;
+
+  @include mq("md") {
+    row-gap: calc(30 * var(--min-fluid-ratio));
+  }
+}
+
+.shop-guide-card__link {
+  @include link;
+}
+
+.shop-guide-card__image {
+  --_border-color: #CCCCCC;
+
+  border: 1px solid var(--_border-color);
+  aspect-ratio: 160/100;
+
+  img {
+    margin-inline: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    object-fit: contain;
+    max-inline-size: 87.5%;
+    max-block-size: 70%;
+  }
+}
+
+.shop-guide-card__no-image {
+  img {
+    object-fit: cover;
+    max-inline-size: 100%;
+    max-block-size: 100%;
+  }
+}
+
+.shop-guide-card__title {
+  margin-block-start: 10px;
+  color: var(--color-green4);
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--bold);
+}
+
+.shop-guide-card__content {
+  margin-block-start:15px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 5px;
+  align-items: center;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.card__label {
+  inline-size: 40px;
+  block-size: 20px;
+  display: grid;
+  place-items: center;
+  background: var(--color-green3);
+
+}
+
+.shop-guide-card__not-text {
+  margin-block-start: 40px;
+}

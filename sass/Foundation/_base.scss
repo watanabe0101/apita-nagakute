@@ -60,10 +60,9 @@
   box-sizing: border-box;
 }
 
-// :where(:root, body) {
-//   overflow-x: clip;
-//   overflow-x: hidden;
-// }
+:where(:root, body) {
+  overflow-x: clip;
+}
 
 body {
   position: relative;

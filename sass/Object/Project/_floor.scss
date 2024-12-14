@@ -1,0 +1,197 @@
+@use "../../Object/Utility" as *;
+
+/* ===============================================
+# floor-menu
+=============================================== */
+.floor-menu {
+  margin-block-start: 22px;
+}
+
+.floor-menu__list {
+  margin-block-start: 22px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  column-gap: 17px;
+  max-inline-size: 500px;
+}
+
+.floor-menu__link {
+  padding-block: 10px;
+  padding-inline: 10px;
+  block-size: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--color-green3);
+  border-radius: 5px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  @include link;
+}
+
+/* ===============================================
+# floor-map
+=============================================== */
+.floor-map {
+  margin-block-start: 27px;
+}
+
+.floor-map__title {
+  margin-block: var(--leading-trim);
+  position: relative;
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    inline-size: 100%;
+    block-size: 4px;
+    background: linear-gradient(
+      to right, 
+      var(--color-green4) 0%, var(--color-green4) 5.97%,
+      var(--color-green) 5.97%, var(--color-green) 11.94%,
+      var(--color-green2) 11.94%, var(--color-green2) 17.91%,
+      #EEEEEE 17.91%, #EEEEEE 100%
+    );
+  }
+}
+
+.floor-map__image {
+  margin-block-start: 28px;
+  margin-inline: auto;
+  max-inline-size: 600px;
+
+  img {
+    aspect-ratio: 335/251;
+    object-fit: cover;
+  }
+}
+
+.floor-map__pdf {
+  --_border-color: var(--color-green4);
+
+  margin-block-start: 20px;
+  margin-inline: auto;
+  padding-inline: 10px;
+  inline-size: 140px;
+  block-size: 40px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--_border-color);
+  border-radius: 30px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  color: var(--color-green4);
+  @include link;
+
+  @include mq("md") {
+    --_clamp-min: 14;
+    --_clamp-max: 24;
+    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
+    
+    font-size: var(--_clamp);
+    margin-block-start: calc(20 * var(--min-fluid-ratio));
+    inline-size: calc(140 * var(--min-fluid-ratio));
+    block-size: calc(40 * var(--min-fluid-ratio));
+    border-radius: calc(30 * var(--min-fluid-ratio));
+  }
+}
+
+/* ===============================================
+# アコーディオン部分
+=============================================== */
+.floor-map {
+
+  .accordion {
+    margin-block-start: 20px;
+  }
+  .accordion__summary {
+    cursor: pointer;
+    display: block grid;
+    grid-template: '. icon' / 1fr 1em;
+    column-gap: 1em;
+    align-items: center;
+    padding-block: 24px 21px;
+    padding-inline-end: 10px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    background-image: radial-gradient(circle, #cccccc 1px, transparent 1px);
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-size: 8px 2px;
+    transition: all var(--_duration), transform var(--_duration);
+  
+    &::before,
+    &::after {
+      --_duration: 0.5s;
+  
+      content: '';
+      grid-area: icon;
+      border-block-end: 2px solid var(--color-green4);
+      transition: all var(--_duration);
+    }
+  
+    &::after {
+      rotate: 90deg;
+    }
+  }
+
+  .accordion__details {
+    background-image: radial-gradient(circle, #cccccc 1px, transparent 1px);
+    background-position: left -1px bottom;
+    background-repeat: repeat-x;
+    background-size: 8px 2px;
+  }
+  
+  .accordion__summary::-webkit-details-marker {
+    /* Safariで表示されるデフォルトの三角形アイコンを消します */
+    display: none;
+  }
+  
+  details[open] .accordion__summary::before {
+    rotate: 180deg;
+  }
+  
+  details[open] .accordion__summary::after {
+    rotate: 0deg;
+  }
+  
+  /* is-openedクラスが付与されたときのスタイル */
+  details.is-opened .accordion__summary::after {
+    rotate: 0deg;
+  }
+  
+  /* --------アコーディオンの中身のスタイル-------- */
+  .accordion__content {
+    overflow: hidden;  
+    /* details直下のタグにpaddingを設定すると挙動がおかしくなるので、ここには指定しない */
+  }
+
+  .accordion__content-inner {
+    padding-block-end: 32px;
+  }
+  
+  .shop-guide-card {
+    margin-block-start: 0;
+  }
+}
+
+/* ===============================================
+# 1階、2階のタイトル上の余白
+=============================================== */
+.floor-first,
+.floor-second {
+  margin-block-start: 67px;
+}
+
+/* ===============================================
+# sns
+=============================================== */
+.floor-sns {
+  margin-block-start: 60px;
+  padding-block-end: 42px;
+}

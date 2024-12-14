@@ -16,6 +16,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
 
+    <!-- Google Tag Manager -->
+    <!-- <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-K53XC74');
+    </script> -->
+    <!-- End Google Tag Manager -->
+
     <!-- title -->
     <?php if (is_home() || is_front_page()): ?>
       <title></title>
@@ -51,11 +70,11 @@
     <?php endif; ?>
 
     <!-- og:site_name -->
-    <meta property="og:site_name" content="このサイトの名前">
+    <meta property="og:site_name" content="アピタ長久手">
 
     <!-- og:title -->
     <?php if (is_home() || is_front_page()): ?>
-      <meta property="og:title" content="">
+      <meta property="og:title" content="アピタ長久手">
     <?php elseif (is_page('group')): ?>
       <meta property="og:title" content="">
     <?php elseif (is_singular('recruit')): ?>
@@ -89,7 +108,7 @@
 
     <!-- og:description -->
     <?php if (is_home() || is_front_page()): ?>
-      <meta property="og:description" content="">
+      <meta property="og:description" content="アピタ長久手のTOPページ">
     <?php elseif (is_page('group')): ?>
       <meta property="og:description" content="">
     <?php elseif (is_page('about')): ?>
@@ -108,7 +127,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <?php if (is_home() || is_front_page()): ?>
-      <meta name="twitter:title" content="">
+      <meta name="twitter:title" content="アピタ長久手">
     <?php elseif (is_page('group')): ?>
       <meta name="twitter:title" content="">
     <?php elseif (is_page('about')): ?>
@@ -125,7 +144,7 @@
 
 
     <?php if (is_home() || is_front_page()): ?>
-      <meta name="twitter:description" content="">
+      <meta name="twitter:description" content="アピタ長久手のTOPページです">
     <?php elseif (is_page('group')): ?>
       <meta name="twitter:description" content="">
     <?php elseif (is_page('about')): ?>
@@ -149,7 +168,7 @@
 
     <!-- twitter:card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="<?php echo get_theme_file_uri('/assets/images/common/ogp/ogp.jpg'); ?>">
+    <meta name="twitter:image" content="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>">
 
     <!-- サイトカラー -->
     <meta name="theme-color" content="#8EC11F">
@@ -196,8 +215,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <body <?php body_class(); ?>><?php wp_body_open(); ?>
     <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M38HFQSX"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K53XC74"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
     <!-- End Google Tag Manager (noscript) -->
     <div class="pc-background">
       <!-- welcome-banner -->
@@ -251,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </a>
             </li>
             <li class="pc-navigation__item">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+              <a href="<?php echo esc_url(home_url('/floor/')); ?>" class="pc-navigation__link">
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.webp'); ?>" type="image/webp">
@@ -262,7 +281,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </a>
             </li>
             <li class="pc-navigation__item">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+              <a href="<?php echo esc_url(home_url('/shop-guide/')); ?>" class="pc-navigation__link">
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.webp'); ?>" type="image/webp">
@@ -432,7 +451,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/floor/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.webp'); ?>" type="image/webp">
@@ -443,7 +462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/shop-guide/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.webp'); ?>" type="image/webp">

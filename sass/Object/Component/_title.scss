@@ -1,8 +1,5 @@
 @use "../../Object/Utility" as *;
 
-.title {
-
-}
 
 .title__eng {
   display: block;
@@ -11,12 +8,76 @@
   font-weight: var(--bold);
   letter-spacing: calc(calc(100 / 1000) * 1em);
   line-height: calc(26 / 24);
+  position: relative;
 
-  &::first-line {
-    // color: var(--color-green);
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    inline-size: 100%;
+    block-size: 4px;
+    background: linear-gradient(
+      to right, 
+      var(--color-green4) 0%, var(--color-green4) 5.97%,
+      var(--color-green) 5.97%, var(--color-green) 11.94%,
+      var(--color-green2) 11.94%, var(--color-green2) 17.91%,
+      #EEEEEE 17.91%, #EEEEEE 100%
+    );
+  }
+
+  &::first-letter {
+    color: var(--color-green);
+  }
+
+  span {
+    margin-inline-start: 0.5em;
+    display: inline-block;
+    
+    &::first-letter {
+      color: var(--color-green);
+    }
   }
 }
 
 .title__jp {
+  position: relative;
+  top: 3px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
 
+/* ===============================================
+# 固定ページタイトル
+=============================================== */
+.page-header {
+  padding-block-start: 30px;
+}
+
+.page-header__eng {
+  display: block;
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+  line-height: calc(26 / 24);
+
+  &::first-letter {
+    color: var(--color-green);
+  }
+
+  span {
+    margin-inline-start: 0.5em;
+    display: inline-block;
+    
+    &::first-letter {
+      color: var(--color-green);
+    }
+  }
+}
+
+.page-header__jp {
+  margin-block-start: 4px;
+  display: block;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
 }

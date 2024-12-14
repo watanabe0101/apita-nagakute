@@ -4,7 +4,7 @@
   <a href="#" class="page-top"><span class="page-top__line"></span></a>
   <div class="footer__inner inner">
     <div class="footer__top">
-      <div class="footer__logo">
+      <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo">
         <div class="footer__image1">
           <picture>
             <source srcset="<?php echo get_theme_file_uri('/assets/images/footer/apita_mark.webp'); ?>" type="image/webp">
@@ -17,7 +17,7 @@
             <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="lazy">
           </picture>
         </div>
-      </div>
+      </a>
       <p class="footer__title">アピタ長久手店専門店街</p>
     </div>
     <ul class="footer__list">

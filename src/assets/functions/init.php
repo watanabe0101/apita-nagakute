@@ -114,28 +114,45 @@ add_filter('the_excerpt', 'disable_autop_on_specific_page', 0);
 
 
 // パーマリンクにランダムな数字を生成・保存する関数
-add_action('save_post', function ($post_id) {
-  // 自動保存やリビジョンの更新を避ける
-  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-    return;
-  }
+function force_random_slug_on_new_post($post_ID)
+{
+  // 新規投稿の場合のみ処理
+  if (!wp_is_post_revision($post_ID)) {
+    // 投稿タイプが固定ページでない場合のみ処理
+    $post_type = get_post_type($post_ID);
+    if ($post_type != 'page') {
+      // 現在の投稿のスラッグを取得
+      $post = get_post($post_ID);
 
-  // 投稿タイプが "page" でない場合のみ実行
-  if (get_post_type($post_id) !== 'page') {
-    // 現在のスラッグを取得
-    $current_slug = get_post_field('post_name', $post_id);
+      // スラッグが空または自動生成された場合
+      if (empty($post->post_name)) {
+        // ランダムな数字のスラッグを生成
+        $random_slug = makeRandStr(8);
 
-    // スラッグがランダムな数字でない場合に更新
-    if (!preg_match('/^[0-9]{8}$/', $current_slug)) {
-      // ランダムな8桁の数字を生成
-      $new_slug = makeRandStr(8);
-      wp_update_post([
-        'ID' => $post_id,
-        'post_name' => $new_slug,
-      ]);
+        // スラッグを更新
+        wp_update_post(array(
+          'ID' => $post_ID,
+          'post_name' => $random_slug
+        ));
+      }
     }
   }
-});
+}
+add_action('save_post', 'force_random_slug_on_new_post', 10, 1);
+
+// 既存のauto_post_slug関数と乱数生成関数はそのまま
+function auto_post_slug($slug, $post_ID, $post_status, $post_type)
+{
+  // 投稿タイプが固定ページでない場合のみ処理
+  if ($post_type != 'page') {
+    // スラッグが空の場合のみランダムスラッグを生成
+    if (empty($slug)) {
+      $slug = makeRandStr(8);
+    }
+  }
+  return $slug;
+}
+add_filter('wp_unique_post_slug', 'auto_post_slug', 1, 4);
 
 function makeRandStr($length = 8)
 {
@@ -173,3 +190,19 @@ function set_nocache_headers()
   }
 }
 add_action('template_redirect', 'set_nocache_headers');
+
+function fix_post_id_on_preview($null, $post_id)
+{
+  if (is_preview()) {
+    return get_the_ID();
+  } else {
+    $acf_post_id = isset($post_id->ID) ? $post_id->ID : $post_id;
+
+    if (!empty($acf_post_id)) {
+      return $acf_post_id;
+    } else {
+      return $null;
+    }
+  }
+}
+add_filter('acf/pre_load_post_id', 'fix_post_id_on_preview', 10, 2);

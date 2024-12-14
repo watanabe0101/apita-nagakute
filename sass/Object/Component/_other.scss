@@ -1,0 +1,83 @@
+@use "../../Object/Utility" as *;
+
+.entry-icon-new {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  inline-size: 40px;
+  block-size: 40px;
+  display: grid;
+  place-items: center;
+  background: #F7ED12;
+  color: var(--color-green4);
+  border-radius: 50%;
+  font-size: calc(11 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+
+  @include mq("md") {
+    --_clamp-min: 11;
+    --_clamp-max: 22;
+    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
+    
+    font-size: var(--_clamp);
+    inline-size: calc(40 * var(--min-fluid-ratio));
+    block-size: calc(40 * var(--min-fluid-ratio));
+  }
+}
+
+/* ===============================================
+# sns
+=============================================== */
+.sns__content {
+  margin-block-start: 22px;
+}
+
+.sns-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sns-item {
+  display: contents;
+
+  &:nth-of-type(2) .sns-link {
+    --_border-color: #EEEEEE;
+
+    border-inline: 1px solid var(--_border-color);
+  }
+}
+
+.sns-link {
+  padding-block: 5px;
+  padding-inline: 26px;
+  @include link;
+
+  @include mq("md") {
+    padding-block: calc(5 * var(--min-fluid-ratio));
+    padding-inline: calc(26 * var(--min-fluid-ratio));
+  }
+
+  img {
+    inline-size: 30px;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+    @include mq("md") {
+      inline-size: calc(30 * var(--min-fluid-ratio));
+    }
+  }
+}
+
+/* ===============================================
+# 投稿が存在しない場合のテキスト
+=============================================== */
+.not-text {
+  inline-size: fit-content;
+  margin-inline: auto;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 12);
+  color: var(--color-green4);
+}

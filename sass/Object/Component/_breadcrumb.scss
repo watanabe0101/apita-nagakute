@@ -1,1 +1,51 @@
 @use "../../Object/Utility" as *;
+
+.breadcrumb__list {
+  margin-block-start: 35px;
+  display: flex;
+  align-items: center;
+  column-gap: 0.4em;
+}
+
+.breadcrumb__item {
+  display: flex;
+  column-gap: 0.5em;
+  align-items: center;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.breadcrumb__home {
+
+  &::before {
+    --_size: 11.65px;
+
+    content: "";
+    block-size: var(--_size);
+    aspect-ratio: 1;
+    margin-block: calc(calc(1lh - var(--_size)) / 2);
+    content: "";
+    aspect-ratio: 12/11.65;
+    background-image: url(../../assets/images/common/icon/icon-top.png);
+    @include supports(background-image, url(../../assets/images/common/icon/icon-top.webp));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.breadcrumb__link {
+  text-decoration: underline;
+  @include link;
+}
+
+.breadcrumb__arrow {
+  --_size: 0.6em;
+
+  margin-block: calc(calc(1lh - var(--_size)) / 2);
+  block-size: var(--_size);
+  display: inline-block;
+  inline-size: calc(var(--_size) * 0.8);
+  background: var(--color-green4);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}

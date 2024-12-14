@@ -36,10 +36,10 @@ function display_category_labels($taxonomy, $custom_class = '') {
 //taxonomy-labelをクラス名にtaxonomy名を付与して出力（リンクなし）
 function taxonomies_label()
 {
-  if ($terms = get_the_terms(get_the_ID(), 'employment-type')) {
+  if ($terms = get_the_terms(get_the_ID(), 'genre')) {
     foreach ($terms as $term) {
       echo ('<p ');
-      echo 'class="recruit-card__' . esc_attr($term->slug) . '">';
+      echo 'class="card__label-' . esc_attr($term->slug) . '">';
       echo esc_html($term->name);
       echo ('</p>');
     }
@@ -56,6 +56,19 @@ function taxonomies_label_link()
       echo 'class="card__' . esc_attr($term->slug) . '"><a href="card__' . get_term_link($term->slug, 'タクソノミー') . '">';
       echo esc_html($term->name);
       echo ('</a></p>');
+    }
+  }
+}
+
+
+//taxonomy-labelをクラスを付与せずに出力（リンクなし）
+function taxonomies_label_simple()
+{
+  if ($terms = get_the_terms(get_the_ID(), 'genre')) {
+    foreach ($terms as $term) {
+      echo ('<p class="card__label">');
+      echo esc_html($term->name);
+      echo ('</p>');
     }
   }
 }

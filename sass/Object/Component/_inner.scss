@@ -1,5 +1,13 @@
 @use "../../Object/Utility" as *;
 
+.main {
+  background: var(--color-white);
+
+  @include mq("md") {
+    inline-size: 100%;
+  }
+}
+
 .inner {
   --_padding: 20px;
   

@@ -15,8 +15,29 @@ function my_script()
   if (is_front_page()) {
     wp_enqueue_script('script-splide', get_theme_file_uri('/splide/splide.min.js'), array(), filemtime(get_theme_file_path('splide/splide.min.js')), true);
     wp_enqueue_style('splide-style', get_stylesheet_directory_uri() . '/splide/splide-core.min.css', array(), filemtime(get_theme_file_path('splide/splide-core.min.css')));
+    wp_enqueue_script('script-common-splide', get_theme_file_uri('/assets/script/splide.js'), array(), filemtime(get_theme_file_path('assets/script/splide.js')), true);
     wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.min.css', array(), filemtime(get_theme_file_path('assets/css/home.min.css')));
   }
+
+  if (is_page('floor')) {
+    wp_enqueue_style('floor-style', get_stylesheet_directory_uri() . '/assets/css/floor.min.css', array(), filemtime(get_theme_file_path('assets/css/floor.min.css')));
+  }
+
+  if (is_singular('shop-news')) {
+    wp_enqueue_script('script-splide', get_theme_file_uri('/splide/splide.min.js'), array(), filemtime(get_theme_file_path('splide/splide.min.js')), true);
+    wp_enqueue_style('splide-style', get_stylesheet_directory_uri() . '/splide/splide-core.min.css', array(), filemtime(get_theme_file_path('splide/splide-core.min.css')));
+    wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.min.css', array(), filemtime(get_theme_file_path('assets/css/home.min.css')));
+  }
+
+  if (is_post_type_archive('shop-guide')) {
+    wp_enqueue_style('archive-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/archive-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-shop-guide.min.css')));
+  }
+
+  if (is_tax('shop-genre')) {
+    wp_enqueue_style('archive-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/archive-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-shop-guide.min.css')));
+  }
+
+
 
   if (is_404()) {
     wp_enqueue_script('script-sticky-footer', get_theme_file_uri('/assets/script/sticky-footer.js'), array(), filemtime(get_theme_file_path('assets/script/sticky-footer.js')), true);

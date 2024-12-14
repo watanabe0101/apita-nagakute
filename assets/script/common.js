@@ -24,5 +24,5 @@ import { initializeViewport } from "../../src/assets/js/viewport.js";
 initializeViewport();
 import { initializePageTop } from "../../src/assets/js/page-top.js";
 initializePageTop();
-import { initializeSplide } from "../../src/assets/js/splide.js";
-initializeSplide();
+// import { initializeSplide } from "../../src/assets/js/splide.js";
+// initializeSplide();
