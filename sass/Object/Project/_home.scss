@@ -131,14 +131,6 @@
     margin-inline: auto;
     max-inline-size: 600px;
   }
-  
-  .splide__arrows {
-  
-  }
-  
-  .splide__arrow {
-  
-  }
 
   .splide__arrow--prev,
   .splide__arrow--next {
@@ -154,10 +146,6 @@
   
   .splide__arrow--next {
     right: -28px;
-  }
-  
-  .splide__track {
-  
   }
   
   .splide__list {
@@ -178,6 +166,15 @@
 /* ===============================================
 # special-recommend
 =============================================== */
+.special-recommend {
+  margin-block-start: 70px;
+}
+
+.special-recommend__movies {
+  margin-inline: auto;
+  max-inline-size: 500px;
+}
+
 .special-recommend__movie {
   margin-block-start: 22px;
   padding-top: 56.25%;
@@ -340,75 +337,6 @@
 =============================================== */
 .shop-news {
   margin-block-start: 70px;
-}
-
-.shop-news__card {
-  margin-block-start: 20px;
-  display: block grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: auto;
-  column-gap: 15px;
-  // row-gap: 36px;
-}
-
-.shop-news-card__item {
-  display: contents;
-
-  &:nth-of-type(n + 3) .shop-news-card__link {
-    margin-block-start: 36px;
-  }
-}
-
-.shop-news-card__link {
-  --_row-gap: 0;
-  
-  position: relative;
-  display: block grid;
-  grid-template-rows: subgrid;
-  grid-row: span 4;
-  row-gap: var(--_row-gap);
-  @include link;
-}
-
-.shop-news-card__image {
-  background: var(--color-green3);
-  aspect-ratio: 1;
-  order: -2;
-
-  img {
-    object-fit: contain;
-    block-size: 100%;
-  }
-}
-
-.shop-news-card__title {
-  margin-block-start: 13px;
-  font-size: calc(12 * var(--rem-ratio));
-  font-weight: var(--bold);
-  color: var(--color-green4);
-  order: -1;
-}
-
-.shop-news-card__date {
-  margin-block-start: 6px;
-  font-size: calc(12 * var(--rem-ratio));
-  font-weight: var(--regular);
-}
-
-.shop-news-card__description {
-  margin-block-start: 3px;
-  font-size: calc(12 * var(--rem-ratio));
-  font-weight: var(--regular);
-}
-
-.shop-news-card__text {
-  margin-block-start: 35px;
-  inline-size: fit-content;
-  margin-inline: auto;
-  font-size: calc(12 * var(--rem-ratio));
-  font-weight: var(--bold);
-  line-height: calc(26 / 12);
-  color: var(--color-green4);
 }
 
 .shop-news__button-wrapper {

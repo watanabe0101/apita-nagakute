@@ -5,11 +5,11 @@ if ( !defined( 'ABSPATH' ) ) exit;
 // 分割したファイルパスを配列に追加
 $function_files = [
   '/src/assets/functions/load.php',
-  '/src/assets/functions/init.php',
   '/src/assets/functions/load_css_async.php',
   '/src/assets/functions/custom_breadcrumb.php',
   '/src/assets/functions/custom_labels.php',
   '/src/assets/functions/custom-function.php',
+  '/src/assets/functions/init.php',
 ];
 
 foreach ($function_files as $file) {

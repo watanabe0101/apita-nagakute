@@ -1,0 +1,276 @@
+@use "../../Object/Utility" as *;
+
+.recruit-menu {
+  margin-block-start: 22px;
+}
+
+.recruit-menu__list {
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-auto-rows: 1fr;
+  column-gap: 9px;
+  row-gap: 10px;
+  max-inline-size: 500px;
+}
+
+.recruit-menu__link {
+  padding-block: 10px;
+  padding-inline-start: 5px;
+  padding-inline-end: 10px;
+  block-size: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 5px;
+  align-items: start;
+  background: var(--color-green4);
+  color: var(--color-white);
+  border-radius: 5px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  @include link;
+}
+
+.recruit-menu__arrow {
+  --_inline-size: 13px;
+  --_block-size: 13px;
+  --_border-color: var(--color-green2);
+
+  margin-block: calc(calc(1lh - var(--_block-size)) / 2);
+}
+
+/* ===============================================
+# 雇用形態で探す
+=============================================== */
+.recruit-employment-type {
+  margin-block-start: 37px;
+
+  .genre-nav__list {
+    margin-block-start: 32px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 17px;
+    max-inline-size: 500px;
+  }
+  
+  .genre-nav__item {
+    &:nth-of-type(3) .genre-nav__link {
+      text-align: center;
+    }
+  }
+  
+  .genre-nav__link {
+    padding-block: 20px;
+    padding-inline: 14px;
+    block-size: 100%;
+    display: grid;
+    place-items: center;
+    background: var(--color-green3);
+    border-radius: 5px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    @include link;
+    word-break: keep-all;
+
+    @include mq("sp") {
+      --_clamp-min: 10;
+      --_clamp-max: 14;
+      --_min-layout-width: 320;
+      --_max-layout-width: 375;
+      --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
+      
+      font-size: var(--_clamp);
+      padding-inline: calc(14 * var(--min-fluid-ratio));
+    }
+  }
+}
+
+/* ===============================================
+# カテゴリで探す
+=============================================== */
+.recruit-category {
+  margin-block-start: 67px;
+
+  .genre-nav__list {
+    margin-block-start: 32px;
+  }
+}
+
+/* ===============================================
+# こだわり条件で探す
+=============================================== */
+.recruit-special-conditions {
+  margin-block-start: 67px;
+
+  .genre-conditions__list {
+    margin-block-start: 32px;
+  }
+}
+
+/* ===============================================
+# recruit-benefit
+=============================================== */
+.recruit-benefit {
+  margin-block-start: 67px;
+
+  .splide__pagination {
+    margin-block-start: 20px;
+    column-gap: 30px;
+  }
+}
+
+.recruit-benefit__content {
+  margin-block-start: 32px;
+}
+
+.recruit-benefit__card {
+  margin-block-start: 42px;
+  position: relative;
+}
+
+.recruit-benefit__item {
+  --_border-color: var(--color-green4);
+
+  position: relative;
+  margin-block-start: 10px;
+  margin-block-end: 5px;
+  padding-block: 20px 26px;
+  padding-inline: 20px;
+  border: 1px solid var(--_border-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px 0px var(--color-green4);
+}
+
+.recruit-benefit__card-header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  position: absolute;
+  left: 0;
+  top: -10px;
+}
+
+.recruit-benefit__caption {
+  position: relative;
+  display: inline-block;
+  inline-size: fit-content;
+  margin-inline: 0 auto;
+  padding-block: 2px;
+  padding-inline: 9px;
+  background: var(--color-green3);
+  font-size: calc(18 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+  box-shadow: 5px 5px 0px 0px var(--color-green);
+
+  @include mq("md") {
+    --_clamp-min: 18;
+    --_clamp-max: 30;
+    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
+    
+    font-size: var(--_clamp);
+  }
+
+  &:first-of-type {
+    left: -20px;
+  }
+}
+
+.recruit-benefit__image {
+  img {
+    aspect-ratio: 200/150;
+    object-fit: cover;
+  }
+}
+
+.recruit-benefit__description {
+  margin-block: var(--leading-trim);
+  padding-block-start: 10px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.recruit-benefit__text {
+  margin-block-start: calc(25px + var(--leading-trim));
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+/* ===============================================
+# 募集中の求人情報
+=============================================== */
+.recruit-job-listing {
+  margin-block-start: 72px;
+
+  .recruit-card {
+    margin-block-start: 32px;
+  }
+}
+
+.recruit-card__not-text {
+
+}
+
+/* ===============================================
+# 募集中の求人情報ページ
+=============================================== */
+.recruitment-main {
+
+  .recruit-card {
+    margin-block-end: 32px;
+  }
+
+  .recruit-job-listing {
+    margin-block-start: 22px;
+  }
+
+  .recruit-card__employment-type {
+    inline-size: fit-content;
+  }
+
+  .recruit-card__occupation {
+    font-weight: var(--bold);
+  }
+
+}
+
+/* ===============================================
+# その他のタクソノミーページ
+=============================================== */
+.recruit-tax-main {
+
+  .recruit-job-listing {
+    margin-block-start: 36px;
+  }
+
+  .recruit-card {
+    margin-block-start: 22px;
+    margin-block-end: 32px;
+  }
+
+  .recruit-term__title {
+    font-size: calc(12 * var(--rem-ratio));
+    font-weight: var(--regular);
+  
+    span {
+      font-size: calc(14 * var(--rem-ratio));
+      font-weight: var(--bold);
+      color: var(--color-green4);
+    }
+  }
+
+  .recruit-menu {
+    margin-block-start: 60px;
+  }
+
+  .recruit-menu__link {
+    background: var(--color-green3);
+    color: var(--color-black);
+  }
+
+  .recruit-menu__arrow {
+    --_border-color: var(--color-green4);
+  }
+
+}

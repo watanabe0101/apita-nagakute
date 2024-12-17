@@ -292,7 +292,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </a>
             </li>
             <li class="pc-navigation__item">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+              <a href="<?php echo esc_url(home_url('/event/')); ?>" class="pc-navigation__link">
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
@@ -358,7 +358,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </h1>
               <?php else: ?>
                 <p class="header__logo">
-                  <a href="<?php echo esc_url(home_url('/#home')); ?>" class="header__logo-link">
+                  <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
                       <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.jpg'); ?>" alt="アピタ長久手店のロゴ">
@@ -429,7 +429,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/event/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
@@ -473,7 +473,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/recruit/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-recruit.webp'); ?>" type="image/webp">

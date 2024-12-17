@@ -120,7 +120,7 @@ get_header(); ?>
           </a>
         </li>
         <li class="menu__item">
-          <a href="<?php echo esc_url(home_url('/')); ?>" class="menu__link">
+          <a href="<?php echo esc_url(home_url('/event/')); ?>" class="menu__link">
             <div class="menu__image">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
@@ -215,14 +215,16 @@ get_header(); ?>
           <span class="special-recommend__eng title__eng">Special<span>Recommend</span></span>
           <span class="special-recommend__jp title__jp">おすすめ情報動画</span>
         </h2>
-        <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-          <?php if (get_field('youtube_url')) { ?>
-            <div class="special-recommend__movie">
-              <?php echo $embed_code = wp_oembed_get(get_field('youtube_url')); ?>
-            </div>
-          <?php } ?>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); ?>
+        <div class="special-recommend__movies">
+          <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+            <?php if (get_field('youtube_url')) { ?>
+              <div class="special-recommend__movie">
+                <?php echo $embed_code = wp_oembed_get(get_field('youtube_url')); ?>
+              </div>
+            <?php } ?>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
+        </div>
       </div>
     </section>
   <?php endif; ?>
@@ -347,7 +349,7 @@ get_header(); ?>
       );
       $the_query = new WP_Query($args);
       if ($the_query->have_posts()) : ?>
-        <ul class="shop-news__card">
+        <ul class="shop-news-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="shop-news-card__item">
               <article>

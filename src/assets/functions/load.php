@@ -11,11 +11,14 @@ function my_script()
   wp_enqueue_script('jquery-picturefill', get_theme_file_uri('/assets/jquery/picturefill.min.js'), array(), filemtime(get_theme_file_path('assets/jquery/picturefill.min.js')), true);
 
   wp_enqueue_script('script-common', get_theme_file_uri('/assets/script/common.js'), array(), filemtime(get_theme_file_path('assets/script/common.js')), true);
-  
-  if (is_front_page()) {
+
+  // splide
+  if (is_front_page() || is_post_type_archive('recruit') || is_singular('shop-news') || is_singular('shop-guide')) {
     wp_enqueue_script('script-splide', get_theme_file_uri('/splide/splide.min.js'), array(), filemtime(get_theme_file_path('splide/splide.min.js')), true);
     wp_enqueue_style('splide-style', get_stylesheet_directory_uri() . '/splide/splide-core.min.css', array(), filemtime(get_theme_file_path('splide/splide-core.min.css')));
-    wp_enqueue_script('script-common-splide', get_theme_file_uri('/assets/script/splide.js'), array(), filemtime(get_theme_file_path('assets/script/splide.js')), true);
+  }
+  
+  if (is_front_page()) {
     wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.min.css', array(), filemtime(get_theme_file_path('assets/css/home.min.css')));
   }
 
@@ -24,20 +27,29 @@ function my_script()
   }
 
   if (is_singular('shop-news')) {
-    wp_enqueue_script('script-splide', get_theme_file_uri('/splide/splide.min.js'), array(), filemtime(get_theme_file_path('splide/splide.min.js')), true);
-    wp_enqueue_style('splide-style', get_stylesheet_directory_uri() . '/splide/splide-core.min.css', array(), filemtime(get_theme_file_path('splide/splide-core.min.css')));
     wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.min.css', array(), filemtime(get_theme_file_path('assets/css/home.min.css')));
   }
 
-  if (is_post_type_archive('shop-guide')) {
+  // ショップガイド
+  if (is_post_type_archive('shop-guide') || is_tax('shop-genre')) {
     wp_enqueue_style('archive-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/archive-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-shop-guide.min.css')));
   }
-
-  if (is_tax('shop-genre')) {
-    wp_enqueue_style('archive-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/archive-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-shop-guide.min.css')));
+  if (is_singular('shop-guide')) {
+    wp_enqueue_style('single-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/single-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/single-shop-guide.min.css')));
   }
 
+  // イベント・キャンペーン
+  if (is_post_type_archive('event') || is_tax('shop-genre')) {
+    wp_enqueue_style('event-style', get_stylesheet_directory_uri() . '/assets/css/archive-event.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-event.min.css')));
+  }
+  if (is_singular('shop-guide')) {
+    wp_enqueue_style('single-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/single-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/single-shop-guide.min.css')));
+  }
 
+  // 求人情報
+  if (is_post_type_archive('recruit') || is_tax('recruitment_status')|| is_tax('employment_type') || is_tax('special_conditions')) {
+    wp_enqueue_style('archive-recruit-style', get_stylesheet_directory_uri() . '/assets/css/archive-recruit.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-recruit.min.css')));
+  }
 
   if (is_404()) {
     wp_enqueue_script('script-sticky-footer', get_theme_file_uri('/assets/script/sticky-footer.js'), array(), filemtime(get_theme_file_path('assets/script/sticky-footer.js')), true);

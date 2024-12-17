@@ -25,7 +25,7 @@
           <li class="genre-nav__item <?php if ($cat_name == esc_html($genre_term->name)) {
                                         echo "is-active";
                                       } ?>">
-            <a href="<?php echo esc_url(get_term_link($genre_term, 'shop-genre')); ?>" class="works__genre-nav-link genre-nav__link"><?php echo esc_html($genre_term->name); ?></a>
+            <a href="<?php echo esc_url(get_term_link($genre_term, 'shop-genre')); ?>" class="genre-nav__link"><?php echo esc_html($genre_term->name); ?></a>
           </li>
         <?php endforeach; ?>
       </ul>

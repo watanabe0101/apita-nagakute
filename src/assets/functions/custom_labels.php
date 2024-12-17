@@ -72,3 +72,16 @@ function taxonomies_label_simple()
     }
   }
 }
+
+//taxonomy-labelをクラスを付与せずに出力（リンクあり）
+function taxonomies_label_simple_link()
+{
+  if ($terms = get_the_terms(get_the_ID(), 'genre')) {
+    foreach ($terms as $term) {
+      // リンクを追加
+      echo ('<a href="' . esc_url(get_term_link($term)) . '" class="card__label">');
+      echo esc_html($term->name);
+      echo ('</a>');
+    }
+  }
+}

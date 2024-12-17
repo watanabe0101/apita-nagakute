@@ -4,8 +4,12 @@
   --_background: #F8F7EB;
 
   display: grid;
-  grid-template-columns: 1fr 375px 1fr;
+  grid-template-columns: 1fr calc(375 * var(--large-fluid-ratio)) 1fr;
   background: var(--_background);
+  
+  @include mq("xl") {
+    grid-template-columns: 1fr 375px 1fr;
+  }
 
   @include mq("md") {
     display: block;
@@ -271,10 +275,18 @@
 .header {
   block-size: 60px;
   background: var(--color-white);
-  position: sticky;
+  position: fixed;
   top: 0;
-  inline-size: 100%;
+  inline-size: calc(375 * var(--large-fluid-ratio));
   z-index: 1001;
+
+  @include mq("xl") {
+    inline-size: 375px;
+  }
+
+  @include mq("md") {
+    inline-size: 100%;
+  }
 }
 
 .header__inner {
@@ -433,7 +445,7 @@
   --_translate: 0 -100%;
 
   padding-block-start: calc(20px + var(--header-block-size));
-  inline-size: 375px;
+  inline-size: calc(375 * var(--large-fluid-ratio));
   block-size: 100%;
   position: fixed;
   top: 0;
@@ -447,6 +459,9 @@
   translate: var(--_translate);
   overflow-y: scroll;
 
+  @include mq("xl") {
+    inline-size: 375px;
+  }
 
   @include mq("md") {
     inline-size: 100%;

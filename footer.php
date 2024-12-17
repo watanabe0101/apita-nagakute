@@ -56,9 +56,9 @@
       <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">個人情報保護方針</a></li>
       <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">SDGs・地域連携</a></li>
     </ul>
-    <div class="footer__bottom">
-      <small class="footer__copyright">Copyright &copy; apita nagakute. All Right Reserved.</small>
-    </div>
+  </div>
+  <div class="footer__bottom">
+    <small class="footer__copyright">Copyright &copy; apita nagakute. All Right Reserved.</small>
   </div>
 </footer>
 <?php wp_footer(); ?>
@@ -67,6 +67,101 @@
 <!-- main-content -->
 </div>
 <!-- pc-background -->
+<?php
+if (is_front_page()) { ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // メインスライダー
+      const main = new Splide("#main-carousel", {
+        autoplay: true, // 自動再生
+        interval: 5000, // 自動再生の間隔
+        speed: 2000, // スライダーの移動時間
+        type: "fade", // フェード
+        rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
+        pagination: false, // ページネーション非表示
+        arrows: false, // 矢印非表示
+      });
+      // サムネイル
+      const thumbnails = new Splide("#thumbnail-carousel", {
+        type: "loop", // ループさせる
+        perPage: 3, // サムネイル3枚表示
+        pagination: false, // ページネーション非表示
+        isNavigation: true, // 他のスライダーのナビゲーションとしてそれぞれのスライドをクリック可能にする
+        fixedWidth: 60, // サムネイルの幅
+        breakpoints: {
+          767: {
+            // 幅400px未満の設定
+            fixedWidth: 120, // サムネイルの幅
+          },
+          500: {
+            // 幅400px未満の設定
+            fixedWidth: 60, // サムネイルの幅
+          },
+        },
+      });
+      main.sync(thumbnails);
+      main.mount();
+      thumbnails.mount();
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // メインスライダー
+      const splide = new Splide("#main-banner", {
+        autoplay: true, // 自動再生
+        interval: 5000, // 自動再生の間隔
+        speed: 2000, // スライダーの移動時間
+        type: "loop", // フェード
+        rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
+        pagination: false, // ページネーション非表示
+        arrows: true, // 矢印非表示
+      });
+      // サムネイル
+      splide.mount();
+    });
+  </script>
+<?php } ?>
+
+<?php
+if (is_post_type_archive('recruit')) { ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // メインスライダー
+      const splide = new Splide("#recruit-carousel", {
+        autoplay: true, // 自動再生
+        interval: 5000, // 自動再生の間隔
+        speed: 2000, // スライダーの移動時間
+        type: "loop", // フェード
+        rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
+        pagination: true, // ページネーション非表示
+        arrows: false, // 矢印非表示
+        padding: "17.8%", // スライダーの左右の余白
+        gap: 36, // スライド間の余白
+      });
+      // サムネイル
+      splide.mount();
+    });
+  </script>
+<?php } ?>
+
+<?php
+if (is_singular('shop-guide')) { ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // メインスライダー
+      const splide = new Splide("#singleShopGuide-carousel", {
+        autoplay: true, // 自動再生
+        interval: 5000, // 自動再生の間隔
+        speed: 2000, // スライダーの移動時間
+        type: "loop", // フェード
+        rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
+        pagination: true, // ページネーション非表示
+        arrows: false, // 矢印非表示
+      });
+      // サムネイル
+      splide.mount();
+    });
+  </script>
+<?php } ?>
 </body>
 
 </html>

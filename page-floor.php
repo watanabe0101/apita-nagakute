@@ -37,7 +37,7 @@ get_header(); ?>
   <!-- floor-basement -->
   <section id="b1" class="floor-map floor-basement">
     <div class="floor-map__inner inner">
-      <h2 class="floor-map__title">B1階</h2>
+      <h2 class="floor-map__title page-title">B1階</h2>
       <div class="floor-map__image">
         <?php if (get_field('b1マップ')): ?>
           <img src="<?php the_field('b1マップ'); ?>" alt="B1のフロアマップ" loading="lazy">
@@ -115,7 +115,7 @@ get_header(); ?>
   <!-- floor-first -->
   <section id="first" class="floor-map floor-first">
     <div class="floor-map__inner inner">
-      <h2 class="floor-map__title">1階</h2>
+      <h2 class="floor-map__title page-title">1階</h2>
       <div class="floor-map__image">
         <?php if (get_field('1fマップ')): ?>
           <img src="<?php the_field('1fマップ'); ?>" alt="1階のフロアマップ" loading="lazy">
@@ -193,7 +193,7 @@ get_header(); ?>
   <!-- floor-second -->
   <section id="second" class="floor-map floor-second">
     <div class="floor-map__inner inner">
-      <h2 class="floor-map__title">2階</h2>
+      <h2 class="floor-map__title page-title">2階</h2>
       <div class="floor-map__image">
         <?php if (get_field('2fマップ')): ?>
           <img src="<?php the_field('2fマップ'); ?>" alt="2階のフロアマップ" loading="lazy">

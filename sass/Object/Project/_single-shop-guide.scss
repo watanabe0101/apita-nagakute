@@ -1,0 +1,234 @@
+@use "../../Object/Utility" as *;
+
+.singleShopGuide-store-info {
+  margin-block-start: 22px;
+
+.infoTable {
+  margin-block-start: 26px;
+}
+
+  .splide__pagination {
+    margin-block-start: 10px;
+  }
+
+  .card__label {
+    margin-inline-end: 1em;
+  }
+
+}
+
+.singleShopGuide-store-info__title {
+  margin-block: var(--leading-trim);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  color: var(--color-green4);
+}
+
+.singleShopGuide-store-info__image {
+  margin-block-start: 25px;
+
+  img {
+    aspect-ratio: 335/250;
+    object-fit: cover;
+  }
+}
+
+.singleShopGuide-store-info__logo {
+  margin-block-start: 20px;
+  margin-inline: auto;
+  max-inline-size: 160px;
+}
+
+.singleShopGuide-store-info__description {
+  margin-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+  text-align: justify;
+}
+
+.singleShopGuide-store-info__link {
+  color: var(--color-green4);
+  text-decoration: underline;
+  @include link;
+}
+
+.singleShopGuide-store-info__payment {
+  margin-block-start: 22px;
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.singleShopGuide-store-info__payment-image {
+  inline-size: 30px;
+
+  img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &:nth-of-type(2) {
+    inline-size: 26px;
+
+    img {
+      aspect-ratio: 25.82/29.57;
+      object-fit: cover;
+    }
+  }
+}
+
+/* ===============================================
+# Special Recommend
+=============================================== */
+.singleShopGuide-recommend {
+  margin-block-start: 70px;
+}
+
+.singleShopGuide-recommend__movies {
+  max-inline-size: 500px;
+  margin-inline: auto;
+}
+
+.singleShopGuide-recommend__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 29px;
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 24);
+  color: var(--color-green4);
+}
+
+.singleShopGuide-recommend__movie {
+  margin-block-start: 14px;
+  padding-top: 56.25%;
+  position: relative;
+  
+  iframe {
+    inline-size: 100%;
+    block-size: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* ===============================================
+# Shop News
+=============================================== */
+.singleShopGuide-news {
+  margin-block-start: 70px;
+  
+  .shop-news-card__date {
+    margin-block-start: 12px;
+  }
+
+  .shop-news-card__description {
+    font-size: calc(14 * var(--rem-ratio));
+  }
+}
+
+.singleShopGuide-news__button-wrapper {
+  margin-block-start: 36px;
+  display: grid;
+  place-items: center;
+}
+
+/* ===============================================
+# singleShopGuide-recruit
+=============================================== */
+.singleShopGuide-recruit {
+  margin-block-start: 70px;
+}
+
+.singleShopGuide-recruit__card {
+  margin-block-start: 22px;
+  display: grid;
+  grid-auto-rows: auto;
+  row-gap: 20px;
+}
+
+.singleShopGuide-recruit-card__link {
+  --_background: var(--color-green3);
+  --_duration: 0.5s;
+  
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: calc(8 * 1em / 16);
+  align-items: center;
+  padding-block: 8px;
+  padding-inline: 10px;
+  border-radius: 5px;
+  background-color: color-mix(in sRGB, var(--_background) var(--_opacity, 100%), transparent);
+  transition: var(--_duration);
+
+  &::after {
+    --_border-color: var(--color-green4);
+
+    content: "";
+    justify-self: end;
+    inline-size: calc(6 * 1em / 10);
+    aspect-ratio: 1;
+    border-block-start: 1px solid var(--_border-color);
+    border-inline-end: 1px solid var(--_border-color);
+    rotate: 45deg;
+    translate: var(--_translate);
+    transition: translate var(--_duration);
+  }
+
+  &:any-link:hover {
+    @media (any-hover: hover) {
+      --_opacity: 60%;
+      --_translate: 4px;
+    }
+  }
+  
+  &:focus-visible {
+    --_opacity: 60%;
+    --_translate: 4px;
+  }
+}
+
+.singleShopGuide-recruit__content {
+  display: grid;
+  grid-auto-rows: auto;
+  row-gap: 20px;
+}
+
+.singleShopGuide-recruit__occupation {
+  margin-block: var(--leading-trim);
+  color: var(--color-green4);
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--bold);
+}
+
+.singleShopGuide-recruit__details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 5px;
+  align-items: start;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.singleShopGuide-recruit__text {
+  display: grid;
+  place-items: center;
+  inline-size: 60px;
+  block-size: 20px;
+  background: var(--color-green2);
+}
+
+.singleShopGuide-recruit__employment {
+  display: flex;
+  column-gap: 1em;
+  flex-wrap: wrap;
+}
+
+.singleShopGuide-recruit__employment-type {
+  margin-block-start: calc(calc(1lh / 18) * -1);
+
+  &:nth-of-type(n + 3) {
+    margin-inline-start: 1em;
+  }
+}

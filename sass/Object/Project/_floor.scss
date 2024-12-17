@@ -36,32 +36,8 @@
   margin-block-start: 27px;
 }
 
-.floor-map__title {
-  margin-block: var(--leading-trim);
-  position: relative;
-  color: var(--color-green4);
-  font-size: calc(24 * var(--rem-ratio));
-  font-weight: var(--bold);
-  letter-spacing: calc(calc(100 / 1000) * 1em);
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    inline-size: 100%;
-    block-size: 4px;
-    background: linear-gradient(
-      to right, 
-      var(--color-green4) 0%, var(--color-green4) 5.97%,
-      var(--color-green) 5.97%, var(--color-green) 11.94%,
-      var(--color-green2) 11.94%, var(--color-green2) 17.91%,
-      #EEEEEE 17.91%, #EEEEEE 100%
-    );
-  }
-}
-
 .floor-map__image {
-  margin-block-start: 28px;
+  margin-block-start: 32px;
   margin-inline: auto;
   max-inline-size: 600px;
 

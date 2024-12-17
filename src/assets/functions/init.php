@@ -206,3 +206,19 @@ function fix_post_id_on_preview($null, $post_id)
   }
 }
 add_filter('acf/pre_load_post_id', 'fix_post_id_on_preview', 10, 2);
+
+
+// 一覧画面の表示件数を変更
+function change_posts_per_page($query)
+{
+  if (is_admin() || ! $query->is_main_query())
+    return;
+  if ($query->is_archive('recruit')) { //カスタム投稿タイプを指定
+    $query->set('posts_per_page', '2'); //表示件数を指定
+    $query->set('paged', get_query_var('paged') ? get_query_var('paged') : 1);
+  // } elseif ($query->is_archive('recruit')) { //カスタム投稿タイプを指定
+  //   $query->set('posts_per_page', '10'); //表示件数を指定
+  //   $query->set('paged', get_query_var('paged') ? get_query_var('paged') : 1); // ページネーションを設定
+  }
+}
+add_action('pre_get_posts', 'change_posts_per_page');

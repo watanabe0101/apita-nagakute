@@ -1,0 +1,107 @@
+@use "../../Object/Utility" as *;
+
+.shop-guide-genre-nav,
+.recruit-category {
+  
+  .genre-nav__list {
+    margin-block-start: 22px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: 1fr;
+    column-gap: 9px;
+    row-gap: 10px;
+    max-inline-size: 500px;
+  }
+
+  .genre-nav__item {
+    background: var(--color-green3);
+    border-radius: 5px;
+    
+    &.is-active {
+      outline: 3px solid var(--_border-color);
+      outline-offset: -3px;
+    }
+
+    &:nth-of-type(2) {
+      --_border-color: #FAB6B4;
+    }
+    &:nth-of-type(3) {
+      --_border-color: var(--color-green);
+    }
+    &:nth-of-type(4) {
+      --_border-color: #95DAFF;
+    }
+    
+    &:nth-of-type(2) .genre-nav__link::before {
+      background-image: url(../../assets/images/common/icon/icon-fashion.png);
+      @include supports(background-image, url(../../assets/images/common/icon/icon-fashion.webp));
+    }
+    &:nth-of-type(3) .genre-nav__link::before {
+      background-image: url(../../assets/images/common/icon/icon-goods.png);
+      @include supports(background-image, url(../../assets/images/common/icon/icon-goods.webp));
+    }
+    &:nth-of-type(4) .genre-nav__link::before {
+      background-image: url(../../assets/images/common/icon/icon-service.png);
+      @include supports(background-image, url(../../assets/images/common/icon/icon-service.webp));
+    }
+  }
+ 
+  .genre-nav__link {
+    padding-block: 8px;
+    padding-inline: 10px;
+    block-size: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    align-items: start;
+    background: var(--color-green3);
+    border-radius: 5px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    @include link;
+
+    &::before {
+      inline-size: 24px;
+      aspect-ratio: 1;
+      content: "";
+      background-image: url(../../assets/images/common/icon/icon-restaurants.png);
+      @include supports(background-image, url(../../assets/images/common/icon/icon-restaurants.webp));
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+
+}
+
+/* ===============================================
+# #タグ
+=============================================== */
+  .genre-conditions__list {
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .genre-conditions__link {
+    --_border-color: var(--color-green4);
+
+    padding-block: 8px;
+    padding-inline: 18px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.3em;
+    background: var(--color-white);
+    color: var(--color-green4);
+    border: 2px solid var(--_border-color);
+    border-radius: 30px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    @include link;
+
+    &::before {
+      content: "#";
+    }
+  }

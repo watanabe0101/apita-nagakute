@@ -13,6 +13,14 @@
   @include mq("md") {
     row-gap: calc(30 * var(--min-fluid-ratio));
   }
+
+.card__label {
+  inline-size: 40px;
+  block-size: 20px;
+  display: grid;
+  place-items: center;
+  background: var(--color-green3);
+  }
 }
 
 .shop-guide-card__link {
@@ -61,15 +69,235 @@
   font-weight: var(--regular);
 }
 
-.card__label {
-  inline-size: 40px;
-  block-size: 20px;
+.shop-guide-card__not-text {
+  margin-block-start: 40px;
+}
+
+/* ===============================================
+# ショップニュースのcard
+=============================================== */
+.shop-news-card {
+  margin-block-start: 20px;
+  display: block grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  column-gap: 15px;
+}
+
+.shop-news-card__item {
+  display: contents;
+
+  &:nth-of-type(n + 3) .shop-news-card__link {
+    margin-block-start: 36px;
+  }
+}
+
+.shop-news-card__link {
+  --_row-gap: 0;
+  
+  position: relative;
+  display: block grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+  row-gap: var(--_row-gap);
+  @include link;
+}
+
+.shop-news-card__image {
+  background: var(--color-green3);
+  aspect-ratio: 1;
+  order: -2;
+  display: grid;
+  place-items: center;
+
+  source {
+    display: contents;
+  }
+
+  img {
+    margin-block: auto;
+    aspect-ratio: 160/100;
+    object-fit: cover;
+  }
+}
+
+.shop-news-card__title {
+  margin-block-start: 13px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--bold);
+  color: var(--color-green4);
+  order: -1;
+}
+
+.shop-news-card__date {
+  margin-block-start: 6px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.shop-news-card__description {
+  margin-block-start: 3px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.shop-news-card__text {
+  margin-block-start: 35px;
+  inline-size: fit-content;
+  margin-inline: auto;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 12);
+  color: var(--color-green4);
+}
+
+/* ===============================================
+# 求人情報のcard
+=============================================== */
+.recruit-card {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  column-gap: 15px;
+  row-gap: 31px;
+}
+
+.recruit-card__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.recruit-card__recruit-shop-genre {
+  padding-block: 2.75px;
+  padding-inline: 5px;
+  position: absolute;
+  background: var(--color-green4);
+  color: var(--color-white);
+  font-size: calc(10 * var(--rem-ratio));
+  font-weight: var(--regular);
+  z-index: 2;
+}
+
+// タクソノミーページのラベル
+.card__label-fashion,
+.card__label-goods,
+.card__label-gourmet,
+.card__label-service {
+  color: var(--color-black);
+}
+
+.card__label-fashion {
+  background: #FADBDA;
+}
+
+.card__label-goods {
+  background: #EDF2C5;
+}
+
+.card__label-gourmet {
+  background: #FFE893;
+}
+
+.card__label-service {
+  background: #C7E8FA;
+}
+
+.recruit-card__content {
+  margin-block-start: 15px;
+  order: 2;
+}
+
+.recruit-card__employment-type {
+  padding-block: 0.1em;
+  padding-inline: 10px;
   display: grid;
   place-items: center;
   background: var(--color-green3);
+  border-radius: 10px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
 
+  &:not(:first-child) {
+    margin-block-start: 5px;
+  }
 }
 
-.shop-guide-card__not-text {
-  margin-block-start: 40px;
+.recruit-card__occupation {
+  margin-block: var(--leading-trim);
+  padding-block-start: 13px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.recruit-card__footer {
+  margin-block-start: 15px;
+  display: flex;
+  column-gap: 9px;
+  flex-wrap: wrap;
+}
+
+.recruit-card__special-conditions {
+  color: var(--color-green4);
+  font-size: calc(10 * var(--rem-ratio));
+  font-weight: var(--regular);
+  @include link;
+
+  &::before {
+    content: "#";
+  }
+}
+
+.recruit-card__link {
+  --_has-active-true: ;
+  --_has-active-false: initial;
+
+  order: -1;
+  @include link;
+}
+
+.recruit-card__image {
+  --_border-color: #CCCCCC;
+
+  border: 1px solid var(--_border-color);
+  aspect-ratio: 160/100;
+
+  img {
+    margin-inline: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    object-fit: contain;
+    max-inline-size: 87.5%;
+    max-block-size: 70%;
+  }
+}
+
+.recruit-card__no-image {
+  img {
+    object-fit: cover;
+    max-inline-size: 100%;
+    max-block-size: 100%;
+  }
+}
+
+.recruit-card__title {
+  margin-block: var(--leading-trim);
+  padding-block-start: 10px;
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--bold);
+  color: var(--color-green4);
+}
+
+.recruit-job-listing__button-wrapper {
+  margin-block-start: 31px;
+  display: grid;
+  place-items: center;
+}
+
+/* ===============================================
+# sns
+=============================================== */
+.recruit-sns {
+  margin-block-start: 60px;
+  padding-block-end: 40px;
 }

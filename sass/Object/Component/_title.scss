@@ -47,10 +47,11 @@
 }
 
 /* ===============================================
-# 固定ページタイトル
+# 固定ページh1
 =============================================== */
 .page-header {
-  padding-block-start: 30px;
+  padding-block-start: calc(30px + var(--header-block-size));
+  // padding-block-start: 30px;
 }
 
 .page-header__eng {
@@ -80,4 +81,31 @@
   display: block;
   font-size: calc(12 * var(--rem-ratio));
   font-weight: var(--regular);
+}
+
+/* ===============================================
+# 固定ページh2
+=============================================== */
+.page-title {
+  margin-block: var(--leading-trim);
+  position: relative;
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    inline-size: 100%;
+    block-size: 4px;
+    background: linear-gradient(
+      to right, 
+      var(--color-green4) 0%, var(--color-green4) 5.97%,
+      var(--color-green) 5.97%, var(--color-green) 11.94%,
+      var(--color-green2) 11.94%, var(--color-green2) 17.91%,
+      #EEEEEE 17.91%, #EEEEEE 100%
+    );
+  }
 }

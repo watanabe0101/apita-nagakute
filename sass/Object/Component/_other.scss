@@ -29,6 +29,11 @@
 /* ===============================================
 # sns
 =============================================== */
+.sns {
+  margin-block-start: 60px;
+  padding-block-end: 42px;
+}
+
 .sns__content {
   margin-block-start: 22px;
 }
@@ -80,4 +85,55 @@
   font-weight: var(--bold);
   line-height: calc(26 / 12);
   color: var(--color-green4);
+}
+
+/* ===============================================
+# スライダーのページネーション
+=============================================== */
+  .splide__pagination {
+    column-gap: 30px;
+  }
+
+  .splide__pagination__page {
+    background: #CCCCCC;
+    border-radius: 50%;
+    display: inline-block;
+    inline-size: 16px;
+    block-size: 16px;
+    position: relative;
+    transition: transform .2s linear;
+
+    &.is-active {
+      background: var(--color-green4);
+    }
+  }
+
+  /* ===============================================
+  # テーブル
+  =============================================== */
+.infoTable {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.infoTable__header,
+.infoTable__cell {
+  background-image: radial-gradient(circle, #cccccc 1px, transparent 1px);
+  background-position: left -2px bottom;
+  background-repeat: repeat-x;
+  background-size: 8px 2px;
+  padding-block-start: 20px;
+  padding-block-end: 26px;
+}
+
+.infoTable__header {
+  text-align-last: left;
+}
+
+.infoTable__cell {
+  padding-inline-start: 43px;
+  background-position: left -4px bottom;
 }

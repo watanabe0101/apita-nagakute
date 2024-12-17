@@ -1,1 +1,55 @@
 @use "../../Object/Utility" as *;
+
+.pagination {
+
+}
+
+.pagination__list {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.pagination__item {
+  a {
+    --_border-color: var(--color-green4);
+    
+    display: grid;
+    place-items: center;
+    inline-size: 40px;
+    block-size: 40px;
+    border: 2px solid var(--_border-color);
+    color: var(--color-green4);
+    background: var(--color-white);
+    border-radius: 5px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    @include link;
+  }
+
+  .dots {
+    color: var(--color-green4);
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    display: block;
+    margin-block: calc(1lh  / 2);
+  }
+}
+
+.pagination__current {
+  --_border-color: var(--color-green4);
+  
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  border: 2px solid var(--_border-color);
+  border-radius: 5px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  background: var(--color-green4);
+  color: var(--color-white);
+}
+
+.page-numbers {
+}
