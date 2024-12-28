@@ -13,7 +13,7 @@ function my_script()
   wp_enqueue_script('script-common', get_theme_file_uri('/assets/script/common.js'), array(), filemtime(get_theme_file_path('assets/script/common.js')), true);
 
   // splide
-  if (is_front_page() || is_post_type_archive('recruit') || is_singular('shop-news') || is_singular('shop-guide')) {
+  if (is_front_page() || is_post_type_archive('recruit') || is_singular('shop-news') || is_singular('shop-guide') || is_singular('event')) {
     wp_enqueue_script('script-splide', get_theme_file_uri('/splide/splide.min.js'), array(), filemtime(get_theme_file_path('splide/splide.min.js')), true);
     wp_enqueue_style('splide-style', get_stylesheet_directory_uri() . '/splide/splide-core.min.css', array(), filemtime(get_theme_file_path('splide/splide-core.min.css')));
   }
@@ -38,17 +38,71 @@ function my_script()
     wp_enqueue_style('single-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/single-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/single-shop-guide.min.css')));
   }
 
+  // ショップニュース
+  if (is_post_type_archive('shop-news') || is_tax('shop-news-genre')) {
+    wp_enqueue_style('archive-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/archive-shop-news.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-shop-news.min.css')));
+  }
+  if (is_singular('shop-news')) {
+    wp_enqueue_style('single-shop-news-style', get_stylesheet_directory_uri() . '/assets/css/single-shop-news.min.css', array(), filemtime(get_theme_file_path('assets/css/single-shop-news.min.css')));
+  }
+
   // イベント・キャンペーン
-  if (is_post_type_archive('event') || is_tax('shop-genre')) {
+  if (is_post_type_archive('event') || is_tax('event_type')) {
     wp_enqueue_style('event-style', get_stylesheet_directory_uri() . '/assets/css/archive-event.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-event.min.css')));
   }
-  if (is_singular('shop-guide')) {
-    wp_enqueue_style('single-shop-guide-style', get_stylesheet_directory_uri() . '/assets/css/single-shop-guide.min.css', array(), filemtime(get_theme_file_path('assets/css/single-shop-guide.min.css')));
+  if (is_singular('event')) {
+    wp_enqueue_style('single-event-style', get_stylesheet_directory_uri() . '/assets/css/single-event.min.css', array(), filemtime(get_theme_file_path('assets/css/single-event.min.css')));
   }
 
   // 求人情報
-  if (is_post_type_archive('recruit') || is_tax('recruitment_status')|| is_tax('employment_type') || is_tax('special_conditions')) {
+  if (is_post_type_archive('recruit') || is_tax('recruitment_status')|| is_tax('employment_type') || is_tax('special_conditions') || is_tax('recruit_shop-genre')) {
     wp_enqueue_style('archive-recruit-style', get_stylesheet_directory_uri() . '/assets/css/archive-recruit.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-recruit.min.css')));
+  }
+  if (is_singular('recruit')) {
+    wp_enqueue_style('single-recruit-style', get_stylesheet_directory_uri() . '/assets/css/single-recruit.min.css', array(), filemtime(get_theme_file_path('assets/css/single-recruit.min.css')));
+  }
+
+  // 施設からのお知らせ
+  if (is_post_type_archive('information')) {
+    wp_enqueue_style('archive-information-style', get_stylesheet_directory_uri() . '/assets/css/archive-information.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-information.min.css')));
+  }
+  if (is_singular('information')) {
+    wp_enqueue_style('single-information-style', get_stylesheet_directory_uri() . '/assets/css/single-information.min.css', array(), filemtime(get_theme_file_path('assets/css/single-information.min.css')));
+  }
+
+  // 交通アクセス
+  if (is_page('access')) {
+    wp_enqueue_style('access-style', get_stylesheet_directory_uri() . '/assets/css/access.min.css', array(), filemtime(get_theme_file_path('assets/css/access.min.css')));
+  }
+
+  // 施設情報
+  if (is_page('about')) {
+    wp_enqueue_style('about-style', get_stylesheet_directory_uri() . '/assets/css/about.min.css', array(), filemtime(get_theme_file_path('assets/css/about.min.css')));
+  }
+
+  // サイトの利用について
+  if (is_page('terms-of-service')) {
+    wp_enqueue_style('terms-of-service-style', get_stylesheet_directory_uri() . '/assets/css/terms-of-service.min.css', array(), filemtime(get_theme_file_path('assets/css/terms-of-service.min.css')));
+  }
+
+  // サイトマップ
+  if (is_page('site-map')) {
+    wp_enqueue_style('site-map-style', get_stylesheet_directory_uri() . '/assets/css/site-map.min.css', array(), filemtime(get_theme_file_path('assets/css/site-map.min.css')));
+  }
+
+  // majica/UCSカード利⽤可能店舗
+  if (is_page('majica-ucs')) {
+    wp_enqueue_style('majica-ucs-style', get_stylesheet_directory_uri() . '/assets/css/majica-ucs.min.css', array(), filemtime(get_theme_file_path('assets/css/majica-ucs.min.css')));
+  }
+
+  // SDGs・地域連携
+  if (is_page('sdgs')) {
+    wp_enqueue_style('sdgs-style', get_stylesheet_directory_uri() . '/assets/css/sdgs.min.css', array(), filemtime(get_theme_file_path('assets/css/sdgs.min.css')));
+  }
+
+  // Facility-Information
+  if (is_page('facility-information')) {
+    wp_enqueue_style('facility-information-style', get_stylesheet_directory_uri() . '/assets/css/facility-information.min.css', array(), filemtime(get_theme_file_path('assets/css/facility-information.min.css')));
   }
 
   if (is_404()) {
@@ -89,6 +143,11 @@ function add_defer($tag)
 
   // aioseo関連のスクリプトにはdeferを追加しない
   if (strpos($tag, 'aioseo')) {
+    return $tag;
+  }
+
+  // type="module" があるスクリプトにはdeferを追加しない
+  if (strpos($tag, 'type="module"')) {
     return $tag;
   }
 

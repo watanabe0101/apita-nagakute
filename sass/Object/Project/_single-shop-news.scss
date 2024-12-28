@@ -1,0 +1,132 @@
+@use "../../Object/Utility" as *;
+
+
+.singleShopNews-info {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+
+  .splide__pagination {
+    margin-block-start: 10px;
+  }
+}
+
+.singleShopNews-info__inner {
+  display: grid;
+}
+
+.singleShopNews-info__header {
+  margin-block-start: 25px;
+  color: var(--color-green4);
+}
+
+.singleShopNews-info__title {
+  margin-block: var(--leading-trim);
+  font-size: calc(12 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 12);
+}
+
+.singleShopNews-info__caption {
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+}
+
+.singleShopNews-info__image {
+  margin-block-start: 25px;
+  background: var(--color-green3);
+  aspect-ratio: 335/250;
+
+  img {
+    object-fit: cover;
+    block-size: 100%;
+  }
+}
+
+.singleShopNews-info__content {
+  margin-block-start: 20px;
+  order: 3;
+}
+
+.singleShopNews-info__update-date {
+  padding-block: 5px;
+  padding-inline: 22px;
+  inline-size: fit-content;
+  margin-inline: auto 0;
+  border-radius: 30px;
+  background: var(--color-green3);
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+.singleShopNews-info__remarks {
+  margin-block-start: 10px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+  white-space: pre-line	;
+}
+
+/* ===============================================
+# singleShopNews-recommend
+=============================================== */
+.singleShopNews-recommend {
+  margin-block-start: 75px;
+}
+
+/* ===============================================
+# このページをシェアする
+=============================================== */
+.singleShopNews-single-sns {
+  margin-block-start: 20px;
+}
+
+.singleShopNews-single-sns__content {
+  --_border-color: #CCCCCC;
+
+  margin-block-start: 46px;
+  padding-block-start: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  justify-items: end;
+  border-block-start: 1px solid var(--_border-color);
+
+  .sns-list {
+    column-gap: 20px;
+  }
+
+  .sns-item:nth-of-type(2) .sns-link {
+    border: none;
+  }
+
+  .sns-link {
+    padding: 0;
+    inline-size: 30px;
+    aspect-ratio: 1;
+
+    img {
+      object-fit: cover;
+    }
+  }
+}
+
+.singleShopNews-single-sns__text {
+  justify-self: start;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+}
+
+/* ===============================================
+# 絞り込みタグ
+=============================================== */
+.singleShopNews-genre-conditions {
+  margin-block-start: 30px;
+}
+
+/* ===============================================
+# その他のショップニュース
+=============================================== */
+.singleShopNews-other-news {
+  margin-block-start: 70px;
+}

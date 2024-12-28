@@ -1,0 +1,203 @@
+@use "../../Object/Utility" as *;
+
+.facilityInformation-header__title {
+  display: block;
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  letter-spacing: calc(calc(100 / 1000) * 1em);
+  line-height: calc(26 / 24);
+  
+  &::first-letter {
+    color: var(--color-green);
+  }
+
+  span {
+    display: inline-block;
+
+    &::first-letter {
+      color: var(--color-green);
+    }
+  }
+}
+
+/* ===============================================
+# Basic Information 
+=============================================== */
+.facilityInformation-basicInformation {
+  margin-block-start: 30px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+
+  .infoTable__cell {
+    padding-inline-start: 47px;
+
+    @media screen and (max-width: 340px) {
+      padding-inline-start: 35px;
+    }
+  }
+}
+
+.facilityInformation-basicInformation__content {
+  margin-block-start: 12px;
+}
+
+.facilityInformation-basicInformation__br {
+  display: none;
+
+  @media screen and (max-width: 1500px) {
+    display: block;
+  }
+
+  @include mq("md") {
+    display: none;
+  }
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+/* ===============================================
+# openingTimes
+=============================================== */
+.facilityInformation-openingTimes {
+  margin-block-start: 70px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s, 0.5s;
+
+  .infoTable__cell {
+    padding-inline-start: 37px;
+  }
+}
+
+.facilityInformation-openingTimes__content {
+  margin-block-start: 12px;
+}
+
+.facilityInformation-openingTimes__text {
+  margin-block-start: 20px;
+}
+
+/* ===============================================
+# Access
+=============================================== */
+.facilityInformation-access {
+  margin-block-start: 96px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.facilityInformation-access__content {
+  margin-block-start: 32px;
+}
+
+.facilityInformation-access__image {
+  img {
+    aspect-ratio: 335/250;
+    object-fit: cover;
+  }
+}
+
+
+.facilityInformation-openingTimes__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+}
+
+.linerButton {
+  margin-block-start: 26px;
+  display: grid;
+  place-items: center;
+}
+
+.linerButton-btn {
+  inline-size: 300px;
+}
+
+/* ===============================================
+# Floor Guide 
+=============================================== */
+.facilityInformation-floorGuide {
+  margin-block-start: 70px;
+}
+
+.facilityInformation-floorGuide__list {
+  margin-block-start: 37px;
+  display: grid;
+  row-gap: 25px;
+}
+
+.facilityInformation-floorGuide__floor {
+  color: var(--color-green4);
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--bold);
+}
+
+.facilityInformation-floorGuide__image {
+  margin-block-start: 16px;
+}
+
+.facilityInformation-floorGuide__pdf {
+  --_border-color: var(--color-green4);
+
+  margin-block-start: 20px;
+  margin-inline: auto;
+  padding-inline: 10px;
+  inline-size: 140px;
+  block-size: 40px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--_border-color);
+  border-radius: 30px;
+  font-size: calc(14* var(--rem-ratio));
+  font-weight: var(--regular);
+  color: var(--color-green4);
+  @include link;
+}
+
+/* ===============================================
+# N-pia
+=============================================== */
+.facilityInformation-npia {
+  margin-block-start: 70px;
+}
+
+.facilityInformation-npia__content {
+  margin-block-start: 12px;
+}
+
+.websiteButton {
+  margin-block-start: 20px;
+  display: grid;
+  place-items: center;
+}
+
+.websiteButton-btn {
+
+}
+
+.facilityInformation-npia__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+/* ===============================================
+# Don Quijote
+=============================================== */
+.facilityInformation-donQuijote {
+  margin-block-start: 76px;
+  padding-block-end: 42px;
+}
+
+.facilityInformation-donQuijote__content {
+  margin-block-start: 12px;
+}

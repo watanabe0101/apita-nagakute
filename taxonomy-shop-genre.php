@@ -5,10 +5,10 @@
 <main class="main">
   <section class="shop-guide-header page-header">
     <div class="inner">
-      <h1 class="page-header__title">
-        <span class="page-header__eng">Shop <span>Guide</span></span>
-        <span class="page-header__jp">ショップガイド</span>
-      </h1>
+      <hgroup class="page-header__title">
+        <p class="page-header__eng">Shop<span>Guide</span></p>
+        <h1 class="page-header__jp">ショップガイド</h1>
+      </hgroup>
       <?php breadcrumb('breadcrumb'); ?>
     </div>
   </section>
@@ -55,38 +55,36 @@
         <ul class="shop-guide-card">
           <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
             <li class="shop-guide-card__item">
-              <article>
-                <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
-                  <?php if (get_field('ロゴ画像')): ?>
-                    <div class="shop-guide-card__image">
-                      <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
-                    </div>
-                  <?php else: ?>
-                    <div class="shop-guide-card__image shop-guide-card__no-image">
-                      <picture>
-                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                        <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                      </picture>
-                    </div>
-                  <?php endif; ?>
-                  <p class="shop-guide-card__title"><?php the_title(); ?></p>
-                  <div class="shop-guide-card__content">
-                    <?php if ($terms = get_the_terms(get_the_ID(), 'floor')) {
-                      foreach ($terms as $term) {
-                        echo ('<p class="card__label">');
-                        echo esc_html($term->name);
-                        echo ('</p>');
-                      }
-                    } ?>
-                    <?php $custom_field = get_field('業種');
-                    if ($custom_field) { ?>
-                      <p class="shop-guide-card__industry">
-                        <?php echo $custom_field; ?>
-                      </p>
-                    <?php } ?>
+              <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
+                <?php if (get_field('ロゴ画像')): ?>
+                  <div class="shop-guide-card__image">
+                    <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
                   </div>
-                </a>
-              </article>
+                <?php else: ?>
+                  <div class="shop-guide-card__image shop-guide-card__no-image">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                    </picture>
+                  </div>
+                <?php endif; ?>
+                <p class="shop-guide-card__title"><?php the_title(); ?></p>
+                <div class="shop-guide-card__content">
+                  <?php if ($terms = get_the_terms(get_the_ID(), 'floor')) {
+                    foreach ($terms as $term) {
+                      echo ('<p class="card__label">');
+                      echo esc_html($term->name);
+                      echo ('</p>');
+                    }
+                  } ?>
+                  <?php $custom_field = get_field('業種');
+                  if ($custom_field) { ?>
+                    <p class="shop-guide-card__industry">
+                      <?php echo $custom_field; ?>
+                    </p>
+                  <?php } ?>
+                </div>
+              </a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
@@ -98,7 +96,7 @@
   </div>
 
   <!-- sns -->
-  <section class="shop-guide-sns">
+  <section class="shop-guide-sns js-fadeIn">
     <div class="sns__inner inner">
       <h2 class="sns__title title">
         <span class="sns__eng title__eng">SNS</span>

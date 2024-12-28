@@ -1,14 +1,18 @@
 @use "../../Object/Utility" as *;
 
 .error-404 {
-  margin-top: 300px;
+  padding-block-start: calc(200px + var(--header-block-size));
+  padding-block-end: 100px;
 }
 
 .error-404__title {
   text-align: center;
-  font-size: 50px;
+  text-wrap: balance;
+  font-size: calc(50 * var(--rem-ratio));
 }
 
-.error-404__outer {
-  margin-top: 100px;
+.error-404__text {
+  margin-block-start: 100px;
+  inline-size: fit-content;
+  margin-inline: auto;
 }

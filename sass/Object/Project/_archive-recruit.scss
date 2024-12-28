@@ -2,6 +2,8 @@
 
 .recruit-menu {
   margin-block-start: 22px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
 .recruit-menu__list {
@@ -44,6 +46,9 @@
 =============================================== */
 .recruit-employment-type {
   margin-block-start: 37px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s, 0.5s;
 
   .genre-nav__list {
     margin-block-start: 32px;
@@ -91,6 +96,9 @@
 =============================================== */
 .recruit-category {
   margin-block-start: 67px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 1s, 1s;
 
   .genre-nav__list {
     margin-block-start: 32px;
@@ -209,7 +217,7 @@
 }
 
 .recruit-card__not-text {
-
+  margin-block-start: 70px;
 }
 
 /* ===============================================
@@ -223,6 +231,8 @@
 
   .recruit-job-listing {
     margin-block-start: 22px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
   }
 
   .recruit-card__employment-type {
@@ -242,11 +252,21 @@
 
   .recruit-job-listing {
     margin-block-start: 36px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
   }
 
   .recruit-card {
     margin-block-start: 22px;
     margin-block-end: 32px;
+  }
+
+  .recruit-card__employment-type {
+    inline-size: fit-content;
+  }
+
+  .recruit-card__occupation {
+    font-weight: var(--bold);
   }
 
   .recruit-term__title {
@@ -262,6 +282,9 @@
 
   .recruit-menu {
     margin-block-start: 60px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    animation-delay: 0.5s, 0.5s;
   }
 
   .recruit-menu__link {

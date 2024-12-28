@@ -1,0 +1,68 @@
+@use "../../Object/Utility" as *;
+
+
+  .accordion__summary {
+    cursor: pointer;
+    display: block grid;
+    grid-template: '. icon' / 1fr 1em;
+    column-gap: 1em;
+    align-items: center;
+    padding-block: 24px 22px;
+    padding-inline-end: 10px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    background-image: radial-gradient(circle, #cccccc 1px, transparent 1px);
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-size: 8px 2px;
+    transition: all var(--_duration), transform var(--_duration);
+  
+    &::before,
+    &::after {
+      --_duration: 0.5s;
+  
+      content: '';
+      grid-area: icon;
+      border-block-end: 2px solid var(--color-green4);
+      transition: all var(--_duration);
+    }
+  
+    &::after {
+      rotate: 90deg;
+    }
+  }
+
+  .accordion__details {
+    background-image: radial-gradient(circle, #cccccc 1px, transparent 1px);
+    background-position: left -1px bottom;
+    background-repeat: repeat-x;
+    background-size: 8px 2px;
+  }
+  
+  .accordion__summary::-webkit-details-marker {
+    /* Safariで表示されるデフォルトの三角形アイコンを消します */
+    display: none;
+  }
+  
+  details[open] .accordion__summary::before {
+    rotate: 180deg;
+  }
+  
+  details[open] .accordion__summary::after {
+    rotate: 0deg;
+  }
+  
+  /* is-openedクラスが付与されたときのスタイル */
+  details.is-opened .accordion__summary::after {
+    rotate: 0deg;
+  }
+  
+  /* --------アコーディオンの中身のスタイル-------- */
+  .accordion__content {
+    overflow: hidden;  
+    /* details直下のタグにpaddingを設定すると挙動がおかしくなるので、ここには指定しない */
+  }
+
+  .accordion__content-inner {
+    padding-block-end: 32px;
+  }

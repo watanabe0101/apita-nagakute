@@ -51,10 +51,10 @@
       </li>
     </ul>
     <ul class="footer__links">
-      <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">サイトの利用について</a></li>
-      <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">サイトマップ</a></li>
-      <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">個人情報保護方針</a></li>
-      <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">SDGs・地域連携</a></li>
+      <li><a href="<?php echo esc_url(home_url('/terms-of-service/')); ?>" class="footer__link">サイトの利用について</a></li>
+      <li><a href="<?php echo esc_url(home_url('/site-map/')); ?>" class="footer__link">サイトマップ</a></li>
+      <li><a href="https://www.uny.co.jp/privacy/" class="footer__link" target="_blank" rel="noopener">個人情報保護方針</a></li>
+      <li><a href="<?php echo esc_url(home_url('/sdgs/')); ?>" class="footer__link">SDGs・地域連携</a></li>
     </ul>
   </div>
   <div class="footer__bottom">
@@ -162,6 +162,51 @@ if (is_singular('shop-guide')) { ?>
     });
   </script>
 <?php } ?>
+
+<?php
+if (is_singular('event')) { ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // メインスライダー
+      const splide = new Splide("#singleEvent-carousel", {
+        perPage: 1,
+        // autoplay: true, // 自動再生
+        interval: 5000, // 自動再生の間隔
+        speed: 2000, // スライダーの移動時間
+        type: "loop", // フェード
+        rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
+        pagination: true, // ページネーション非表示
+        arrows: false, // 矢印非表示
+        gap: 10
+      });
+      // サムネイル
+      splide.mount();
+    });
+  </script>
+<?php } ?>
+
+<?php
+if (is_singular('shop-news')) { ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // メインスライダー
+      const splide = new Splide("#singleShopNews-carousel", {
+        perPage: 1,
+        // autoplay: true, // 自動再生
+        interval: 5000, // 自動再生の間隔
+        speed: 2000, // スライダーの移動時間
+        type: "loop", // フェード
+        rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
+        pagination: true, // ページネーション非表示
+        arrows: false, // 矢印非表示
+        gap: 10
+      });
+      // サムネイル
+      splide.mount();
+    });
+  </script>
+<?php } ?>
+
 </body>
 
 </html>

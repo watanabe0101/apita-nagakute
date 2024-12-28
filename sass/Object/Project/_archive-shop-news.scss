@@ -1,0 +1,30 @@
+@use "../../Object/Utility" as *;
+
+.shopNews-listing {
+  margin-block-start: 22px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+
+  .shop-news-card {
+    margin-block-start: 0;
+  }
+
+  .pagination {
+    margin-block-start: 36px;
+  }
+}
+
+.shopNews-category {
+  margin-block-start: 60px;
+}
+
+/* ===============================================
+# タクソノミー一覧
+=============================================== */
+.taxShopNews-listing {
+
+  .shop-news-card {
+    margin-block-start: 20px;
+  }
+
+}

@@ -6,10 +6,10 @@
   <!-- title -->
   <section class="singleShopGuide-header page-header">
     <div class="inner">
-      <h1 class="page-header__title">
-        <span class="page-header__eng">Shop <span>Info</span></span>
-        <span class="page-header__jp">ショップ情報</span>
-      </h1>
+      <hgroup class="page-header__title">
+        <p class="page-header__eng">Shop<span>Info</span></p>
+        <h1 class="page-header__jp">ショップ情報</h1>
+      </hgroup>
       <?php breadcrumb('breadcrumb'); ?>
     </div>
   </section>
@@ -42,45 +42,31 @@
                       </div>
                     <?php endif; ?>
                   </li>
-                  <li class="splide__slide">
-                    <?php if (get_field('スライダー画像2')): ?>
+                  <?php if (get_field('スライダー画像2')): ?>
+                    <li class="splide__slide">
                       <div class="singleShopGuide-store-info__image">
                         <img src="<?php the_field('スライダー画像2'); ?>" alt="<? the_title() ?>のイメージ画像" loading="lazy">
                       </div>
-                    <?php else: ?>
-                      <div class="singleShopGuide-store-info__image singleShopGuide-store-info__no-image">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-                  </li>
-                  <li class="splide__slide">
-                    <?php if (get_field('スライダー画像3')): ?>
+                    </li>
+                  <?php endif; ?>
+                  <?php if (get_field('スライダー画像3')): ?>
+                    <li class="splide__slide">
                       <div class="singleShopGuide-store-info__image">
                         <img src="<?php the_field('スライダー画像3'); ?>" alt="<? the_title() ?>のイメージ画像" loading="lazy">
                       </div>
-                    <?php else: ?>
-                      <div class="singleShopGuide-store-info__image singleShopGuide-store-info__no-image">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-                  </li>
+                    </li>
+                  <?php endif; ?>
                 </ul>
               </div>
             </div>
             <!-- end-slider -->
 
             <?php if (get_field('ロゴ画像')): ?>
-              <div class="singleShopGuide-store-info__logo">
+              <div class="single-store-info__logo">
                 <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
               </div>
             <?php else: ?>
-              <div class="singleShopGuide-store-info__image singleShopGuide-store-info__no-image">
+              <div class="singleShopGuide-store-info__logo singleShopGuide-store-info__no-image">
                 <picture>
                   <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
                   <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
@@ -147,9 +133,9 @@
             </tbody>
           </table>
 
-          <div class="singleShopGuide-store-info__payment">
+          <div class="single-store-info__payment">
             <?php if (is_object_in_term($post->ID, 'payment', 'majica')): ?>
-              <div class="singleShopGuide-store-info__payment-image">
+              <div class="single-store-info__majica">
                 <picture>
                   <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.webp'); ?>" type="image/webp">
                   <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="lazy">
@@ -157,7 +143,7 @@
               </div>
             <?php endif; ?>
             <?php if (is_object_in_term($post->ID, 'payment', 'ucs')): ?>
-              <div class="singleShopGuide-store-info__payment-image">
+              <div class="single-store-info__ucs">
                 <picture>
                   <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.webp'); ?>" type="image/webp">
                   <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="lazy">
@@ -174,40 +160,41 @@
   </div>
 
   <!-- Special Recommend -->
+  <?php rewind_posts(); ?>
   <?php while (have_posts()) : the_post(); ?>
     <?php if (get_field('動画埋め込み1') or get_field('動画埋め込み2') or get_field('動画埋め込み3')) { ?>
-      <section class="singleShopGuide-recommend">
-        <div class="singleShopGuide-recommend__inner inner">
-          <h2 class="singleShopGuide-recommend__title title">
-            <span class="singleShopGuide-recommend__eng title__eng">Special<span>Recommend</span></span>
-            <span class="singleShopGuide-recommend__jp title__jp">おすすめ情報動画</span>
+      <section class="single-specialRecommend singleShopGuide-recommend js-fadeIn">
+        <div class="single-specialRecommend__inner inner">
+          <h2 class="single-specialRecommend__title title">
+            <span class="single-specialRecommend__eng title__eng">Special<span>Recommend</span></span>
+            <span class="single-specialRecommend__jp title__jp">おすすめ情報動画</span>
           </h2>
-          <div class="singleShopGuide-recommend__movies">
+          <div class="single-specialRecommend__movies">
             <?php $custom_field = get_field('動画上のテキスト1');
             if ($custom_field) { ?>
-              <p class="singleShopGuide-recommend__text">
+              <p class="single-specialRecommend__text">
                 <?php echo $custom_field; ?>
               </p>
             <?php } ?>
-            <div class="singleShopGuide-recommend__movie">
+            <div class="single-specialRecommend__movie">
               <?php echo $embed_code = wp_oembed_get(get_field('動画埋め込み1')); ?>
             </div>
             <?php $custom_field = get_field('動画上のテキスト2');
             if ($custom_field) { ?>
-              <p class="singleShopGuide-recommend__text">
+              <p class="single-specialRecommend__text">
                 <?php echo $custom_field; ?>
               </p>
             <?php } ?>
-            <div class="singleShopGuide-recommend__movie">
+            <div class="single-specialRecommend__movie">
               <?php echo $embed_code = wp_oembed_get(get_field('動画埋め込み2')); ?>
             </div>
             <?php $custom_field = get_field('動画上のテキスト3');
             if ($custom_field) { ?>
-              <p class="singleShopGuide-recommend__text">
+              <p class="single-specialRecommend__text">
                 <?php echo $custom_field; ?>
               </p>
             <?php } ?>
-            <div class="singleShopGuide-recommend__movie">
+            <div class="single-specialRecommend__movie">
               <?php echo $embed_code = wp_oembed_get(get_field('動画埋め込み3')); ?>
             </div>
           </div>
@@ -217,7 +204,7 @@
   <?php endwhile; ?>
 
   <!-- Shop News -->
-  <section class="singleShopGuide-news">
+  <section class="singleShopGuide-news js-fadeIn">
     <div class="singleShopGuide-news__inner inner">
       <h2 class="singleShopGuide-news__title title">
         <span class="singleShopGuide-news__eng title__eng">Shop<span>News</span></span>
@@ -300,7 +287,7 @@
   </section>
 
   <!-- singleShopGuide-recruit -->
-  <section class="singleShopGuide-recruit">
+  <section class="singleShopGuide-recruit js-fadeIn">
     <div class="singleShopGuide-recruit__inner inner">
       <h2 class="singleShopGuide-recruit__title title">
         <span class="singleShopGuide-recruit__eng title__eng">Recruit</span>
@@ -358,7 +345,7 @@
   </section>
 
   <!-- sns -->
-  <section class="sns">
+  <section class="sns js-fadeIn">
     <div class="sns__inner inner">
       <h2 class="sns__title title">
         <span class="sns__eng title__eng">SNS</span>

@@ -34,7 +34,7 @@
     display: inline-block;
     
     &::first-letter {
-      color: var(--color-green);
+      color: var(--color-green2);
     }
   }
 }
@@ -51,7 +51,6 @@
 =============================================== */
 .page-header {
   padding-block-start: calc(30px + var(--header-block-size));
-  // padding-block-start: 30px;
 }
 
 .page-header__eng {
@@ -71,7 +70,7 @@
     display: inline-block;
     
     &::first-letter {
-      color: var(--color-green);
+      color: var(--color-green2);
     }
   }
 }

@@ -4,6 +4,8 @@
 # genre-nav
 =============================================== */
 .shop-guide-genre-nav {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
   
   .genre-nav__all {
     margin-block-start: 24px;
@@ -22,6 +24,9 @@
 =============================================== */
 .shop-guide-content {
   margin-block-start: 45px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s, 0.5s;
 }
 
 .shop-guide-content__term-title {

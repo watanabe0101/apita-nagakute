@@ -1,0 +1,21 @@
+@use "../../Object/Utility" as *;
+
+.information-content {
+  margin-block-start: 4px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+
+  .pagination {
+    margin-block-start: 30px;
+  }
+
+  .info-card__text {
+    margin-block-start: 70px;
+  }
+}
+
+.singleShopGuide-sns {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s, 0.5s;
+}

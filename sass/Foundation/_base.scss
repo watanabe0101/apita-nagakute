@@ -85,6 +85,10 @@ a {
   color: var(--color-black);
 }
 
+.splide__slide {
+  -webkit-transform: translateZ(0);  /* iOS Safariでのちらつき防止 */
+  transform: translateZ(0);
+}
 
 // フォームをオートコンプリート（自動で入力）した時に背景色を変えない
 input:-webkit-autofill {

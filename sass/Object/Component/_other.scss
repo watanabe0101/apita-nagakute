@@ -85,6 +85,7 @@
   font-weight: var(--bold);
   line-height: calc(26 / 12);
   color: var(--color-green4);
+  text-align: center;
 }
 
 /* ===============================================
@@ -130,10 +131,140 @@
 }
 
 .infoTable__header {
+  display: grid;
+  align-items: start;
   text-align-last: left;
+  font-weight: var(--regular);
 }
 
 .infoTable__cell {
   padding-inline-start: 43px;
+  padding-inline-end: 10px;
   background-position: left -4px bottom;
+}
+
+.infoTable__link {
+  color: var(--color-green4);
+  text-decoration: underline;
+  @include link;
+}
+
+/* ===============================================
+# イベント、ショップニュースのタクソノミー一覧のタームタイトル
+=============================================== */
+.term-title {
+  font-size: calc(12 * var(--rem-ratio));
+
+  span {
+    --_border-color: var(--color-green4);
+
+    margin-inline-end: 0.3em;
+    padding-block: 8px;
+    padding-inline: 18px;
+    display: inline grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.3em;
+    flex-shrink: 0;
+    background: var(--color-white);
+    color: var(--color-green4);
+    border: 2px solid var(--_border-color);
+    border-radius: 30px;
+    font-size: calc(14 * var(--rem-ratio));
+    font-weight: var(--regular);
+    @include link;
+
+    &::before {
+      content: "#";
+    }
+  }
+}
+
+/* ===============================================
+# ショップガイド、ショップニュース詳細ページのSpecial Recommend
+=============================================== */
+.single-specialRecommend {
+  margin-block-start: 70px;
+}
+
+.single-specialRecommend__movies {
+  max-inline-size: 500px;
+  margin-inline: auto;
+}
+
+.single-specialRecommend__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 29px;
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 24);
+  color: var(--color-green4);
+}
+
+.single-specialRecommend__movie {
+  margin-block-start: 14px;
+  padding-top: 56.25%;
+  position: relative;
+  
+  iframe {
+    inline-size: 100%;
+    block-size: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* ===============================================
+# 求人情報、ショップニュース詳細ページのショップ情報
+=============================================== */
+.singleShopNews-store-info {
+  margin-block-start: 70px;
+
+  .card__label {
+    margin-inline-end: 1em;
+  }
+}
+
+.single-store-info__logo {
+  margin-block-start: 20px;
+  margin-inline: auto;
+  max-inline-size: 160px;
+}
+
+.single-store-info__store-name {
+  margin-block-start: 27px;
+  margin-block-end: 4px;
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 24);
+  color: var(--color-green4);
+}
+
+.single-store-info__payment {
+  margin-block-start: 22px;
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.single-store-info__majica {
+  inline-size: 30px;
+
+  img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.single-store-info__ucs {
+  inline-size: 26px;
+
+  img {
+    aspect-ratio: 25.82/29.57;
+    object-fit: cover;
+  }
+}
+
+.single-store-info__button-wrapper {
+  margin-block-start: 33px;
 }

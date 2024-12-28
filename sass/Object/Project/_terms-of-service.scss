@@ -1,0 +1,88 @@
+@use "../../Object/Utility" as *;
+
+
+.termsOfService-header__title {
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(26 / 24);
+}
+
+.termsOfService-header__description {
+  margin-block: var(--leading-trim);
+  padding-block-start: 22px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+  text-align: justify;
+}
+
+/* ===============================================
+# 著作権について
+=============================================== */
+.termsOfService-aboutCopyright {
+  margin-block-start: 43px;
+}
+
+.termsOfService-aboutCopyright__content {
+  margin-block-start: 32px;
+}
+
+.termsOfService-aboutCopyright__text {
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+
+  &:not(:first-child) {
+    margin-block-start: 1.5em;
+  }
+}
+
+/* ===============================================
+# リンクについて
+=============================================== */
+.termsOfService-link {
+  margin-block-start: 73px;
+}
+
+.termsOfService-link__content {
+  margin-block-start: 32px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.termsOfService-link__text {
+  &:not(:first-child) {
+    margin-block-start: 1.5em;
+  }
+}
+
+.termsOfService-link__list {
+  margin-block-start: 26px;
+  display: grid;
+  row-gap: 14px;
+}
+
+.termsOfService-link__item {
+  display: block grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.7em;
+  align-items: start;
+
+  &::before {
+    --_size: 0.15em;
+
+    content: "";
+    block-size: var(--_size);
+    aspect-ratio: 1;
+    margin-block: calc(calc(1lh - var(--_size)) / 2);
+    background-color: var(--color-black);
+    border-radius: 50%;
+  }
+}
+
+.termsOfService-link__footer-text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 26px;
+}

@@ -1,0 +1,51 @@
+@use "../../Object/Utility" as *;
+
+
+.majicaUcs-header {
+  padding-block-start: var(--header-block-size);
+}
+
+/* ===============================================
+# majicaUcs-content
+=============================================== */
+.majicaUcs-content {
+  margin-block-start: 30px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+
+  .single-store-info__payment {
+    margin-block-start: 11px;
+  }
+}
+
+.majicaUcs-content__footer {
+  margin-block-start: 30px;
+  max-inline-size: 500px;
+  margin-inline: auto;
+}
+
+.majicaUcs-content__banner {
+  display: block;
+  @include link;
+
+  img {
+    aspect-ratio: 335/100;
+    object-fit: cover;
+  }
+}
+
+.majicaUcs-content__note {
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.majicaUcs-content__button {
+  margin-block-start: 35px;
+  display: grid;
+  place-items: center;
+}
+
+.majicaUcs-content__button-btn {
+  padding-inline: 21px;
+}

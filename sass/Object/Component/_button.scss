@@ -62,3 +62,34 @@
     --_translate: 4px;
   }
 }
+
+.button-wrapper {
+  display: grid;
+  place-items: center;
+}
+
+/* ===============================================
+# TOPに戻る
+=============================================== */
+.topButton {
+  margin-block-start: 32px;
+  display: grid;
+  place-items: center;
+}
+
+.topButton__btn {
+  --_border-color: var(--color-green4);
+
+  padding-block: 8px;
+  padding-inline: 24px;
+  display: inline grid;
+  column-gap: 0.3em;
+  justify-items: center;
+  background: var(--color-white);
+  color: var(--color-green4);
+  border: 2px solid var(--_border-color);
+  border-radius: 30px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  @include link;
+}

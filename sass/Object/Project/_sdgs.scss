@@ -1,0 +1,231 @@
+@use "../../Object/Utility" as *;
+
+
+
+.sdgs-header__title {
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(34 / 24);
+}
+
+.sdgs-header__description {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+  text-align: justify;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+/* ===============================================
+# sdgs-sustainagakute
+=============================================== */
+.sdgs-sustainagakute {
+  margin-block-start: 43px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s, 0.5s;
+}
+
+.sdgs-sustainagakute__image {
+  margin-block-start: 32px;
+
+  img {
+    aspect-ratio: 335/140;
+    object-fit: cover;
+  }
+}
+
+.sdgs-sustainagakute__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.detailButton {
+  margin-block-start: 26px;
+  display: grid;
+  place-items: center;
+}
+
+.detailButton-btn {
+  inline-size: 160px;
+}
+
+/* ===============================================
+# ナガクテ学割
+=============================================== */
+.sdgs-gakuwari {
+  margin-block-start: 67px;
+}
+
+.sdgs-gakuwari__image {
+  margin-block-start: 32px;
+
+  img {
+    aspect-ratio: 335/140;
+    object-fit: cover;
+  }
+}
+
+.sdgs-gakuwari__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+/* ===============================================
+# リサイクルステーション
+=============================================== */
+.sdgs-recyclingStation {
+  margin-block-start: 67px;
+}
+
+.sdgs-recyclingStation__image {
+  margin-block-start: 32px;
+
+  img {
+    aspect-ratio: 335/250;
+    object-fit: cover;
+  }
+}
+
+.sdgs-recyclingStation__location {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  color: var(--color-green4);
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+  text-decoration: underline;
+}
+
+.sdgs-recyclingStation__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 25px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+/* ===============================================
+# 食品エコバスケット
+=============================================== */
+.sdgs-foodEcoBasket {
+  margin-block-start: 73px;
+}
+
+.sdgs-foodEcoBasket__image {
+  margin-block-start: 32px;
+
+  img {
+    aspect-ratio: 335/200;
+    object-fit: cover;
+  }
+}
+
+.sdgs-foodEcoBasket__content {
+  margin-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.sdgs-foodEcoBasket__text {
+
+}
+
+.sdgs-foodEcoBasket {
+  .infoTable {
+    margin-block-start: 6px;
+  }
+
+  .infoTable__cell {
+    padding-inline-start: 125px;
+  }
+}
+
+.sdgs-foodEcoBasket__note {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+}
+
+/* ===============================================
+# これまでの取り組み実績
+=============================================== */
+.sdgs-achievements {
+  margin-block-start: 67px;
+}
+
+.sdgs-achievements__title {
+  color: var(--color-green4);
+  font-size: calc(24 * var(--rem-ratio));
+  font-weight: var(--bold);
+  line-height: calc(34 / 24);
+}
+
+.sdgs-ethicalConsumption__title {
+  margin-block: var(--leading-trim);
+  padding-block-start: 41px;
+  letter-spacing: calc(calc(70 / 1000) * 1em);
+}
+
+.sdgs-ethicalConsumption__image {
+  margin-block-start: 32px;
+
+  img {
+    aspect-ratio: 335/140;
+    object-fit: cover;
+  }
+}
+
+.sdgs-ethicalConsumption__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.sdgs-SpecialMenu {
+  margin-block-start: 67px;
+}
+
+.sdgs-SpecialMenu__title {
+
+}
+
+.sdgs-SpecialMenu__image {
+  margin-block-start: 32px;
+
+  img {
+    aspect-ratio: 335/250;
+    object-fit: cover;
+  }
+}
+
+.sdgs-SpecialMenu__content {
+}
+
+.sdgs-SpecialMenu__text {
+  margin-block: var(--leading-trim);
+  padding-block-start: 20px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}
+
+.sdgs-SpecialMenu__note {
+  margin-block: var(--leading-trim);
+  padding-block-start: 66px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
+}

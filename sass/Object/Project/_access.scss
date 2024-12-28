@@ -1,0 +1,52 @@
+@use "../../Object/Utility" as *;
+
+
+.access-map {
+  margin-block-start: 29px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.access-map__content {
+  margin-block-start: 32px;
+}
+
+.access-map__map {
+  position: relative;
+  width: 100%;
+  padding-block-start: calc(250 / 335 * 100%);
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+}
+
+/* ===============================================
+# access-train
+=============================================== */
+.access-train {
+  margin-block-start: 67px;
+}
+
+.access-train__description {
+  margin-block: var(--leading-trim);
+  padding-block-start: 32px;
+}
+
+.access-train__button {
+  margin-block-start: 26px;
+  display: grid;
+  place-items: center;
+}
+
+.access-train__button-btn {
+  padding-inline: 21.5px;
+}
+
+.access-train__image {
+  margin-block-start: 20px;
+}

@@ -31,7 +31,7 @@ get_header(); ?>
                   <?php elseif (!has_post_thumbnail()): ?>
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="eager">
                     </picture>
                   <?php endif; ?>
                 </li>
@@ -87,7 +87,7 @@ get_header(); ?>
     <div class="menu__inner inner">
       <ul class="menu__list">
         <li class="menu__item">
-          <a href="<?php echo esc_url(home_url('/')); ?>" class="menu__link">
+          <a href="<?php echo esc_url(home_url('/shop-genre/gourmet/')); ?>" class="menu__link">
             <div class="menu__image">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.webp'); ?>" type="image/webp">
@@ -131,7 +131,7 @@ get_header(); ?>
           </a>
         </li>
         <li class="menu__item">
-          <a href="<?php echo esc_url(home_url('/')); ?>" class="menu__link">
+          <a href="<?php echo esc_url(home_url('/shop-news/')); ?>" class="menu__link">
             <div class="menu__image">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.webp'); ?>" type="image/webp">
@@ -142,7 +142,7 @@ get_header(); ?>
           </a>
         </li>
         <li class="menu__item">
-          <a href="<?php echo esc_url(home_url('/')); ?>" class="menu__link">
+          <a href="<?php echo esc_url(home_url('/about/')); ?>" class="menu__link">
             <div class="menu__image">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.webp'); ?>" type="image/webp">
@@ -209,7 +209,7 @@ get_header(); ?>
   );
   $the_query = new WP_Query($args);
   if ($the_query->have_posts()) : ?>
-    <section class="special-recommend">
+    <section class="special-recommend js-fadeIn">
       <div class="special-recommend__inner inner">
         <h2 class="special-recommend__title title">
           <span class="special-recommend__eng title__eng">Special<span>Recommend</span></span>
@@ -220,6 +220,7 @@ get_header(); ?>
             <?php if (get_field('youtube_url')) { ?>
               <div class="special-recommend__movie">
                 <?php echo $embed_code = wp_oembed_get(get_field('youtube_url')); ?>
+
               </div>
             <?php } ?>
           <?php endwhile; ?>
@@ -230,7 +231,7 @@ get_header(); ?>
   <?php endif; ?>
 
   <!-- information -->
-  <section class="info">
+  <section class="info js-fadeIn">
     <div class="info__inner inner">
       <h2 class="info__title title">
         <span class="info__eng title__eng">Information</span>
@@ -248,28 +249,25 @@ get_header(); ?>
         <ul class="info-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="info-card__item">
-              <article>
-                <a href="<?php the_permalink(); ?>" class="info-card__link">
-                  <p class="info-card__date"><?php the_time('Y.m.d') ?></p>
-                  <p class="info-card__title limited-text"><?php the_title(); ?></p>
-                </a>
-              </article>
+              <a href="<?php the_permalink(); ?>" class="info-card__link">
+                <p class="info-card__date"><?php the_time('Y.m.d') ?></p>
+                <p class="info-card__title limited-text"><?php the_title(); ?></p>
+              </a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
         </ul>
-      <?php else: ?>
-        <p class="info-card__text">ただいま公開中のお知らせはございません。</p>
-      <?php endif; ?>
-      <?php if ($the_query->have_posts()) : ?>
         <div class="info__button-wrapper">
           <a class="more" href="<?php echo esc_url(home_url('/information/')); ?>">more</a>
         </div>
+
+      <?php else: ?>
+        <p class="info-card__text">ただいま公開中のお知らせはございません。</p>
       <?php endif; ?>
     </div>
   </section>
   <!-- event -->
-  <section class="event">
+  <section class="event js-fadeIn">
     <div class="event__inner inner">
       <h2 class="event__title title">
         <span class="event__eng title__eng">Event・<span>Campaign</span></span>
@@ -284,57 +282,61 @@ get_header(); ?>
       );
       $the_query = new WP_Query($args);
       if ($the_query->have_posts()) : ?>
-        <ul class="event__card">
+        <ul class="event-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="event-card__item">
-              <article>
-                <a href="<?php the_permalink(); ?>" class="event-card__link">
-                  <?php keika_time(7); ?>
-                  <?php if (has_post_thumbnail()): ?>
-                    <div class="event-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                  <?php elseif (!has_post_thumbnail()): ?>
-                    <div class="shop-news-card__image">
-                      <picture>
-                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                        <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                      </picture>
-                    </div>
-                  <?php endif; ?>
-                  <div class="event-card__header">
-                    <?php taxonomies_label_simple() ?>
-                    <p class="event-card__period">
-                      <?php $custom_field = get_field('begins');
-                      if ($custom_field) { ?>
-                        <?php echo $custom_field; ?>
-                      <?php } ?>
-                      <?php $custom_field = get_field('end');
-                      if ($custom_field) { ?>
-                        <?php echo $custom_field; ?>
-                      <?php } ?>
-                    </p>
+              <a href="<?php the_permalink(); ?>" class="event-card__link">
+                <?php keika_time(7); ?>
+                <?php if (has_post_thumbnail()): ?>
+                  <div class="event-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
+                <?php elseif (!has_post_thumbnail()): ?>
+                  <div class="shop-news-card__image">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                    </picture>
                   </div>
-                  <p class="event-card__title limited-text"><?php the_title(); ?></p>
-                </a>
-              </article>
+                <?php endif; ?>
+                <div class="event-card__header">
+                  <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
+                    foreach ($terms as $term) {
+                      echo ('<p class="event-card__label">');
+                      echo esc_html($term->name);
+                      echo ('</p>');
+                    }
+                  } ?>
+                  <p class="event-card__period">
+                    <?php $custom_field = get_field('begins');
+                    if ($custom_field) { ?>
+                      <?php echo $custom_field; ?>〜<!--
+                    <?php } ?>
+                    <?php $custom_field = get_field('end');
+                    if ($custom_field) { ?>
+                      --><?php echo $custom_field; ?>
+                    <?php } ?>
+                  </p>
+                </div>
+                <p class="event-card__title limited-text"><?php the_title(); ?></p>
+              </a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
         </ul>
+        <div class="event__button-wrapper">
+          <a class="more" href="<?php echo esc_url(home_url('/event/')); ?>">more</a>
+        </div>
+
       <?php else: ?>
         <p class="event-card__text">
           ただいま公開中の<br>
           イベント・キャンペーン情報はございません。
         </p>
       <?php endif; ?>
-      <?php if ($the_query->have_posts()) : ?>
-        <div class="event__button-wrapper">
-          <a class="more" href="<?php echo esc_url(home_url('/event/')); ?>">more</a>
-        </div>
-      <?php endif; ?>
+
     </div>
   </section>
   <!-- shop-news -->
-  <section class="shop-news">
+  <section class="shop-news js-fadeIn">
     <div class="shop-news__inner inner">
       <h2 class="shop-news__title title">
         <span class="shop-news__eng title__eng">Shop<span>News</span></span>
@@ -352,66 +354,62 @@ get_header(); ?>
         <ul class="shop-news-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="shop-news-card__item">
-              <article>
-                <a href="<?php the_permalink(); ?>" class="shop-news-card__link">
-                  <?php keika_time(7); ?>
-                  <p class="shop-news-card__date"><?php the_time('Y.m.d'); ?></p>
-                  <?php $custom_field = get_field('description');
-                  if ($custom_field) { ?>
-                    <p class="shop-news-card__description">
-                      <?php echo $custom_field; ?>
-                    </p>
-                  <?php } ?>
+              <a href="<?php the_permalink(); ?>" class="shop-news-card__link">
+                <?php keika_time(7); ?>
+                <p class="shop-news-card__date"><?php the_time('Y.m.d'); ?></p>
+                <?php $custom_field = get_field('description');
+                if ($custom_field) { ?>
+                  <p class="shop-news-card__description">
+                    <?php echo $custom_field; ?>
+                  </p>
+                <?php } ?>
 
-                  <?php
-                  // 現在のshop-newsのスラッグを取得
-                  $current_slug = get_post_field('post_name', get_the_ID());
+                <?php
+                // 現在のshop-newsのスラッグを取得
+                $current_slug = get_post_field('post_name', get_the_ID());
 
-                  // shop-guideからスラッグが一致する投稿を取得
-                  $related_args = array(
-                    'post_type' => 'shop-guide',
-                    'name' => $current_slug,
-                    'posts_per_page' => 1,
-                  );
-                  $related_query = new WP_Query($related_args);
-                  ?>
+                // shop-guideからスラッグが一致する投稿を取得
+                $related_args = array(
+                  'post_type' => 'shop-guide',
+                  'name' => $current_slug,
+                  'posts_per_page' => 1,
+                );
+                $related_query = new WP_Query($related_args);
+                ?>
 
-                  <?php if ($related_query->have_posts()) : ?>
-                    <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
+                <?php if ($related_query->have_posts()) : ?>
+                  <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
 
-                      <?php if (has_post_thumbnail()): ?>
-                        <div class="shop-news-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                      <?php elseif (!has_post_thumbnail()): ?>
-                        <div class="shop-news-card__image">
-                          <picture>
-                            <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                            <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                          </picture>
-                        </div>
-                      <?php endif; ?>
+                    <?php if (has_post_thumbnail()): ?>
+                      <div class="shop-news-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
+                    <?php elseif (!has_post_thumbnail()): ?>
+                      <div class="shop-news-card__image">
+                        <picture>
+                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                        </picture>
+                      </div>
+                    <?php endif; ?>
 
-                      <p class="shop-news-card__title"><?php the_title(); ?></p>
+                    <p class="shop-news-card__title"><?php the_title(); ?></p>
 
-                    <?php endwhile; ?>
-                    <?php wp_reset_postdata(); ?>
-                  <?php endif; ?>
-                </a>
-              </article>
+                  <?php endwhile; ?>
+                  <?php wp_reset_postdata(); ?>
+                <?php endif; ?>
+              </a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
         </ul>
+        <div class="shop-news__button-wrapper">
+          <a class="more" href="<?php echo esc_url(home_url('/shop-news/')); ?>">more</a>
+        </div>
       <?php else : ?>
         <p class="shop-news-card__text">
           ただいま公開中のショップニュースはございません。
         </p>
       <?php endif; ?>
 
-      <?php if ($the_query->have_posts()) : ?>
-        <div class="shop-news__button-wrapper">
-          <a class="more" href="<?php echo esc_url(home_url('/shop-news/')); ?>">more</a>
-        </div>
-      <?php endif; ?>
     </div>
   </section>
 
@@ -426,7 +424,7 @@ get_header(); ?>
   );
   $the_query = new WP_Query($args);
   if ($the_query->have_posts()) : ?>
-    <section class="recommend">
+    <section class="recommend js-fadeIn">
       <div class="recommend__inner inner">
         <h2 class="recommend__title title">
           <span class="recommend__eng title__eng">Recommend</span>
@@ -437,7 +435,6 @@ get_header(); ?>
             <li class="recommend__item">
               <?php if ($field = get_field("サムネイル付きpdf")) {
                 $attr = array(
-                  'id' => 'pdf_thum_test',
                   'alt' => 'ファイルのサムネイル画像です'
                 );
                 echo "<a href='{$field["url"]}' class='recommend__image' target='_blank'>" .
@@ -466,7 +463,7 @@ get_header(); ?>
   <?php endif; ?>
 
   <!-- sns -->
-  <section class="sns">
+  <section class="sns js-fadeIn">
     <div class="sns__inner inner">
       <h2 class="sns__title title">
         <span class="sns__eng title__eng">SNS</span>

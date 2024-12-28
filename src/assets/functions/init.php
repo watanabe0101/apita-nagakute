@@ -213,12 +213,65 @@ function change_posts_per_page($query)
 {
   if (is_admin() || ! $query->is_main_query())
     return;
-  if ($query->is_archive('recruit')) { //カスタム投稿タイプを指定
-    $query->set('posts_per_page', '2'); //表示件数を指定
-    $query->set('paged', get_query_var('paged') ? get_query_var('paged') : 1);
-  // } elseif ($query->is_archive('recruit')) { //カスタム投稿タイプを指定
-  //   $query->set('posts_per_page', '10'); //表示件数を指定
-  //   $query->set('paged', get_query_var('paged') ? get_query_var('paged') : 1); // ページネーションを設定
+
+  if (is_post_type_archive('recruit') || is_tax('recruitment_status') || is_tax('employment_type') || is_tax('recruit_shop-genre') || is_tax('special_conditions')) { //カスタム投稿タイプのアーカイブページを指定
+    $query->set('posts_per_page', 2); //表示件数を指定
+  } elseif (is_post_type_archive('event') || is_tax('event_type')) { //カスタム投稿タイプのアーカイブページを指定
+    $query->set('posts_per_page', 1); //表示件数を指定
+  } elseif (is_post_type_archive('shop-news') || is_tax('shop-news-genre')) { //カスタム投稿タイプのアーカイブページを指定
+    $query->set('posts_per_page', 2); //表示件数を指定
+  } elseif (is_post_type_archive('information')) { //カスタム投稿タイプのアーカイブページを指定
+    $query->set('posts_per_page', 2); //表示件数を指定
   }
 }
 add_action('pre_get_posts', 'change_posts_per_page');
+
+function customize_youtube_embed_output($html, $url, $attr, $post_id) {
+    // iframeのframeborder属性を削除
+    $html = preg_replace('/frameborder=".*?"/', '', $html);
+    // 必要ならCSSクラスを追加
+    $html = str_replace('<iframe', '<iframe class="custom-youtube-embed"', $html);
+    return $html;
+}
+add_filter('embed_oembed_html', 'customize_youtube_embed_output', 10, 4);
+
+
+
+
+// iframeにframeborder属性を付与しない
+function fix_youtube_iframe_html($html)
+{
+  if (empty($html)) return $html;
+
+  // DOMDocumentを使用してHTMLを解析
+  $dom = new DOMDocument();
+  @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+  // iframeを見つける
+  $iframes = $dom->getElementsByTagName('iframe');
+
+  foreach ($iframes as $iframe) {
+    // frameborder属性を削除
+    if ($iframe->hasAttribute('frameborder')) {
+      $iframe->removeAttribute('frameborder');
+    }
+    // style属性を設定
+    $iframe->setAttribute('style', 'border: none;');
+  }
+
+  // 変更したHTMLを返す
+  return $dom->saveHTML();
+}
+add_filter('oembed_result', 'fix_youtube_iframe_html', 10);
+
+
+// 出力されるサムネのautoを除去
+function modify_post_thumbnail_sizes_attr($attr)
+{
+  if (isset($attr['sizes']) && strpos($attr['sizes'], 'auto') !== false) {
+    // auto を除去して適切な値に置き換える
+    $attr['sizes'] = preg_replace('/auto,?/', '', $attr['sizes']);
+  }
+  return $attr;
+}
+add_filter('wp_get_attachment_image_attributes', 'modify_post_thumbnail_sizes_attr', 10, 1);

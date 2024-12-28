@@ -46,8 +46,8 @@
       <title></title>
     <?php elseif (is_singular('recruit')): ?>
       <title></title>
-    <?php elseif (is_post_type_archive('news')): ?>
-      <title></title>
+    <?php elseif (is_post_type_archive('shop-guide')): ?>
+      <title>ショップガイド</title>
     <?php elseif (is_post_type_archive('recruit')): ?>
       <title></title>
     <?php endif; ?>
@@ -72,6 +72,25 @@
     <!-- og:site_name -->
     <meta property="og:site_name" content="アピタ長久手">
 
+    <?php
+    // OGP用タイトルの初期値
+    $og_title = get_bloginfo('name'); // デフォルトでサイト名を設定
+
+    if (is_tax()) {
+      // タクソノミーページの場合
+      $term = get_queried_object();
+      if ($term) {
+        $og_title = get_bloginfo('name') . ' - ' . get_post_type_object(get_taxonomy($term->taxonomy)->object_type[0])->label . ' - ' . $term->name;
+      }
+    } elseif (is_post_type_archive()) {
+      // カスタム投稿タイプアーカイブの場合
+      $og_title = get_bloginfo('name') . ' - ' . post_type_archive_title('', false);
+    } elseif (is_singular()) {
+      // 投稿や固定ページの場合
+      $og_title = get_the_title() . ' - ' . get_bloginfo('name');
+    }
+    ?>
+
     <!-- og:title -->
     <?php if (is_home() || is_front_page()): ?>
       <meta property="og:title" content="アピタ長久手">
@@ -79,10 +98,9 @@
       <meta property="og:title" content="">
     <?php elseif (is_singular('recruit')): ?>
       <meta property="og:title" content="">
-    <?php elseif (is_post_type_archive('news')): ?>
-      <meta property="og:title" content="">
-    <?php elseif (is_post_type_archive('recruit')): ?>
-      <meta property="og:title" content="">
+    <?php elseif (is_post_type_archive()): ?>
+    <?php elseif (is_tax()): ?>
+      <meta property="og:title" content="<?php echo esc_attr($og_title); ?>">
     <?php endif; ?>
 
 
@@ -113,7 +131,7 @@
       <meta property="og:description" content="">
     <?php elseif (is_page('about')): ?>
       <meta property="og:description" content="">
-    <?php elseif (is_page('contact')): ?>
+    <?php elseif (is_tax()): ?>
       <meta property="og:description" content="">
     <?php elseif (is_singular('recruit')): ?>
       <meta property="og:description" content="">
@@ -183,13 +201,6 @@
     <link rel="apple-touch-icon" href="<?php echo get_theme_file_uri('./assets/images/common/favicon/apple-touch-icon.png'); ?>" sizes="180x180">
     <link rel="icon" type="image/png" href="<?php echo get_theme_file_uri('./assets/images/common/favicon/android-chrome.png'); ?>" sizes="192x192">
 
-    <!-- ファーストビューの画像を先に読み込む -->
-    <?php if (is_home() || is_front_page()): ?>
-      <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/top/fv/fv1.jpg'); ?>">
-      <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/top/fv/fv1.webp'); ?>">
-    <?php elseif (is_page('group')): ?>
-    <?php endif; ?>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
@@ -225,14 +236,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <a href="<?php echo esc_url(home_url('/')); ?>" class="welcome-banner__logo">
             <picture>
               <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.png'); ?>" alt="アピタ長久手店のロゴ">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="eager">
             </picture>
           </a>
           <div class="welcome-banner__text">
             <p class="welcome-banner__title">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.webp'); ?>" type="image/webp">
-                <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.png'); ?>" alt="Welcome to Forest" loading="lazy">
+                <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.png'); ?>" alt="Welcome to Forest" loading="eager">
               </picture>
             </p>
             <p class="welcome-banner__description">
@@ -248,7 +259,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="welcome-banner__graphic">
             <picture>
               <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.png'); ?>" alt="自然をモチーフにした木と動物のイラスト">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.png'); ?>" alt="自然をモチーフにした木と動物のイラスト" loading="eager">
             </picture>
           </div>
         </div>
@@ -259,11 +270,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="pc-navigation__inner">
           <ul class="pc-navigation__list">
             <li class="pc-navigation__item">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+              <a href="<?php echo esc_url(home_url('/shop-genre/gourmet/')); ?>" class="pc-navigation__link">
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.png'); ?>" alt="レストランアイコン">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.png'); ?>" alt="レストランアイコン" loading="eager">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">RESTAURANTS</span>
@@ -274,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.png'); ?>" alt="フロアガイドアイコン">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.png'); ?>" alt="フロアガイドアイコン" loading="eager">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">FLOOR GUIDE</span>
@@ -285,7 +296,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.png'); ?>" alt="ショップガイドアイコン">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.png'); ?>" alt="ショップガイドアイコン" loading="eager">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">SHOP GUIDE</span>
@@ -296,29 +307,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.png'); ?>" alt="イベントアイコン">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.png'); ?>" alt="イベントアイコン" loading="eager">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">EVENTS</span>
               </a>
             </li>
             <li class="pc-navigation__item">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+              <a href="<?php echo esc_url(home_url('/shop-news/')); ?>" class="pc-navigation__link">
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.png'); ?>" alt="ショップニュースアイコン">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.png'); ?>" alt="ショップニュースアイコン" loading="eager">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">SHOP NEWS</span>
               </a>
             </li>
             <li class="pc-navigation__item">
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="pc-navigation__link">
+              <a href="<?php echo esc_url(home_url('/about/')); ?>" class="pc-navigation__link">
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.png'); ?>" alt="アバウトアイコン">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.png'); ?>" alt="アバウトアイコン" loading="eager">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">ABOUT</span>
@@ -326,17 +337,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </li>
           </ul>
           <div class="pc-navigation__payment">
-            <a href="#" class="pc-navigation__payment-link">
+            <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="pc-navigation__payment-link">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.webp'); ?>" type="image/webp">
-                <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.png'); ?>" alt="majica UCSカード利用可能店舗一覧">
+                <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.png'); ?>" alt="majica UCSカード利用可能店舗一覧" loading="eager">
               </picture>
             </a>
           </div>
           <div class="pc-navigation__graphic">
             <picture>
               <source srcset="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.png'); ?>" alt="自然をモチーフにした木々と動物のイラスト">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.png'); ?>" alt="自然をモチーフにした木々と動物のイラスト" loading="eager">
             </picture>
           </div>
         </div>
@@ -352,7 +363,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.png'); ?>" alt="アピタ長久手店のロゴ">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="eager">
                     </picture>
                   </a>
                 </h1>
@@ -361,16 +372,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.jpg'); ?>" alt="アピタ長久手店のロゴ">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.jpg'); ?>" alt="アピタ長久手店のロゴ" loading="eager">
                     </picture>
                   </a>
                 </p>
               <?php endif; ?>
-              <a href="<?php echo esc_url(home_url('/')); ?>" class="header__eng">
+              <a href="<?php echo esc_url(home_url('/facility-information/')); ?>" class="header__eng">
                 <div class="header__eng-image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-eng.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/header/header-eng.png'); ?>" alt="Englishアイコン" loading="lazy">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/header/header-eng.png'); ?>" alt="Englishアイコン" loading="eager">
                   </picture>
                 </div>
                 <p class="header__eng-text">English</p>
@@ -379,16 +390,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="header__right">
               <div class="header__payment">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="header__majica">
+                <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="header__majica">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="lazy">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="eager">
                   </picture>
                 </a>
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="header__ucs">
+                <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="header__ucs">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="lazy">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="eager">
                   </picture>
                 </a>
               </div>
@@ -396,7 +407,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <span class="hamburger__line"></span>
                 <span class="hamburger__line"></span>
                 <span class="hamburger__line"></span>
-                <p class="hamburger__menu">menu</p>
+                <span class="hamburger__menu">menu</span>
               </button>
             </div>
 
@@ -418,7 +429,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/information/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-facility.webp'); ?>" type="image/webp">
@@ -440,7 +451,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/shop-news/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.webp'); ?>" type="image/webp">
@@ -484,7 +495,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/about/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__icon">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.webp'); ?>" type="image/webp">
@@ -495,7 +506,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
               </li>
               <li class="headerDrawer__item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__link">
+                <a href="<?php echo esc_url(home_url('/access/')); ?>" class="headerDrawer__link">
                   <div class="headerDrawer__car">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-car.webp'); ?>" type="image/webp">
@@ -509,16 +520,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <ul class="headerDrawer__info">
               <li class="headerDrawer__info-item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">サイトの利用について</a>
+                <a href="<?php echo esc_url(home_url('/terms-of-service/')); ?>" class="headerDrawer__info-link">サイトの利用について</a>
               </li>
               <li class="headerDrawer__info-item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">サイトマップ</a>
+                <a href="<?php echo esc_url(home_url('/site-map/')); ?>" class="headerDrawer__info-link">サイトマップ</a>
               </li>
               <li class="headerDrawer__info-item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">個人情報保護方針</a>
+                <a href="https://www.uny.co.jp/privacy/" class="headerDrawer__info-link" target="_blank" rel="noopener">個人情報保護方針</a>
               </li>
               <li class="headerDrawer__info-item">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="headerDrawer__info-link">SDGs・地域連携</a>
+                <a href="<?php echo esc_url(home_url('/sdgs/')); ?>" class="headerDrawer__info-link">SDGs・地域連携</a>
               </li>
             </ul>
           </div>

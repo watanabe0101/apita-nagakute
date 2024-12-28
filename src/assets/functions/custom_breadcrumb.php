@@ -34,7 +34,7 @@ function breadcrumb($breadcrumb_class = 'breadcrumb')
         <!-- 固定ページの場合 -->
       <?php elseif (is_page()): ?>
         <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <span itemprop="name"><?php echo strtoupper(get_the_title()); ?></span>
+          <span itemprop="name"><?php echo get_the_title(); ?></span>
           <meta itemprop="position" content="2">
         </li>
 
@@ -322,7 +322,7 @@ function breadcrumb_recruitment_status($breadcrumb_class = 'breadcrumb')
         <span class="breadcrumb__arrow" aria-hidden="true"></span>
       </li>
 
-        <!-- タクソノミーのアーカイブページの場合 -->
+      <!-- タクソノミーのアーカイブページの場合 -->
       <?php if (is_tax()): ?>
         <?php
         $current_taxonomy = get_queried_object();

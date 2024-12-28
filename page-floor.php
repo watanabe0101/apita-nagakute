@@ -9,10 +9,10 @@ get_header(); ?>
 <main class="main">
   <section class="floor-header page-header">
     <div class="inner">
-      <h1 class="page-header__title">
-        <span class="page-header__eng">Floor <span>Guide</span></span>
-        <span class="page-header__jp">フロアガイド</span>
-      </h1>
+      <hgroup class="page-header__title">
+        <p class="page-header__eng">Floor <span>Guide</span></p>
+        <h1 class="page-header__jp">フロアガイド</h1>
+      </hgroup>
       <?php breadcrumb('breadcrumb'); ?>
     </div>
   </section>
@@ -113,7 +113,7 @@ get_header(); ?>
   </section>
 
   <!-- floor-first -->
-  <section id="first" class="floor-map floor-first">
+  <section id="first" class="floor-map floor-first js-fadeIn">
     <div class="floor-map__inner inner">
       <h2 class="floor-map__title page-title">1階</h2>
       <div class="floor-map__image">
@@ -122,7 +122,7 @@ get_header(); ?>
         <?php else: ?>
           <picture>
             <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-            <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="" loading="lazy">
+            <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
           </picture>
         <?php endif; ?>
       </div>
@@ -191,7 +191,7 @@ get_header(); ?>
   </section>
 
   <!-- floor-second -->
-  <section id="second" class="floor-map floor-second">
+  <section id="second" class="floor-map floor-second js-fadeIn">
     <div class="floor-map__inner inner">
       <h2 class="floor-map__title page-title">2階</h2>
       <div class="floor-map__image">
@@ -269,7 +269,7 @@ get_header(); ?>
   </section>
 
   <!-- sns -->
-  <section class="sns floor-sns">
+  <section class="sns floor-sns js-fadeIn">
     <div class="sns__inner inner">
       <h2 class="sns__title title">
         <span class="sns__eng title__eng">SNS</span>
