@@ -3,15 +3,17 @@
 <?php get_header(); ?>
 
 <main class="main">
-  <section class="recruit-header page-header">
+  <div class="recruit-header">
+    <div class="recruit-header__image">
+      <picture>
+        <source srcset="<?php echo get_theme_file_uri('/assets/images/recruit/recruit-fv.webp'); ?>" type="image/webp">
+        <img src="<?php echo get_theme_file_uri('/assets/images/recruit/recruit-fv.jpg'); ?>" alt="" loading="lazy">
+      </picture>
+    </div>
     <div class="inner">
-      <h1 class="page-header__title">
-        <span class="page-header__eng">Recruit</span>
-        <span class="page-header__jp">求人情報</span>
-      </h1>
       <?php breadcrumb('breadcrumb'); ?>
     </div>
-  </section>
+  </div>
 
   <!-- recruit-menu -->
   <div class="recruit-menu">
@@ -27,8 +29,7 @@
           <a href="#special-conditions" class="recruit-menu__link"><span class="recruit-menu__arrow arrow"></span>こだわり条件で探す</a>
         </li>
         <li class="recruit-menu__item">
-          <?php $term_obj = get_the_terms(get_the_ID(), 'recruitment_status'); ?>
-          <a href="<?php echo esc_url(get_term_link($term_obj[0])); ?> " class="recruit-menu__link"><span class="recruit-menu__arrow arrow"></span>募集中の求人情報</a>
+          <a href="<?php echo esc_url(home_url('/recruitment_status/currently-recruiting/')); ?>" class="recruit-menu__link"><span class="recruit-menu__arrow arrow"></span>募集中の求人情報</a>
         </li>
       </ul>
     </div>
@@ -51,6 +52,7 @@
           </li>
         <?php endforeach; ?>
       </ul>
+    </div>
   </section>
 
   <!-- カテゴリで探す -->
@@ -70,6 +72,7 @@
           </li>
         <?php endforeach; ?>
       </ul>
+    </div>
   </section>
 
 
@@ -90,6 +93,7 @@
           </li>
         <?php endforeach; ?>
       </ul>
+    </div>
   </section>
 
   <!-- recruit-benefit -->
@@ -114,7 +118,7 @@
                 <div class="recruit-benefit__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img1.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img1.jpg'); ?>" alt="" loading="lazy">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img1.jpg'); ?>" alt="買い物を楽しむ主婦の様子" loading="lazy">
                   </picture>
                 </div>
                 <p class="recruit-benefit__description">
@@ -131,7 +135,7 @@
                 <div class="recruit-benefit__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img2.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img2.jpg'); ?>" alt="" loading="lazy">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img2.jpg'); ?>" alt="駅の画像" loading="lazy">
                   </picture>
                 </div>
                 <p class="recruit-benefit__description">
@@ -148,7 +152,7 @@
                 <div class="recruit-benefit__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img3.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img3.jpg'); ?>" alt="" loading="lazy">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/recruit/benefit-img3.jpg'); ?>" alt="笑顔でお客さんに商品を渡す女性の従業員" loading="lazy">
                   </picture>
                 </div>
                 <p class="recruit-benefit__description">
@@ -165,7 +169,6 @@
       <p class="recruit-benefit__text">※条件は求人によって異なります。</p>
     </div>
   </section>
-
 
   <!-- job-listing -->
   <section class="recruit-job-listing js-fadeIn">
@@ -193,35 +196,34 @@
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="recruit-card__item">
 
-              <div class="recruit-card__content">
-                <?php if ($terms = get_the_terms(get_the_ID(), 'employment_type')) {
-                  foreach ($terms as $term) {
-                    echo ('<p class="recruit-card__employment-type">');
-                    echo esc_html($term->name);
-                    echo ('</p>');
-                  }
-                } ?>
-                <?php $custom_field = get_field('募集職種');
-                if ($custom_field) { ?>
-                  <p class="recruit-card__occupation">
-                    <?php echo $custom_field; ?>
-                  </p>
-                <?php } ?>
-
-                <div class="recruit-card__footer">
-                  <?php if ($terms = get_the_terms(get_the_ID(), 'special_conditions')) {
+              <a href="<?php the_permalink(); ?>" class="recruit-card__link">
+                <div class="recruit-card__content">
+                  <?php if ($terms = get_the_terms(get_the_ID(), 'employment_type')) {
                     foreach ($terms as $term) {
-                      // リンクを追加
-                      echo ('<a href="' . esc_url(get_term_link($term)) . '" class="recruit-card__special-conditions">');
+                      echo ('<p class="recruit-card__employment-type">');
                       echo esc_html($term->name);
-                      echo ('</a>');
+                      echo ('</p>');
                     }
                   } ?>
+                  <?php $custom_field = get_field('募集職種');
+                  if ($custom_field) { ?>
+                    <p class="recruit-card__occupation">
+                      <?php echo $custom_field; ?>
+                    </p>
+                  <?php } ?>
+
+                  <div class="recruit-card__footer">
+                    <?php if ($terms = get_the_terms(get_the_ID(), 'special_conditions')) {
+                      foreach ($terms as $term) {
+                        echo ('<p class="recruit-card__special-conditions">');
+                        echo esc_html($term->name);
+                        echo ('</p>');
+                      }
+                    } ?>
+                  </div>
+
                 </div>
 
-              </div>
-
-              <a href="<?php the_permalink(); ?>" class="recruit-card__link">
                 <?php if ($terms = get_the_terms(get_the_ID(), 'recruit_shop-genre')) {
                   foreach ($terms as $term) {
                     echo ('<p class="recruit-card__recruit-shop-genre">');
@@ -231,39 +233,48 @@
                 } ?>
 
                 <?php
-                // 現在のshop-newsのスラッグを取得
-                $current_slug = get_post_field('post_name', get_the_ID());
+                $terms = wp_get_post_terms(get_the_ID(), 'shop');
 
-                // shop-guideからスラッグが一致する投稿を取得
-                $related_args = array(
-                  'post_type' => 'shop-guide',
-                  'name' => $current_slug,
-                  'posts_per_page' => 1,
-                );
-                $related_query = new WP_Query($related_args);
+                if (!empty($terms) && !is_wp_error($terms)) {
+                  $term_slugs = wp_list_pluck($terms, 'slug'); // タームスラッグを取得
+
+                  // shop-guide を取得
+                  $related_guides = new WP_Query([
+                    'post_type' => 'shop-guide',
+                    'posts_per_page' => 1, // 最初の一致のみ取得
+                    'tax_query' => [
+                      [
+                        'taxonomy' => 'shop',
+                        'field' => 'slug',
+                        'terms' => $term_slugs,
+                      ],
+                    ],
+                  ]);
+
+                  // 一致する shop-guide があればタイトルを表示
+                  if ($related_guides->have_posts()) :
+                    while ($related_guides->have_posts()) : $related_guides->the_post(); ?>
+
+                      <?php if (get_field('ロゴ画像')): ?>
+                        <div class="recruit-card__image">
+                          <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
+                        </div>
+                      <?php else: ?>
+                        <div class="recruit-card__image recruit-card__no-image">
+                          <picture>
+                            <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                            <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                          </picture>
+                        </div>
+                      <?php endif; ?>
+
+                      <p class="recruit-card__title"><?php the_title(); ?></p>
+
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
+                <?php endif;
+                }
                 ?>
-
-                <?php if ($related_query->have_posts()) : ?>
-                  <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
-
-                    <?php if (get_field('ロゴ画像')): ?>
-                      <div class="recruit-card__image">
-                        <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
-                      </div>
-                    <?php else: ?>
-                      <div class="recruit-card__image recruit-card__no-image">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-
-                    <p class="recruit-card__title"><?php the_title(); ?></p>
-
-                  <?php endwhile; ?>
-                  <?php wp_reset_postdata(); ?>
-                <?php endif; ?>
               </a>
             </li>
           <?php endwhile; ?>

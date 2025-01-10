@@ -17,6 +17,7 @@
 .singleShopNews-info__header {
   margin-block-start: 25px;
   color: var(--color-green4);
+  display: grid;
 }
 
 .singleShopNews-info__title {
@@ -24,6 +25,7 @@
   font-size: calc(12 * var(--rem-ratio));
   font-weight: var(--bold);
   line-height: calc(26 / 12);
+  order: -1;
 }
 
 .singleShopNews-info__caption {
@@ -33,12 +35,10 @@
 
 .singleShopNews-info__image {
   margin-block-start: 25px;
-  background: var(--color-green3);
-  aspect-ratio: 335/250;
-
+  
   img {
-    object-fit: cover;
-    block-size: 100%;
+    aspect-ratio: 335/250;
+    object-fit: contain;
   }
 }
 
@@ -63,7 +63,7 @@
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
   line-height: calc(20 / 14);
-  white-space: pre-line	;
+  white-space: pre-wrap;
 }
 
 /* ===============================================

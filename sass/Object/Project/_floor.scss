@@ -65,18 +65,6 @@
   font-weight: var(--regular);
   color: var(--color-green4);
   @include link;
-
-  @include mq("md") {
-    --_clamp-min: 14;
-    --_clamp-max: 24;
-    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
-    
-    font-size: var(--_clamp);
-    margin-block-start: calc(20 * var(--min-fluid-ratio));
-    inline-size: calc(140 * var(--min-fluid-ratio));
-    block-size: calc(40 * var(--min-fluid-ratio));
-    border-radius: calc(30 * var(--min-fluid-ratio));
-  }
 }
 
 .floor-basement {
@@ -96,6 +84,10 @@
   
   .shop-guide-card {
     margin-block-start: 0;
+  }
+
+  .shop-guide-card__content {
+    display: block;
   }
 }
 

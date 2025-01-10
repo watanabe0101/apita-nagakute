@@ -28,10 +28,10 @@
 
 .singleShopGuide-store-info__image {
   margin-block-start: 25px;
-
+  
   img {
     aspect-ratio: 335/250;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
@@ -47,6 +47,7 @@
   font-weight: var(--regular);
   line-height: calc(20 / 14);
   text-align: justify;
+  white-space: normal;
 }
 
 .singleShopGuide-store-info__link {
@@ -110,6 +111,7 @@
   border-radius: 5px;
   background-color: color-mix(in sRGB, var(--_background) var(--_opacity, 100%), transparent);
   transition: var(--_duration);
+  @include link;
 
   &::after {
     --_border-color: var(--color-green4);
@@ -123,18 +125,6 @@
     rotate: 45deg;
     translate: var(--_translate);
     transition: translate var(--_duration);
-  }
-
-  &:any-link:hover {
-    @media (any-hover: hover) {
-      --_opacity: 60%;
-      --_translate: 4px;
-    }
-  }
-  
-  &:focus-visible {
-    --_opacity: 60%;
-    --_translate: 4px;
   }
 }
 
@@ -166,6 +156,10 @@
   inline-size: 60px;
   block-size: 20px;
   background: var(--color-green2);
+}
+
+.singleShopGuide-recruit-card__not-text {
+  margin-block-start: 35px;
 }
 
 .singleShopGuide-recruit__employment {

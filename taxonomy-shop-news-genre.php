@@ -23,7 +23,7 @@
       $term_slug = $term_object->slug;
       $args = array(
         'post_type' => 'shop-news',
-        'posts_per_page' => 2,
+        'posts_per_page' => 10,
         'paged' => $paged,
         'taxonomy' => 'shop-news-genre',
         'term' => $term_slug
@@ -40,46 +40,51 @@
             <li class="shop-news-card__item">
               <a href="<?php the_permalink(); ?>" class="shop-news-card__link">
                 <?php keika_time(7); ?>
+                <?php if (has_post_thumbnail()): ?>
+                  <div class="shop-news-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
+                <?php elseif (!has_post_thumbnail()): ?>
+                  <div class="shop-news-card__image">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                    </picture>
+                  </div>
+                <?php endif; ?>
                 <p class="shop-news-card__date"><?php the_time('Y.m.d'); ?></p>
-                <?php $custom_field = get_field('description');
-                if ($custom_field) { ?>
-                  <p class="shop-news-card__description">
-                    <?php echo $custom_field; ?>
-                  </p>
-                <?php } ?>
+                <p class="shop-news-card__description"><?php the_title(); ?></p>
 
                 <?php
-                // 現在のshop-newsのスラッグを取得
-                $current_slug = get_post_field('post_name', get_the_ID());
+                // 現在の shop-news に関連付けられたタームを取得
+                $terms = wp_get_post_terms(get_the_ID(), 'shop');
 
-                // shop-guideからスラッグが一致する投稿を取得
-                $related_args = array(
-                  'post_type' => 'shop-guide',
-                  'name' => $current_slug,
-                  'posts_per_page' => 1,
-                );
-                $related_query = new WP_Query($related_args);
+                if (!empty($terms) && !is_wp_error($terms)) {
+                  $term_slugs = wp_list_pluck($terms, 'slug'); // タームスラッグを取得
+
+                  // shop-guide を取得
+                  $related_guides = new WP_Query([
+                    'post_type' => 'shop-guide',
+                    'posts_per_page' => 1, // 最初の一致のみ取得
+                    'tax_query' => [
+                      [
+                        'taxonomy' => 'shop',
+                        'field' => 'slug',
+                        'terms' => $term_slugs,
+                      ],
+                    ],
+                  ]);
+
+                  // 一致する shop-guide があればタイトルを表示
+                  if ($related_guides->have_posts()) :
+                    while ($related_guides->have_posts()) : $related_guides->the_post(); ?>
+
+                      <p class="shop-news-card__title"><?php the_title(); ?></p>
+
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
+                <?php endif;
+                }
                 ?>
 
-                <?php if ($related_query->have_posts()) : ?>
-                  <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
-
-                    <?php if (has_post_thumbnail()): ?>
-                      <div class="shop-news-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                    <?php elseif (!has_post_thumbnail()): ?>
-                      <div class="shop-news-card__image">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-
-                    <p class="shop-news-card__title"><?php the_title(); ?></p>
-
-                  <?php endwhile; ?>
-                  <?php wp_reset_postdata(); ?>
-                <?php endif; ?>
               </a>
             </li>
             <!-- 繰り返し処理する内容 -->

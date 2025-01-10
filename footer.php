@@ -73,7 +73,7 @@ if (is_front_page()) { ?>
     document.addEventListener("DOMContentLoaded", function() {
       // メインスライダー
       const main = new Splide("#main-carousel", {
-        autoplay: true, // 自動再生
+        // autoplay: true, // 自動再生
         interval: 5000, // 自動再生の間隔
         speed: 2000, // スライダーの移動時間
         type: "fade", // フェード
@@ -88,6 +88,7 @@ if (is_front_page()) { ?>
         pagination: false, // ページネーション非表示
         isNavigation: true, // 他のスライダーのナビゲーションとしてそれぞれのスライドをクリック可能にする
         fixedWidth: 60, // サムネイルの幅
+        gap: 10,
         breakpoints: {
           767: {
             // 幅400px未満の設定
@@ -105,7 +106,7 @@ if (is_front_page()) { ?>
     });
 
     document.addEventListener("DOMContentLoaded", function() {
-      // メインスライダー
+      // バナー
       const splide = new Splide("#main-banner", {
         autoplay: true, // 自動再生
         interval: 5000, // 自動再生の間隔
@@ -114,8 +115,8 @@ if (is_front_page()) { ?>
         rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
         pagination: false, // ページネーション非表示
         arrows: true, // 矢印非表示
+        gap: 10
       });
-      // サムネイル
       splide.mount();
     });
   </script>
@@ -127,6 +128,7 @@ if (is_post_type_archive('recruit')) { ?>
     document.addEventListener("DOMContentLoaded", function() {
       // メインスライダー
       const splide = new Splide("#recruit-carousel", {
+        perPage: 1, // サムネイル3枚表示
         autoplay: true, // 自動再生
         interval: 5000, // 自動再生の間隔
         speed: 2000, // スライダーの移動時間
@@ -156,6 +158,7 @@ if (is_singular('shop-guide')) { ?>
         rewind: true, // スライダーの終わりまで行ったら先頭に巻き戻す
         pagination: true, // ページネーション非表示
         arrows: false, // 矢印非表示
+        gap: 10
       });
       // サムネイル
       splide.mount();

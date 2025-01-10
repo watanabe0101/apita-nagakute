@@ -65,6 +65,7 @@
   margin-block-end: 5px;
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
+  white-space: normal;
 }
 
 .singleEvent-detail-infoTable__text {
@@ -78,6 +79,11 @@
   font-weight: var(--regular);
   line-height: calc(20 / 14);
   text-decoration: underline;
+  @include link;
+}
+
+.singleEvent-detail__place {
+  text-wrap: balance;
 }
 
 .singleEvent-detail__footer {
@@ -85,6 +91,9 @@
 }
 
 .singleEvent-detail__remarks {
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
   white-space: pre-wrap	;
 }
 

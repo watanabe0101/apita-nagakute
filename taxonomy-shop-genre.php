@@ -25,7 +25,7 @@
           <li class="genre-nav__item <?php if ($cat_name == esc_html($genre_term->name)) {
                                         echo "is-active";
                                       } ?>">
-            <a href="<?php echo esc_url(get_term_link($genre_term, 'shop-genre')); ?>" class="works__genre-nav-link genre-nav__link"><?php echo esc_html($genre_term->name); ?></a>
+            <a href="<?php echo esc_url(get_term_link($genre_term, 'shop-genre')); ?>" class="genre-nav-link genre-nav__link"><?php echo esc_html($genre_term->name); ?></a>
           </li>
         <?php endforeach; ?>
       </ul>
@@ -47,7 +47,9 @@
         'post_type' => 'shop-guide',
         'posts_per_page' => -1,
         'taxonomy' => 'shop-genre',
-        'term' => $term_slug
+        'term' => $term_slug,
+        'orderby' => 'menu_order', // 追加: メニュー順でソート
+        'order' => 'ASC' // 追加: 昇順で表示
       );
       $the_query = new WP_Query($args);
       ?>

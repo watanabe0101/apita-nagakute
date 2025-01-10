@@ -7,10 +7,6 @@
   animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
-.singleInformation-content__header {
-
-}
-
 .singleInformation-content__title {
   font-size: calc(24 * var(--rem-ratio));
   font-weight: var(--bold);
@@ -28,6 +24,7 @@
   background: var(--color-green3);
   font-size: calc(14* var(--rem-ratio));
   font-weight: var(--regular);
+  white-space: nowrap;
 }
 
 .singleInformation-content__main {
@@ -43,20 +40,19 @@
   }
 
   p + p {
-    margin-block-start: 1.5em;
+    margin-block-start: 1.42em;
   }
-}
 
-.singleInformation-content__image {
-  margin-block-start: 26px;
-}
+  img {
+    aspect-ratio: 335/250;
+    object-fit: cover;
+  }
 
-.singleInformation-content__remarks {
-  margin-block: var(--leading-trim);
-  padding-block-start: 20px;
-  font-size: calc(14 * var(--rem-ratio));
-  font-weight: var(--regular);
-  white-space: pre-wrap;
+  a {
+    color: var(--color-green4);
+    text-decoration: underline;
+  }
+
 }
 
 .singleInformation-content__footer {
@@ -71,10 +67,17 @@
   font-weight: var(--regular);
   line-height: calc(24 / 14);
   text-decoration: underline;
+  white-space: nowrap;
+  @include link;
 }
 
-.singleInformation-content__button-wrapper {
+.singleInformation-content__button {
   margin-block-start: 36px;
   display: grid;
   place-items: center;
+}
+
+.singleInformation-content__button-btn {
+  padding-inline: 26px;
+  white-space: nowrap;
 }

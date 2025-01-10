@@ -12,6 +12,9 @@ function my_script()
 
   wp_enqueue_script('script-common', get_theme_file_uri('/assets/script/common.js'), array(), filemtime(get_theme_file_path('assets/script/common.js')), true);
 
+  // wp_enqueue_style('lite-youtube-embed-style', get_stylesheet_directory_uri() . '/lite-youtube-embed/src/lite-yt-embed.css', array(), filemtime(get_theme_file_path('lite-youtube-embed/src/lite-yt-embed.css')));
+  // wp_enqueue_script('script-lite-youtube-embed', get_theme_file_uri('/lite-youtube-embed/src/lite-yt-embed.js'), array(), filemtime(get_theme_file_path('lite-youtube-embed/src/lite-yt-embed.js')), true);
+
   // splide
   if (is_front_page() || is_post_type_archive('recruit') || is_singular('shop-news') || is_singular('shop-guide') || is_singular('event')) {
     wp_enqueue_script('script-splide', get_theme_file_uri('/splide/splide.min.js'), array(), filemtime(get_theme_file_path('splide/splide.min.js')), true);
@@ -27,7 +30,7 @@ function my_script()
   }
 
   if (is_singular('shop-news')) {
-    wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.min.css', array(), filemtime(get_theme_file_path('assets/css/home.min.css')));
+    wp_enqueue_style('shop-news-style', get_stylesheet_directory_uri() . '/assets/css/home.min.css', array(), filemtime(get_theme_file_path('assets/css/home.min.css')));
   }
 
   // ショップガイド
@@ -47,7 +50,7 @@ function my_script()
   }
 
   // イベント・キャンペーン
-  if (is_post_type_archive('event') || is_tax('event_type')) {
+  if (is_post_type_archive('event') || is_tax('event_type') || is_tax('genre')) {
     wp_enqueue_style('event-style', get_stylesheet_directory_uri() . '/assets/css/archive-event.min.css', array(), filemtime(get_theme_file_path('assets/css/archive-event.min.css')));
   }
   if (is_singular('event')) {
@@ -114,20 +117,6 @@ add_action('wp_enqueue_scripts', 'my_script');
 
 
 
-
-// 指定のcommon.jsにtype="module"属性を追加
-function add_module_type_attribute($tag, $handle, $src)
-{
-  $scripts = array('script-common');
-  if (in_array($handle, $scripts)) {
-    $tag = '<script src="' . esc_url($src) . '" type="module"></script>' . "\n";
-  }
-  return $tag;
-}
-add_filter('script_loader_tag', 'add_module_type_attribute', 10, 3);
-
-
-
 // JSファイルにdefer属性を付与（レンダリングを妨げるリソースの場外対策）
 function add_defer($tag)
 {
@@ -143,6 +132,10 @@ function add_defer($tag)
 
   // aioseo関連のスクリプトにはdeferを追加しない
   if (strpos($tag, 'aioseo')) {
+    return $tag;
+  }
+
+  if (strpos($tag, 'lite-youtube-embed')) {
     return $tag;
   }
 

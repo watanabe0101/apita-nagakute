@@ -1,13 +1,12 @@
 @use "../../Object/Utility" as *;
 
-.pagination {
-
-}
 
 .pagination__list {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40px);
   column-gap: 10px;
+  row-gap: 10px;
+  justify-content: center;
 }
 
 .pagination__item {
@@ -29,7 +28,7 @@
 
   .dots {
     color: var(--color-green4);
-    font-size: calc(14 * var(--rem-ratio));
+    font-size: calc(12 * var(--rem-ratio));
     font-weight: var(--regular);
     display: block;
     margin-block: calc(1lh  / 2);
@@ -49,7 +48,4 @@
   font-weight: var(--regular);
   background: var(--color-green4);
   color: var(--color-white);
-}
-
-.page-numbers {
 }

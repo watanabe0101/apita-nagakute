@@ -18,6 +18,10 @@
   }
 }
 
+.majicaUcs-content__not {
+  margin-block-start: 70px;
+}
+
 .majicaUcs-content__footer {
   margin-block-start: 30px;
   max-inline-size: 500px;
@@ -48,4 +52,5 @@
 
 .majicaUcs-content__button-btn {
   padding-inline: 21px;
+  white-space: nowrap;
 }

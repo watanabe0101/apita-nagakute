@@ -32,7 +32,7 @@ get_header(); ?>
       </div>
       <p class="sdgs-sustainagakute__text">未来の地球のために「サステナブル」な選択を応援しています。各テナントが提案する、環境に配慮した商品や取り組みを一堂に集めました。あなたの日々の買い物が地球を守る第一歩に。暮らしの中で、サステナブルな選択を一緒に始めませんか？</p>
       <div class="detailButton">
-        <a href="" class="detailButton-btn topButton__btn">詳しくはこちら</a>
+        <a href="<?php echo get_theme_file_uri( '/assets/pdf/sasutenagak.pdf' ); ?>" class="detailButton-btn topButton__btn" target="_blank" rel="noopener">詳しくはこちら</a>
       </div>
     </div>
   </section>
@@ -49,7 +49,7 @@ get_header(); ?>
       </div>
       <p class="sdgs-gakuwari__text">近隣の大学生を全力で応援！学生証を提示するだけで、対象店舗で特別割引やおトクなサービスが受けられる「ナガクテ学割」をご用意しました。勉強やサークル、アルバイトで忙しい毎日をちょっとだけ贅沢に、楽しく過ごしてみませんか？ぜひこの機会に、ナガクテでの学生生活を満喫してください！</p>
       <div class="detailButton">
-        <a href="" class="detailButton-btn topButton__btn">詳しくはこちら</a>
+        <a href="<?php echo get_theme_file_uri( '/assets/pdf/gakuwari.pdf' ); ?>" class="detailButton-btn topButton__btn" target="_blank" rel="noopener">詳しくはこちら</a>
       </div>
     </div>
   </section>
@@ -66,9 +66,6 @@ get_header(); ?>
       </div>
       <p class="sdgs-recyclingStation__location">B1階 北口駐輪場横</p>
       <p class="sdgs-recyclingStation__text">牛乳パックをはじめ、アルミ缶、トレー、ペットボトル等お客様がお買い上げ後にゴミになるものを回収し、リサイクルしています。</p>
-      <div class="detailButton">
-        <a href="" class="detailButton-btn topButton__btn">詳しくはこちら</a>
-      </div>
     </div>
   </section>
 
@@ -114,9 +111,6 @@ get_header(); ?>
           </picture>
         </div>
         <p class="sdgs-ethicalConsumption__text">各専門店が取り扱う環境に配慮した商品を紹介するポスターを館内に掲出し、来店者にエシカル消費の大切さを訴求しました。持続可能な社会の実現を目指し、地域とともに環境への意識向上に取り組んでいます。</p>
-        <div class="detailButton">
-          <a href="" class="detailButton-btn topButton__btn">詳しくはこちら</a>
-        </div>
       </section>
 
       <section class="sdgs-SpecialMenu js-fadeIn">

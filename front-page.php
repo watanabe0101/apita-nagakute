@@ -11,77 +11,101 @@ get_header(); ?>
   <div class="fv">
     <div class="fv__inner">
 
-      <div id="main-carousel" class="splide" aria-label="メインのスライダー">
-        <div class="splide__track">
-          <ul class="splide__list">
-            <?php
-            $args = array(
-              'posts_per_page' => -1, // 表示する投稿数
-              'paged' => $paged, //ページング
-              'post_type' => 'fv', // 取得する投稿タイプのスラッグ
-              'orderby' => 'date', //日付で並び替え
-              'order' => 'DESC' // 降順 or 昇順
-            );
-            $the_query = new WP_Query($args);
-            if ($the_query->have_posts()) :
-              while ($the_query->have_posts()) : $the_query->the_post(); ?>
+      <?php
+      $args = array(
+        'posts_per_page' => -1, // 表示する投稿数
+        'paged' => $paged, //ページング
+        'post_type' => 'fv', // 取得する投稿タイプのスラッグ
+        'orderby' => 'date', //日付で並び替え
+        'order' => 'DESC' // 降順 or 昇順
+      );
+      $the_query = new WP_Query($args);
+      if ($the_query->have_posts()) : ?>
+        <div id="main-carousel" class="splide" aria-label="メインのスライダー">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+
                 <li class="splide__slide">
+                  <?php $custom_field = get_field('スライダーリンク');
+                  if ($custom_field) { ?>
+                    <a href="<?php echo esc_attr($custom_field); ?>" class="fv__link">
+                      <!-- ここにリンク先の内容を追加 -->
+                      <?php if (has_post_thumbnail()): ?>
+                        <?php the_post_thumbnail('full', array('alt' => 'ファーストビューの画像', 'fetchpriority' => 'high')); ?>
+                      <?php elseif (!has_post_thumbnail()): ?>
+                        <picture>
+                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                        </picture>
+                      <?php endif; ?>
+                    </a>
+                  <?php } else { ?>
+                    <?php if (has_post_thumbnail()): ?>
+                      <?php the_post_thumbnail('full', array('alt' => 'ファーストビューの画像', 'fetchpriority' => 'high')); ?>
+                    <?php elseif (!has_post_thumbnail()): ?>
+                      <picture>
+                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                        <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                      </picture>
+                    <?php endif; ?>
+                  <?php } ?>
+                </li>
+
+              <?php endwhile; ?>
+              <?php wp_reset_postdata(); ?>
+            </ul>
+          </div>
+        </div>
+      <?php else : ?>
+        <picture>
+          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="eager">
+        </picture>
+      <?php endif; ?>
+
+      <?php
+      $args = array(
+        'posts_per_page' => -1, // 表示する投稿数
+        'paged' => $paged, //ページング
+        'post_type' => 'fv', // 取得する投稿タイプのスラッグ
+        'orderby' => 'date', //日付で並び替え
+        'order' => 'DESC' // 降順 or 昇順
+      );
+      $the_query = new WP_Query($args);
+      if ($the_query->have_posts()) : ?>
+        <div id="thumbnail-carousel" class="splide" aria-label="サムネイルスライダー。各サムネイルをクリックすると、メインのスライダーが切り替わります">
+
+          <div class="splide__arrows">
+            <!-- ↓ないとデフォルトの矢印 -->
+            <button class="splide__arrow splide__arrow--prev"></button>
+            <button class="splide__arrow splide__arrow--next"></button>
+            <!-- ↑ないとデフォルトの矢印 -->
+          </div>
+          <div class="splide__track splide-sub">
+            <ul class="splide__list splide-sub__list">
+
+              <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+                <li class="splide__slide splide-sub__item">
                   <?php if (has_post_thumbnail()): ?>
-                    <?php the_post_thumbnail('full', array('alt' => 'ファーストビューの画像')); ?>
+                    <?php the_post_thumbnail('full', array('alt' => 'ファーストビューのサムネイル')); ?>
                   <?php elseif (!has_post_thumbnail()): ?>
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="eager">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
                     </picture>
                   <?php endif; ?>
                 </li>
               <?php endwhile; ?>
               <?php wp_reset_postdata(); ?>
-            <?php endif; ?>
-          </ul>
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div id="thumbnail-carousel" class="splide" aria-label="サムネイルスライダー。各サムネイルをクリックすると、メインのスライダーが切り替わります">
-
-        <div class="splide__arrows">
-          <!-- ↓ないとデフォルトの矢印 -->
-          <button class="splide__arrow splide__arrow--prev"></button>
-          <button class="splide__arrow splide__arrow--next"></button>
-          <!-- ↑ないとデフォルトの矢印 -->
-        </div>
-
-        <div class="splide__track splide-sub">
-          <ul class="splide__list splide-sub__list">
-            <?php
-            $args = array(
-              'posts_per_page' => -1, // 表示する投稿数
-              'paged' => $paged, //ページング
-              'post_type' => 'fv', // 取得する投稿タイプのスラッグ
-              'orderby' => 'date', //日付で並び替え
-              'order' => 'DESC' // 降順 or 昇順
-            );
-            $the_query = new WP_Query($args);
-            if ($the_query->have_posts()) :
-              while ($the_query->have_posts()) : $the_query->the_post(); ?>
-                <li class="splide__slide splide-sub__item">
-                  <?php if (has_post_thumbnail()): ?>
-                    <?php the_post_thumbnail('full'); ?>
-                  <?php elseif (!has_post_thumbnail()): ?>
-                    <picture>
-                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="" loading="lazy">
-                    </picture>
-                  <?php endif; ?>
-                </li>
-            <?php endwhile;
-            endif; ?>
-          </ul>
-        </div>
-      </div>
+      <?php endif; ?>
 
     </div>
   </div>
+
   <!-- menu -->
   <div class="menu">
     <div class="menu__inner inner">
@@ -155,49 +179,64 @@ get_header(); ?>
       </ul>
     </div>
   </div>
-  <!-- banner -->
-  <div class="banner">
-    <div class="banner__inner inner">
 
-      <div id="main-banner" class="splide" aria-label="バナー">
-        <div class="splide__arrows">
-          <!-- ↓ないとデフォルトの矢印 -->
-          <button class="splide__arrow splide__arrow--prev"></button>
-          <button class="splide__arrow splide__arrow--next"></button>
-          <!-- ↑ないとデフォルトの矢印 -->
-        </div>
-        <div class="splide__track">
-          <ul class="splide__list">
-            <?php
-            $args = array(
-              'posts_per_page' => -1, // 表示する投稿数
-              'paged' => $paged, //ページング
-              'post_type' => 'banner', // 取得する投稿タイプのスラッグ
-              'orderby' => 'date', //日付で並び替え
-              'order' => 'DESC' // 降順 or 昇順
-            );
-            $the_query = new WP_Query($args);
-            if ($the_query->have_posts()) :
-              while ($the_query->have_posts()) : $the_query->the_post(); ?>
+  <!-- banner -->
+  <?php
+  $args = array(
+    'posts_per_page' => -1, // 表示する投稿数
+    'paged' => $paged, //ページング
+    'post_type' => 'banner', // 取得する投稿タイプのスラッグ
+    'orderby' => 'date', //日付で並び替え
+    'order' => 'DESC' // 降順 or 昇順
+  );
+  $the_query = new WP_Query($args);
+  if ($the_query->have_posts()) : ?>
+    <div class="banner">
+      <div class="banner__inner inner">
+        <div id="main-banner" class="splide" aria-label="バナー">
+          <div class="splide__arrows">
+            <!-- ↓ないとデフォルトの矢印 -->
+            <button class="splide__arrow splide__arrow--prev"></button>
+            <button class="splide__arrow splide__arrow--next"></button>
+            <!-- ↑ないとデフォルトの矢印 -->
+          </div>
+          <div class="splide__track">
+            <ul class="splide__list">
+              <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
                 <li class="splide__slide">
-                  <?php if (has_post_thumbnail()): ?>
-                    <?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?>
-                  <?php elseif (!has_post_thumbnail()): ?>
-                    <picture>
-                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                    </picture>
-                  <?php endif; ?>
+                  <?php $custom_field = get_field('バナーリンク');
+                  if ($custom_field) { ?>
+                    <a href="<?php echo esc_attr($custom_field); ?>" class="banner__link">
+                      <!-- ここにリンク先の内容を追加 -->
+                      <?php if (has_post_thumbnail()): ?>
+                        <?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?>
+                      <?php elseif (!has_post_thumbnail()): ?>
+                        <picture>
+                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                        </picture>
+                      <?php endif; ?>
+                    </a>
+                  <?php } else { ?>
+                    <?php if (has_post_thumbnail()): ?>
+                      <?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?>
+                    <?php elseif (!has_post_thumbnail()): ?>
+                      <picture>
+                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                        <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                      </picture>
+                    <?php endif; ?>
+                  <?php } ?>
                 </li>
               <?php endwhile; ?>
               <?php wp_reset_postdata(); ?>
-            <?php endif; ?>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
+  <?php endif; ?>
+
   <!-- Special-recommend -->
   <?php
   $args = array(
@@ -219,8 +258,11 @@ get_header(); ?>
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <?php if (get_field('youtube_url')) { ?>
               <div class="special-recommend__movie">
-                <?php echo $embed_code = wp_oembed_get(get_field('youtube_url')); ?>
-
+                <?php
+                $embed_code = wp_oembed_get(get_field('youtube_url'));
+                $embed_code = str_replace('<iframe', '<iframe loading="lazy"', $embed_code);
+                echo $embed_code;
+                ?>
               </div>
             <?php } ?>
           <?php endwhile; ?>
@@ -285,8 +327,8 @@ get_header(); ?>
         <ul class="event-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="event-card__item">
+              <?php keika_time(7); ?>
               <a href="<?php the_permalink(); ?>" class="event-card__link">
-                <?php keika_time(7); ?>
                 <?php if (has_post_thumbnail()): ?>
                   <div class="event-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
                 <?php elseif (!has_post_thumbnail()): ?>
@@ -297,27 +339,24 @@ get_header(); ?>
                     </picture>
                   </div>
                 <?php endif; ?>
-                <div class="event-card__header">
-                  <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
-                    foreach ($terms as $term) {
-                      echo ('<p class="event-card__label">');
-                      echo esc_html($term->name);
-                      echo ('</p>');
-                    }
-                  } ?>
-                  <p class="event-card__period">
-                    <?php $custom_field = get_field('begins');
-                    if ($custom_field) { ?>
-                      <?php echo $custom_field; ?>〜<!--
-                    <?php } ?>
-                    <?php $custom_field = get_field('end');
-                    if ($custom_field) { ?>
-                      --><?php echo $custom_field; ?>
-                    <?php } ?>
-                  </p>
-                </div>
-                <p class="event-card__title limited-text"><?php the_title(); ?></p>
               </a>
+              <div class="event-card__header">
+                <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
+                  foreach ($terms as $term) {
+                    // リンクを追加
+                    echo ('<a href="' . esc_url(get_term_link($term)) . '" class="event-card__label">');
+                    echo esc_html($term->name);
+                    echo ('</a>');
+                  }
+                } ?>
+                <p class="event-card__period">
+                  <?php $custom_field = get_field('begins');
+                  if ($custom_field) { ?>
+                    <?php echo $custom_field; ?>
+                  <?php } ?>
+                </p>
+              </div>
+              <a href="<?php the_permalink(); ?>" class="event-card__title limited-text"><?php the_title(); ?></a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
@@ -342,7 +381,9 @@ get_header(); ?>
         <span class="shop-news__eng title__eng">Shop<span>News</span></span>
         <span class="shop-news__jp title__jp">ショップニュース</span>
       </h2>
-      <?php $args = array(
+      <?php
+      $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+      $args = array(
         'posts_per_page' => 4,
         'paged' => $paged,
         'post_type' => 'shop-news',
@@ -350,52 +391,58 @@ get_header(); ?>
         'order' => 'DESC'
       );
       $the_query = new WP_Query($args);
+
       if ($the_query->have_posts()) : ?>
         <ul class="shop-news-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="shop-news-card__item">
               <a href="<?php the_permalink(); ?>" class="shop-news-card__link">
                 <?php keika_time(7); ?>
+                <?php if (has_post_thumbnail()): ?>
+                  <div class="shop-news-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
+                <?php elseif (!has_post_thumbnail()): ?>
+                  <div class="shop-news-card__image">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                    </picture>
+                  </div>
+                <?php endif; ?>
                 <p class="shop-news-card__date"><?php the_time('Y.m.d'); ?></p>
-                <?php $custom_field = get_field('description');
-                if ($custom_field) { ?>
-                  <p class="shop-news-card__description">
-                    <?php echo $custom_field; ?>
-                  </p>
-                <?php } ?>
+                <p class="shop-news-card__description"><?php the_title(); ?></p>
 
                 <?php
-                // 現在のshop-newsのスラッグを取得
-                $current_slug = get_post_field('post_name', get_the_ID());
+                // 現在の shop-news に関連付けられたタームを取得
+                $terms = wp_get_post_terms(get_the_ID(), 'shop');
 
-                // shop-guideからスラッグが一致する投稿を取得
-                $related_args = array(
-                  'post_type' => 'shop-guide',
-                  'name' => $current_slug,
-                  'posts_per_page' => 1,
-                );
-                $related_query = new WP_Query($related_args);
+                if (!empty($terms) && !is_wp_error($terms)) {
+                  $term_slugs = wp_list_pluck($terms, 'slug'); // タームスラッグを取得
+
+                  // shop-guide を取得
+                  $related_guides = new WP_Query([
+                    'post_type' => 'shop-guide',
+                    'posts_per_page' => 1, // 最初の一致のみ取得
+                    'tax_query' => [
+                      [
+                        'taxonomy' => 'shop',
+                        'field' => 'slug',
+                        'terms' => $term_slugs,
+                      ],
+                    ],
+                  ]);
+
+                  // 一致する shop-guide があればタイトルを表示
+                  if ($related_guides->have_posts()) :
+                    while ($related_guides->have_posts()) : $related_guides->the_post(); ?>
+
+                      <p class="shop-news-card__title"><?php the_title(); ?></p>
+
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
+                <?php endif;
+                }
                 ?>
 
-                <?php if ($related_query->have_posts()) : ?>
-                  <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
-
-                    <?php if (has_post_thumbnail()): ?>
-                      <div class="shop-news-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                    <?php elseif (!has_post_thumbnail()): ?>
-                      <div class="shop-news-card__image">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-
-                    <p class="shop-news-card__title"><?php the_title(); ?></p>
-
-                  <?php endwhile; ?>
-                  <?php wp_reset_postdata(); ?>
-                <?php endif; ?>
               </a>
             </li>
           <?php endwhile; ?>
@@ -433,27 +480,34 @@ get_header(); ?>
         <ul class="recommend__list">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="recommend__item">
-              <?php if ($field = get_field("サムネイル付きpdf")) {
-                $attr = array(
-                  'alt' => 'ファイルのサムネイル画像です'
-                );
-                echo "<a href='{$field["url"]}' class='recommend__image' target='_blank'>" .
-                  wp_get_attachment_image($field["id"], "full", 0, $attr) . "</a>";
-              } ?>
+
+              <?php if (get_field('pdf画像')): ?>
+                <div class="recommend__image">
+                  <img src="<?php the_field('pdf画像'); ?>" alt="pdfファイルのサムネイル">
+                </div>
+              <?php else: ?>
+                <div class="recommend__image">
+                  <picture>
+                    <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像">
+                  </picture>
+                </div>
+              <?php endif; ?>
+
               <?php $custom_field = get_field('開始日');
               if ($custom_field) { ?>
                 <div class="recommend__period">
-                  <?php echo $custom_field; ?>
+                  <?php echo $custom_field; ?>～<!--
                   <?php $custom_field = get_field('終了日');
                   if ($custom_field) { ?>
-                    <?php echo $custom_field; ?>
-                  <?php } ?>
+                    --><?php echo $custom_field; ?>
+                <?php } ?>
                 </div>
               <?php } ?>
               <p class="recommend__name"><?php the_title(); ?></p>
-              <?php if ($field = get_field("サムネイル付きpdf")) {
-                echo "<a href='{$field["url"]}' class='recommend__link' target='_blank'>PDF</a>";
-              } ?>
+              <?php if (get_field('pdf')): ?>
+                <a href="<?php the_field('pdf'); ?>" class="recommend__link" target="_blank" rel="noopener">PDF</a>
+              <?php endif; ?>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>

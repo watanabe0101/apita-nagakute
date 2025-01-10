@@ -215,13 +215,16 @@ function change_posts_per_page($query)
     return;
 
   if (is_post_type_archive('recruit') || is_tax('recruitment_status') || is_tax('employment_type') || is_tax('recruit_shop-genre') || is_tax('special_conditions')) { //カスタム投稿タイプのアーカイブページを指定
-    $query->set('posts_per_page', 2); //表示件数を指定
+    $query->set('posts_per_page', 10); //表示件数を指定
+
   } elseif (is_post_type_archive('event') || is_tax('event_type')) { //カスタム投稿タイプのアーカイブページを指定
-    $query->set('posts_per_page', 1); //表示件数を指定
+    $query->set('posts_per_page', 10); //表示件数を指定
+
   } elseif (is_post_type_archive('shop-news') || is_tax('shop-news-genre')) { //カスタム投稿タイプのアーカイブページを指定
-    $query->set('posts_per_page', 2); //表示件数を指定
+    $query->set('posts_per_page', 10); //表示件数を指定
+
   } elseif (is_post_type_archive('information')) { //カスタム投稿タイプのアーカイブページを指定
-    $query->set('posts_per_page', 2); //表示件数を指定
+    $query->set('posts_per_page', 10); //表示件数を指定
   }
 }
 add_action('pre_get_posts', 'change_posts_per_page');

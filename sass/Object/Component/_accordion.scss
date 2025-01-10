@@ -3,7 +3,7 @@
 
   .accordion__summary {
     cursor: pointer;
-    display: block grid;
+    display: grid;
     grid-template: '. icon' / 1fr 1em;
     column-gap: 1em;
     align-items: center;

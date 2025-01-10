@@ -10,7 +10,7 @@ function breadcrumb($breadcrumb_class = 'breadcrumb')
     <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
       <li class="breadcrumb__item breadcrumb__home" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="<?php echo esc_url(home_url()); ?>" class="breadcrumb__link">
-          <span itemprop="name">ホーム</span>
+          <span itemprop="name">Home</span>
         </a>
         <meta itemprop="position" content="1">
         <span class="breadcrumb__arrow" aria-hidden="true"></span>
@@ -157,7 +157,7 @@ function breadcrumb_recruit($breadcrumb_class = 'breadcrumb')
     <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
       <li class="breadcrumb__item breadcrumb__home" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="<?php echo esc_url(home_url()); ?>" class="breadcrumb__link">
-          <span itemprop="name">ホーム</span>
+          <span itemprop="name">Home</span>
         </a>
         <meta itemprop="position" content="1">
         <span class="breadcrumb__arrow" aria-hidden="true"></span>
@@ -316,7 +316,7 @@ function breadcrumb_recruitment_status($breadcrumb_class = 'breadcrumb')
     <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
       <li class="breadcrumb__item breadcrumb__home" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="<?php echo esc_url(home_url()); ?>" class="breadcrumb__link">
-          <span itemprop="name">ホーム</span>
+          <span itemprop="name">Home</span>
         </a>
         <meta itemprop="position" content="1">
         <span class="breadcrumb__arrow" aria-hidden="true"></span>

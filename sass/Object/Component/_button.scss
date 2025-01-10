@@ -7,7 +7,7 @@
   --_duration: 0.5s;
   --_padding: calc(24 * 1em / 16);
   
-  display: inline grid;
+  display: grid;
   grid-template-columns: 1fr auto 1fr;
   column-gap: calc(8 * 1em / 16);
   align-items: center;
@@ -21,18 +21,6 @@
   font-size: calc(14 * var(--rem-ratio));
   letter-spacing: calc(calc(100 / 1000) * 1em);
   font-weight: var(--bold);
-  
-  @include mq("md") {
-    --_base-size: calc(140 * var(--min-fluid-ratio));
-    --_clamp-min: 14;
-    --_clamp-max: 20;
-    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
-    
-    font-size: var(--_clamp);
-
-    padding-block: calc(10 * var(--min-fluid-ratio));
-    padding-inline: calc(10 * var(--min-fluid-ratio));
-  }
 
   &::before {
     content: "";
@@ -92,4 +80,5 @@
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
   @include link;
+  white-space: nowrap;
 }

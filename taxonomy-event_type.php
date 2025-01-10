@@ -24,7 +24,7 @@
       $args = array(
         'post_type' => 'event',
         'paged' => $paged,
-        'posts_per_page' => 1,
+        'posts_per_page' => 10,
         'taxonomy' => 'event_type',
         'orderby' => 'date',
         'order' => 'DESC',
@@ -39,8 +39,8 @@
         <ul class="event-card">
           <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
             <li class="event-card__item">
+              <?php keika_time(7); ?>
               <a href="<?php the_permalink(); ?>" class="event-card__link">
-                <?php keika_time(7); ?>
                 <?php if (has_post_thumbnail()): ?>
                   <div class="event-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
                 <?php elseif (!has_post_thumbnail()): ?>
@@ -51,27 +51,24 @@
                     </picture>
                   </div>
                 <?php endif; ?>
-                <div class="event-card__header">
-                  <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
-                    foreach ($terms as $term) {
-                      echo ('<p class="event-card__label">');
-                      echo esc_html($term->name);
-                      echo ('</p>');
-                    }
-                  } ?>
-                  <p class="event-card__period">
-                    <?php $custom_field = get_field('begins');
-                    if ($custom_field) { ?>
-                      <?php echo $custom_field; ?>〜<!--
-                    <?php } ?>
-                    <?php $custom_field = get_field('end');
-                    if ($custom_field) { ?>
-                      --><?php echo $custom_field; ?>
-                    <?php } ?>
-                  </p>
-                </div>
-                <p class="event-card__title limited-text"><?php the_title(); ?></p>
               </a>
+              <div class="event-card__header">
+                <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
+                  foreach ($terms as $term) {
+                    // リンクを追加
+                    echo ('<a href="' . esc_url(get_term_link($term)) . '" class="event-card__label">');
+                    echo esc_html($term->name);
+                    echo ('</a>');
+                  }
+                } ?>
+                <p class="event-card__period">
+                  <?php $custom_field = get_field('begins');
+                  if ($custom_field) { ?>
+                    <?php echo $custom_field; ?>
+                  <?php } ?>
+                </p>
+              </div>
+              <a href="<?php the_permalink(); ?>" class="event-card__title limited-text"><?php the_title(); ?></a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>

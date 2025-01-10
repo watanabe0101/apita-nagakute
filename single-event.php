@@ -36,11 +36,9 @@
               <div class="splide__track">
                 <ul class="splide__list">
                   <li class="splide__slide">
-                    <?php if (get_field('イベント画像1')): ?>
-                      <div class="singleEvent-detail__image">
-                        <img src="<?php the_field('イベント画像1'); ?>" alt="<? the_title() ?>のイメージ画像" loading="lazy">
-                      </div>
-                    <?php else: ?>
+                    <?php if (has_post_thumbnail()): ?>
+                      <div class="singleEvent-detail__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
+                    <?php elseif (!has_post_thumbnail()): ?>
                       <div class="singleEvent-detail__image singleEvent-detail__no-image">
                         <picture>
                           <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
@@ -48,7 +46,16 @@
                         </picture>
                       </div>
                     <?php endif; ?>
+
+
                   </li>
+                  <?php if (get_field('イベント画像1')): ?>
+                    <li class="splide__slide">
+                      <div class="singleEvent-detail__image">
+                        <img src="<?php the_field('イベント画像1'); ?>" alt="<? the_title() ?>のイメージ画像" loading="lazy">
+                      </div>
+                    </li>
+                  <?php endif; ?>
                   <?php if (get_field('イベント画像2')): ?>
                     <li class="splide__slide">
                       <div class="singleEvent-detail__image">
@@ -60,6 +67,13 @@
                     <li class="splide__slide">
                       <div class="singleEvent-detail__image">
                         <img src="<?php the_field('イベント画像3'); ?>" alt="<? the_title() ?>のイメージ画像" loading="lazy">
+                      </div>
+                    </li>
+                  <?php endif; ?>
+                  <?php if (get_field('イベント画像4')): ?>
+                    <li class="splide__slide">
+                      <div class="singleEvent-detail__image">
+                        <img src="<?php the_field('イベント画像4'); ?>" alt="<? the_title() ?>のイメージ画像" loading="lazy">
                       </div>
                     </li>
                   <?php endif; ?>
@@ -79,26 +93,18 @@
               <tr class=" infoTable__row">
                 <th class="infoTable__header">開催日</th>
                 <td class="infoTable__cell">
-                  <?php $custom_field = get_field('開催日1');
+                  <?php $custom_field = get_field('begins');
                   if ($custom_field) { ?>
                     <?php echo $custom_field; ?>
-                  <?php } ?>
-                  <?php $custom_field = get_field('開催日2');
-                  if ($custom_field) { ?>
-                    〜<!----><?php echo $custom_field; ?>
                   <?php } ?>
                 </td>
               </tr>
               <tr class=" infoTable__row">
                 <th class="infoTable__header">開催時間</th>
                 <td class="infoTable__cell">
-                  <?php $custom_field = get_field('開催時間1');
+                  <?php $custom_field = get_field('開催時間');
                   if ($custom_field) { ?>
                     <?php echo $custom_field; ?>
-                  <?php } ?>
-                  <?php $custom_field = get_field('開催時間2');
-                  if ($custom_field) { ?>
-                    〜<!----><?php echo $custom_field; ?>
                   <?php } ?>
                 </td>
               </tr>
@@ -107,7 +113,24 @@
                 <td class="infoTable__cell">
                   <?php $custom_field = get_field('開催場所');
                   if ($custom_field) { ?>
-                    <p class="infoTable__text singleEvent-detail-infoTable__text"><?php echo $custom_field; ?></p><a href="<?php echo esc_url(home_url('/floor/')); ?>" class="singleEvent-detail__link">フロアガイドを見る</a>
+                    <div class="singleEvent-detail__place">
+                      <p class="infoTable__text singleEvent-detail-infoTable__text"><?php echo $custom_field; ?></p>
+                      <?php
+                      // フィールド名yearを取得
+                      $place = get_field('開催場所リンク');
+                      // Selectフィールドの値を取得
+                      $placeValue = $place;
+                      // Selectフィールドのラベルを取得
+                      $placeLabel = $place;
+                      ?>
+                      <?php if ($placeValue === 'B1'): ?>
+                        <a href="<?php echo esc_url(home_url('/floor/#b1')); ?>" class="infoTable__link">フロアガイドを見る</a>
+                      <?php elseif ($placeValue === '1F'): ?>
+                        <a href="<?php echo esc_url(home_url('/floor/#first')); ?>" class="infoTable__link">フロアガイドを見る</a>
+                      <?php elseif ($placeValue === '2F'): ?>
+                        <a href="<?php echo esc_url(home_url('/floor/#second')); ?>" class="infoTable__link">フロアガイドを見る</a>
+                      <?php endif; ?>
+                    </div>
                   <?php } ?>
                 </td>
               </tr>
@@ -176,8 +199,8 @@
         <ul class="event-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="event-card__item">
+              <?php keika_time(7); ?>
               <a href="<?php the_permalink(); ?>" class="event-card__link">
-                <?php keika_time(7); ?>
                 <?php if (has_post_thumbnail()): ?>
                   <div class="event-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
                 <?php elseif (!has_post_thumbnail()): ?>
@@ -188,27 +211,24 @@
                     </picture>
                   </div>
                 <?php endif; ?>
-                <div class="event-card__header">
-                  <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
-                    foreach ($terms as $term) {
-                      echo ('<p class="event-card__label">');
-                      echo esc_html($term->name);
-                      echo ('</p>');
-                    }
-                  } ?>
-                  <p class="event-card__period">
-                    <?php $custom_field = get_field('begins');
-                    if ($custom_field) { ?>
-                      <?php echo $custom_field; ?>〜<!--
-                    <?php } ?>
-                    <?php $custom_field = get_field('end');
-                    if ($custom_field) { ?>
-                      --><?php echo $custom_field; ?>
-                    <?php } ?>
-                  </p>
-                </div>
-                <p class="event-card__title limited-text"><?php the_title(); ?></p>
               </a>
+              <div class="event-card__header">
+                <?php if ($terms = get_the_terms(get_the_ID(), 'genre')) {
+                  foreach ($terms as $term) {
+                    // リンクを追加
+                    echo ('<a href="' . esc_url(get_term_link($term)) . '" class="event-card__label">');
+                    echo esc_html($term->name);
+                    echo ('</a>');
+                  }
+                } ?>
+                <p class="event-card__period">
+                  <?php $custom_field = get_field('begins');
+                  if ($custom_field) { ?>
+                    <?php echo $custom_field; ?>
+                  <?php } ?>
+                </p>
+              </div>
+              <a href="<?php the_permalink(); ?>" class="event-card__title limited-text"><?php the_title(); ?></a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
@@ -239,6 +259,22 @@
       </div>
     </div>
   </section>
+
+  <?php
+  // フィールド名yearを取得
+  $place = get_field('開催場所リンク');
+  // Selectフィールドの値を取得
+  $placeValue = $place;
+  // Selectフィールドのラベルを取得
+  $placeLabel = $place;
+  ?>
+  <?php if ($placeValue === 'B1'): ?>
+    <a href="<?php echo esc_url(home_url('/floor/#b1')); ?>" class="infoTable__link">フロアガイドを見る</a>
+  <?php elseif ($placeValue === '1F'): ?>
+    <a href="<?php echo esc_url(home_url('/floor/#first')); ?>" class="infoTable__link">フロアガイドを見る</a>
+  <?php elseif ($placeValue === '2F'): ?>
+    <a href="<?php echo esc_url(home_url('/floor/#second')); ?>" class="infoTable__link">フロアガイドを見る</a>
+  <?php endif; ?>
 
 </main>
 

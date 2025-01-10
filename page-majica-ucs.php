@@ -12,7 +12,7 @@ get_header(); ?>
     <div class="majicaUcs-header__image">
       <picture>
         <source srcset="<?php echo get_theme_file_uri('/assets/images/majica-ucs/majica-ucs-header.webp'); ?>" type="image/webp">
-        <img src="<?php echo get_theme_file_uri('/assets/images/majica-ucs/majica-ucs-header.jpg'); ?>" alt="" loading="lazy">
+        <img src="<?php echo get_theme_file_uri('/assets/images/majica-ucs/majica-ucs-header.jpg'); ?>" alt="majica/UCSカード利⽤可能店舗一覧【このマークが目印です】" loading="lazy">
       </picture>
     </div>
     <div class="inner">
@@ -43,72 +43,72 @@ get_header(); ?>
         <ul class="shop-guide-card">
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <li class="shop-guide-card__item">
-              <article>
-                <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
+              <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
 
-                  <?php if (get_field('ロゴ画像')): ?>
-                    <div class="shop-guide-card__image">
-                      <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
-                    </div>
-                  <?php else: ?>
-                    <div class="shop-guide-card__image shop-guide-card__no-image">
+                <?php if (get_field('ロゴ画像')): ?>
+                  <div class="shop-guide-card__image">
+                    <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
+                  </div>
+                <?php else: ?>
+                  <div class="shop-guide-card__image shop-guide-card__no-image">
+                    <picture>
+                      <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                    </picture>
+                  </div>
+                <?php endif; ?>
+
+                <p class="shop-guide-card__title"><?php the_title(); ?></p>
+                <div class="shop-guide-card__content">
+                  <?php if ($terms = get_the_terms(get_the_ID(), 'floor')) {
+                    foreach ($terms as $term) {
+                      echo ('<p class="card__label">');
+                      echo esc_html($term->name);
+                      echo ('</p>');
+                    }
+                  } ?>
+                  <?php $custom_field = get_field('業種');
+                  if ($custom_field) { ?>
+                    <p class="shop-guide-card__industry">
+                      <?php echo $custom_field; ?>
+                    </p>
+                  <?php } ?>
+                </div>
+
+                <div class="single-store-info__payment">
+                  <?php if (is_object_in_term($post->ID, 'payment', 'majica')): ?>
+                    <div class="single-store-info__majica">
                       <picture>
-                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                        <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.webp'); ?>" type="image/webp">
+                        <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="lazy">
                       </picture>
                     </div>
                   <?php endif; ?>
-
-                  <p class="shop-guide-card__title"><?php the_title(); ?></p>
-                  <div class="shop-guide-card__content">
-                    <?php if ($terms = get_the_terms(get_the_ID(), 'floor')) {
-                      foreach ($terms as $term) {
-                        echo ('<p class="card__label">');
-                        echo esc_html($term->name);
-                        echo ('</p>');
-                      }
-                    } ?>
-                    <?php $custom_field = get_field('業種');
-                    if ($custom_field) { ?>
-                      <p class="shop-guide-card__industry">
-                        <?php echo $custom_field; ?>
-                      </p>
-                    <?php } ?>
-                  </div>
-
-                  <div class="single-store-info__payment">
-                    <?php if (is_object_in_term($post->ID, 'payment', 'majica')): ?>
-                      <div class="single-store-info__majica">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-                    <?php if (is_object_in_term($post->ID, 'payment', 'ucs')): ?>
-                      <div class="single-store-info__ucs">
-                        <picture>
-                          <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.webp'); ?>" type="image/webp">
-                          <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="lazy">
-                        </picture>
-                      </div>
-                    <?php endif; ?>
-                  </div>
-                </a>
-              </article>
+                  <?php if (is_object_in_term($post->ID, 'payment', 'ucs')): ?>
+                    <div class="single-store-info__ucs">
+                      <picture>
+                        <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.webp'); ?>" type="image/webp">
+                        <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="lazy">
+                      </picture>
+                    </div>
+                  <?php endif; ?>
+                </div>
+              </a>
             </li>
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
         </ul>
       <?php else: ?>
-        <p class="shop-guide-card__not-text not-text">現在、majica/UCSカード利⽤可能店舗はございません。</p>
+        <div class="majicaUcs-content__not">
+          <p class="shop-guide-card__not-text not-text">現在、majica/UCSカード利⽤可能店舗はございません。</p>
+        </div>
       <?php endif; ?>
 
       <div class="majicaUcs-content__footer">
-        <a href="<?php echo esc_url(home_url('/event/')); ?>" class="majicaUcs-content__banner">
+        <a href="https://www.ucscard.co.jp/campaign/PCMS_H0012280.html" class="majicaUcs-content__banner" target="_blank" rel="noopener">
           <picture>
             <source srcset="<?php echo get_theme_file_uri('/assets/images/majica-ucs/majica-ucs-banner.webp'); ?>" type="image/webp">
-            <img src="<?php echo get_theme_file_uri('/assets/images/majica-ucs/majica-ucs-banner.png'); ?>" alt="majica/UCSカードに関するバナー" loading="lazy">
+            <img src="<?php echo get_theme_file_uri('/assets/images/majica-ucs/majica-ucs-banner.png'); ?>" alt="majica/UCSカードのキャンペーンバナー" loading="lazy">
           </picture>
         </a>
         <p class="majicaUcs-content__note">※企画によって対象店舗は異なります。</p>

@@ -1,7 +1,7 @@
 @use "../../Object/Utility" as *;
 
 .error-404 {
-  padding-block-start: calc(200px + var(--header-block-size));
+  padding-block-start: calc(100px + var(--header-block-size));
   padding-block-end: 100px;
 }
 

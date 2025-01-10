@@ -22,20 +22,20 @@ get_header(); ?>
   <div class="about-menu">
     <div class="about-menu__inner inner">
       <ul class="about-menu__list">
-        <li class="about-menu__item"><a href="#" class="about-menu__link">営業時間</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">サービスカウンター</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">ポスタルカウンター</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">ATMキャッシュコーナー</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">ナチュラル純粋サービス</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">リサイクルステーション</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">AED（自動体外式除細動器）の設置</a></li>
-        <li class="about-menu__item"><a href="#" class="about-menu__link">長久手サービスコーナーNピア </a></li>
+        <li class="about-menu__item"><a href="#businessHours" class="about-menu__link">営業時間</a></li>
+        <li class="about-menu__item"><a href="#serviceCounter" class="about-menu__link">サービスカウンター</a></li>
+        <li class="about-menu__item"><a href="#postalCounter" class="about-menu__link">ポスタルカウンター</a></li>
+        <li class="about-menu__item"><a href="#atm" class="about-menu__link">ATMキャッシュコーナー</a></li>
+        <li class="about-menu__item"><a href="#naturalPureWater" class="about-menu__link">ナチュラル純粋サービス</a></li>
+        <li class="about-menu__item"><a href="#recyclingStation" class="about-menu__link">リサイクルステーション</a></li>
+        <li class="about-menu__item"><a href="#aed" class="about-menu__link">AED（自動体外式除細動器）の設置</a></li>
+        <li class="about-menu__item"><a href="#npia" class="about-menu__link">長久手サービスコーナーNピア </a></li>
       </ul>
     </div>
   </div>
 
   <!-- about-businessHours -->
-  <section class="about-businessHours">
+  <section id="businessHours" class="about-businessHours">
     <div class="about-businessHours__inner inner">
       <h2 class="about-businessHours__title page-title">営業時間</h2>
       <div class="about-businessHours__content">
@@ -60,9 +60,9 @@ get_header(); ?>
   </section>
 
   <!-- about-serviceCounter -->
-  <section class="about-serviceCounter js-fadeIn">
+  <section id="serviceCounter" class="about-serviceCounter js-fadeIn">
     <div class="about-serviceCounter__inner inner">
-      <p class="about-serviceCounter__title page-title">サービスカウンター</p>
+      <h2 class="about-serviceCounter__title page-title">サービスカウンター</h2>
       <div class="about-serviceCounter__content">
         <div class="about-serviceCounter__image">
           <picture>
@@ -70,7 +70,7 @@ get_header(); ?>
             <img src="<?php echo get_theme_file_uri('/assets/images/about/service-counter.jpg'); ?>" alt="サービスカウンターの画像" loading="lazy">
           </picture>
         </div>
-        <p class="about-serviceCounter__location">B1階 南側エスカレーター横</p>
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-serviceCounter__location">B1階 南側エスカレーター横</a>
         <ul class="about-serviceCounter__list">
           <li class="about-serviceCounter__item">インフォメーション</li>
           <li class="about-serviceCounter__item">お客様のお呼び出し</li>
@@ -87,11 +87,11 @@ get_header(); ?>
   </section>
 
   <!-- about-postalCounter -->
-  <section class="about-postalCounter js-fadeIn">
+  <section id="postalCounter" class="about-postalCounter js-fadeIn">
     <div class="about-postalCounter__inner inner">
       <h2 class="about-postalCounter__title page-title">ポスタルカウンター</h2>
       <div class="about-postalCounter__content">
-        <p class="about-postalCounter__location">B1階 サービスカウンター併設</p>
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-postalCounter__location">B1階 サービスカウンター併設</a>
         <ul class="about-postalCounter__list">
           <li class="about-postalCounter__item">「郵便切手」「郵便ハガキ」「収入印紙」「レターパック」の販売</li>
           <li class="about-postalCounter__item">店内ポストの設置</li>
@@ -101,12 +101,12 @@ get_header(); ?>
   </section>
 
   <!-- about-atm -->
-  <section class="about-atm js-fadeIn">
+  <section id="atm" class="about-atm js-fadeIn">
     <div class="about-atm__inner inner">
       <h2 class="about-atm__title page-title">ATMキャッシュコーナー</h2>
       <div class="about-atm__content">
-        <p class="about-atm__location">2階 東側エレベーター横</p>
-        <table class="infoTable">
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-atm__location">2階 東側エレベーター横</a>
+        <table class="infoTable about-atm__table1">
           <tbody class="infoTable__tbody">
             <tr class=" infoTable__row">
               <th class="infoTable__header">三菱UFJ</th>
@@ -126,8 +126,8 @@ get_header(); ?>
             </tr>
           </tbody>
         </table>
-        <p class="about-atm__location">B1階 ベーカリーモンタボー横</p>
-        <table class="infoTable">
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-atm__location">B1階 ベーカリーモンタボー横</a>
+        <table class="infoTable about-atm__table2">
           <tbody class="infoTable__tbody">
             <tr class=" infoTable__row">
               <th class="infoTable__header">三菱UFJ</th>
@@ -135,16 +135,20 @@ get_header(); ?>
             </tr>
           </tbody>
         </table>
-        <p class="about-atm__note">
-          ※都合により営業時間が変更となる場合がございます<br>
-          ※ATMにかかる利用料、手数料は各銀行ウェブサイトにてご確認ください
-        </p>
+        <div class="about-atm__footer">
+          <p class="about-atm__note">
+            ※都合により営業時間が変更となる場合がございます
+          </p>
+          <p class="about-atm__note">
+            ※ATMにかかる利用料、手数料は各銀行ウェブサイトにてご確認ください
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- naturalPureWater -->
-  <section class="about-naturalPureWater js-fadeIn">
+  <section id="naturalPureWater" class="about-naturalPureWater js-fadeIn">
     <div class="about-naturalPureWater__inner inner">
       <h2 class="about-naturalPureWater__title page-title">ナチュラル純水サービス</h2>
       <div class="about-naturalPureWater__content">
@@ -154,12 +158,12 @@ get_header(); ?>
             <img src="<?php echo get_theme_file_uri('/assets/images/about/naturalPureWater.jpg'); ?>" alt="ナチュラル純水サービス" loading="lazy">
           </picture>
         </div>
-        <p class="about-naturalPureWater__location">地下1階 南・北エスカレーター横</p>
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-naturalPureWater__location">地下1階 南・北エスカレーター横</a>
         <p class="about-naturalPureWater__description">
           飲料水サービス（ナチュラル純水）を設けました。
           ナチュラル純水は、専用ボトルを購入し、ご利用いただけます。
         </p>
-        <table class="infoTable">
+        <table class="infoTable about-naturalPureWater__table">
           <tbody class="infoTable__tbody">
             <tr class=" infoTable__row">
               <th class="infoTable__header">
@@ -196,24 +200,24 @@ get_header(); ?>
   </section>
 
   <!-- aed -->
-  <section class="about-aed js-fadeIn">
+  <section id="aed" class="about-aed js-fadeIn">
     <div class="about-aed__inner inner">
       <h2 class="about-aed__title page-title">AED（自動体外式除細動器）の設置</h2>
       <div class="about-aed__content">
-        <div class="about-aed__imag">
+        <div class="about-aed__image">
           <picture>
             <source srcset="<?php echo get_theme_file_uri('/assets/images/about/aed.webp'); ?>" type="image/webp">
             <img src="<?php echo get_theme_file_uri('/assets/images/about/aed.jpg'); ?>" alt="AEDの画像" loading="lazy">
           </picture>
         </div>
-        <p class="about-aed__location">1階 中央通路</p>
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-aed__location">1階 中央通路</a>
         <p class="about-aed__description">AEDとは突然の心停止（心臓突然死）から命を救うための装置です。音声ガイダンスにより高度な専門知識を必要とせず、安心して簡単に操作することができます。</p>
       </div>
     </div>
   </section>
 
   <!-- recycling-station -->
-  <div class="about-recyclingStation js-fadeIn">
+  <section id="recyclingStation" class="about-recyclingStation js-fadeIn">
     <div class="about-recyclingStation__inner inner">
       <h2 class="about-recyclingStation__title page-title">リサイクルステーション</h2>
       <div class="about-recyclingStation__content">
@@ -223,14 +227,14 @@ get_header(); ?>
             <img src="<?php echo get_theme_file_uri('/assets/images/about/recycling-station.jpg'); ?>" alt="リサイクルステーションの画像" loading="lazy">
           </picture>
         </div>
-        <p class="about-recyclingStation__location">B1階 北口駐輪場横</p>
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-recyclingStation__location">B1階 北口駐輪場横</a>
         <p class="about-recyclingStation__description">牛乳パックをはじめ、アルミ缶、トレー、ペットボトル等お客様がお買い上げ後にゴミになるものを回収し、リサイクルしています。</p>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Nピア -->
-  <section class="about-npia js-fadeIn">
+  <section id="npia" class="about-npia js-fadeIn">
     <div class="about-npia__inner inner">
       <h2 class="about-npia__title page-title">
         長久手サービスコーナー<br>
@@ -243,9 +247,9 @@ get_header(); ?>
             <img src="<?php echo get_theme_file_uri('/assets/images/about/npia.jpg'); ?>" alt="Nピアの画像" loading="lazy">
           </picture>
         </div>
-        <p class="about-npia__location">地下1階 北エスカレーター横</p>
+        <a href="<?php echo esc_url(home_url('/floor')); ?>" class="about-npia__location">地下1階 北エスカレーター横</a>
         <p class="about-npia__description">市役所閉庁日でも住民票の写しや印鑑登録証明書、戸籍謄抄本などの交付のほか、市刊行物などの販売・配布を行います。</p>
-        <table class="infoTable">
+        <table class="infoTable about-npia__table">
           <tbody class="infoTable__tbody">
             <tr class=" infoTable__row">
               <th class="infoTable__header">営業時間</th>

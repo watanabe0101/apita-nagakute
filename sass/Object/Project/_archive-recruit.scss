@@ -1,5 +1,23 @@
 @use "../../Object/Utility" as *;
 
+.recruit-header__image {
+  padding-block-start: calc(0px + var(--header-block-size));
+
+  img {
+    aspect-ratio: 375/100;
+    object-fit: cover;
+  }
+}
+
+.recruit-header {
+  .breadcrumb__list {
+    margin-block-start: 23px;
+  }
+}
+
+/* ===============================================
+# recruit-menu
+=============================================== */
 .recruit-menu {
   margin-block-start: 22px;
   opacity: 0;
@@ -34,8 +52,8 @@
 }
 
 .recruit-menu__arrow {
-  --_inline-size: 13px;
-  --_block-size: 13px;
+  --_inline-size: 17px;
+  --_block-size: 17px;
   --_border-color: var(--color-green2);
 
   margin-block: calc(calc(1lh - var(--_block-size)) / 2);
@@ -76,6 +94,7 @@
     font-size: calc(14 * var(--rem-ratio));
     font-weight: var(--regular);
     @include link;
+    overflow-wrap: anywhere;
     word-break: keep-all;
 
     @include mq("sp") {
@@ -294,6 +313,8 @@
 
   .recruit-menu__arrow {
     --_border-color: var(--color-green4);
+
+    rotate: 270deg;
   }
 
 }

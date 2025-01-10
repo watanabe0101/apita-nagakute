@@ -1,19 +1,32 @@
 @use "../../Object/Utility" as *;
 
 .entry-icon-new {
+  --_clamp-min: 11;
+  --_clamp-max: 16;
+  --_min-layout-width: 1400;
+  --_max-layout-width: 1920;
+  --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
+  
+  font-size: var(--_clamp);
   position: absolute;
   top: -10px;
   left: -10px;
-  inline-size: 40px;
-  block-size: 40px;
+  inline-size: calc(40 * var(--large-fluid-ratio));
+  block-size: calc(40 * var(--large-fluid-ratio));
   display: grid;
   place-items: center;
   background: #F7ED12;
   color: var(--color-green4);
   border-radius: 50%;
-  font-size: calc(11 * var(--rem-ratio));
   font-weight: var(--bold);
   letter-spacing: calc(calc(100 / 1000) * 1em);
+  z-index: 3;
+  
+  @include mq("xl") {
+    inline-size: 40px;
+    block-size: 40px;
+    font-size: calc(11 * var(--rem-ratio));
+  }
 
   @include mq("md") {
     --_clamp-min: 11;
@@ -59,19 +72,10 @@
   padding-inline: 26px;
   @include link;
 
-  @include mq("md") {
-    padding-block: calc(5 * var(--min-fluid-ratio));
-    padding-inline: calc(26 * var(--min-fluid-ratio));
-  }
-
   img {
     inline-size: 30px;
     aspect-ratio: 1;
     object-fit: cover;
-
-    @include mq("md") {
-      inline-size: calc(30 * var(--min-fluid-ratio));
-    }
   }
 }
 
@@ -98,11 +102,14 @@
   .splide__pagination__page {
     background: #CCCCCC;
     border-radius: 50%;
-    display: inline-block;
+    display: block;
     inline-size: 16px;
     block-size: 16px;
     position: relative;
+    aspect-ratio: 1;
     transition: transform .2s linear;
+    padding: 0;
+    margin: 0;
 
     &.is-active {
       background: var(--color-green4);
@@ -135,6 +142,7 @@
   align-items: start;
   text-align-last: left;
   font-weight: var(--regular);
+  inline-size: 100%;
 }
 
 .infoTable__cell {
@@ -228,7 +236,7 @@
 .single-store-info__logo {
   margin-block-start: 20px;
   margin-inline: auto;
-  max-inline-size: 160px;
+  max-inline-size: 240px;
 }
 
 .single-store-info__store-name {

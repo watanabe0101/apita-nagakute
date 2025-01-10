@@ -42,8 +42,8 @@
         'posts_per_page' => -1, // 表示する投稿数
         'paged' => $paged, //ページング
         'post_type' => 'shop-guide', // 取得する投稿タイプのスラッグ
-        'orderby' => 'date', //日付で並び替え
-        'order' => 'DESC' // 降順 or 昇順
+        'orderby' => 'menu_order', // 追加: メニュー順でソート
+        'order' => 'ASC' // 追加: 昇順で表示
       );
       $the_query = new WP_Query($args);
       if ($the_query->have_posts()) : ?>

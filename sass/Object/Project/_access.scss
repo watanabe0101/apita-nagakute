@@ -30,6 +30,9 @@
 =============================================== */
 .access-train {
   margin-block-start: 67px;
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
 }
 
 .access-train__description {

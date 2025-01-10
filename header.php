@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- Google Tag Manager -->
-    <!-- <script>
+    <script>
       (function(w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
@@ -32,167 +32,114 @@
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-K53XC74');
-    </script> -->
+    </script>
     <!-- End Google Tag Manager -->
 
-    <!-- title -->
-    <?php if (is_home() || is_front_page()): ?>
-      <title></title>
-    <?php elseif (is_page('group')): ?>
-      <title></title>
-    <?php elseif (is_page('about')): ?>
-      <title></title>
-    <?php elseif (is_page('contact')): ?>
-      <title></title>
-    <?php elseif (is_singular('recruit')): ?>
-      <title></title>
-    <?php elseif (is_post_type_archive('shop-guide')): ?>
-      <title>ショップガイド</title>
-    <?php elseif (is_post_type_archive('recruit')): ?>
-      <title></title>
-    <?php endif; ?>
-
-    <!-- description -->
-    <?php if (is_home() || is_front_page()): ?>
-      <meta name="description" content="<?php bloginfo('description'); ?>">
-    <?php elseif (is_page('')): ?>
-      <meta name="description" content="">
-    <?php elseif (is_category()): ?>
-      <meta name="description" content="<?php echo category_description(); ?>">
-    <?php elseif (is_tag()): ?>
-      <meta name="description" content="<?php echo tag_description(); ?>">
-    <?php elseif (is_tax()): ?>
-      <meta name="description" content=<?php echo tag_description(); ?>>
-    <?php elseif (is_singular()): ?>
-      <meta name="description" content="<?php echo get_the_excerpt(); ?>">
-    <?php elseif (is_post_type_archive('カスタム投稿のスラッグ')): ?>
-      <meta name="description" content="カスタム投稿一覧の説明">
-    <?php endif; ?>
-
-    <!-- og:site_name -->
-    <meta property="og:site_name" content="アピタ長久手">
-
     <?php
-    // OGP用タイトルの初期値
-    $og_title = get_bloginfo('name'); // デフォルトでサイト名を設定
+    $title = get_bloginfo('name'); // デフォルトでサイト名を設定
 
     if (is_tax()) {
       // タクソノミーページの場合
       $term = get_queried_object();
       if ($term) {
-        $og_title = get_bloginfo('name') . ' - ' . get_post_type_object(get_taxonomy($term->taxonomy)->object_type[0])->label . ' - ' . $term->name;
+        $title = get_bloginfo('name') . ' - ' . get_post_type_object(get_taxonomy($term->taxonomy)->object_type[0])->label . ' - ' . $term->name;
       }
     } elseif (is_post_type_archive()) {
       // カスタム投稿タイプアーカイブの場合
-      $og_title = get_bloginfo('name') . ' - ' . post_type_archive_title('', false);
+      $title = get_bloginfo('name') . ' - ' . post_type_archive_title('', false);
     } elseif (is_singular()) {
       // 投稿や固定ページの場合
-      $og_title = get_the_title() . ' - ' . get_bloginfo('name');
+      $title = get_the_title() . ' - ' . get_bloginfo('name');
     }
     ?>
 
-    <!-- og:title -->
+    <!-- title -->
     <?php if (is_home() || is_front_page()): ?>
-      <meta property="og:title" content="アピタ長久手">
-    <?php elseif (is_page('group')): ?>
-      <meta property="og:title" content="">
-    <?php elseif (is_singular('recruit')): ?>
-      <meta property="og:title" content="">
+      <title>TOPページ - アピタ長久手</title>
+    <?php elseif (is_page('floor')): ?>
+      <title>フロアガイド - アピタ長久手</title>
+    <?php elseif (is_page('about')): ?>
+      <title>施設情報 - アピタ長久手</title>
+    <?php elseif (is_page('access')): ?>
+      <title>交通アクセス - アピタ長久手</title>
+    <?php elseif (is_page('terms-of-service')): ?>
+      <title>サイトの利用について - アピタ長久手</title>
+    <?php elseif (is_page('site-map')): ?>
+      <title>サイトマップ - アピタ長久手</title>
+    <?php elseif (is_page('sdgs')): ?>
+      <title>SDGs・地域連携 - アピタ長久手</title>
+    <?php elseif (is_page('facility-information')): ?>
+      <title>Facility Information - アピタ長久手</title>
+    <?php elseif (is_page('majica-ucs')): ?>
+      <title>majica/UCSカード利⽤可能店舗 - アピタ長久手</title>
+    <?php elseif (is_singular()): ?>
+      <title><?php echo esc_attr($title); ?></title>
     <?php elseif (is_post_type_archive()): ?>
+      <title><?php echo esc_attr($title); ?></title>
+    <?php elseif (is_post_type_archive()): ?>
+      <title><?php echo esc_attr($title); ?></title>
     <?php elseif (is_tax()): ?>
-      <meta property="og:title" content="<?php echo esc_attr($og_title); ?>">
+      <title><?php echo esc_attr($title); ?></title>
     <?php endif; ?>
 
+    <?php
+    $description = get_bloginfo('name'); // デフォルトでサイト名を設定
+    if (is_singular()) {
+      $description = get_bloginfo('name') . ' - ' . get_the_title();
+    }
+    ?>
 
-    <!-- og:url -->
-    <?php if (is_home() || is_front_page()): ?>
-      <meta property="og:url" content="<?php echo esc_url(home_url('/')); ?>" />
-    <?php elseif (is_page('about')): ?>
-      <meta property="og:url" content="<?php echo esc_url(home_url('/about/')); ?>" />
-    <?php elseif (is_page('group')): ?>
-      <meta property="og:url" content="<?php echo esc_url(home_url('/group/')); ?>" />
-    <?php elseif (is_page('contact')): ?>
-      <meta property="og:url" content="<?php echo esc_url(home_url('/contact/')); ?>" />
-    <?php elseif (is_singular('recruit')): ?>
-      <meta property="og:url" content="<?php echo esc_url(get_permalink()); ?>" />
-    <?php elseif (is_post_type_archive('news')): ?>
-      <meta property="og:url" content="<?php echo esc_url(get_post_type_archive_link('news')); ?>">
-    <?php elseif (is_post_type_archive('recruit')): ?>
-      <meta property="og:url" content="<?php echo esc_url(get_post_type_archive_link('recruit')); ?>">
+    <!-- description -->
+    <?php if (is_tax()): ?>
+      <meta name="description" content="<?php echo esc_attr($title); ?>ページです。">
+    <?php elseif (is_post_type_archive()): ?>
+      <meta name="description" content="<?php echo esc_attr($title); ?>ページです。">
+    <?php elseif (is_singular() && !is_singular('shop-guide') && !is_singular('event') && !is_singular('recruit') && !is_singular('information') && !is_page()): ?>
+      <meta name="description" content="<?php echo esc_attr($description); ?>ページです。">
     <?php endif; ?>
 
     <meta property="og:image" content="<?php echo get_theme_file_uri('assets/images/common/ogp/ogp.jpg'); ?>">
-    <meta property="og:site_name" content="このサイトの名前">
+
+    <!-- og:title -->
+    <?php if (is_tax()): ?>
+      <meta property="og:title" content="<?php echo esc_attr($title); ?>">
+    <?php endif; ?>
 
     <!-- og:description -->
-    <?php if (is_home() || is_front_page()): ?>
-      <meta property="og:description" content="アピタ長久手のTOPページ">
-    <?php elseif (is_page('group')): ?>
-      <meta property="og:description" content="">
-    <?php elseif (is_page('about')): ?>
-      <meta property="og:description" content="">
+    <?php if (is_tax()): ?>
+      <meta property="og:description" content="<?php echo esc_attr($title); ?>ページです。">
+    <?php elseif (is_singular() && !is_singular('shop-guide') && !is_singular('event') && !is_singular('recruit') && !is_singular('information') && !is_page()): ?>
+      <meta property="og:description" content="<?php echo esc_attr($description); ?>ページです。">
+    <?php elseif (is_post_type_archive()): ?>
+      <meta property="og:description" content="<?php echo esc_attr($title); ?>ページです。">
+    <?php endif; ?>
+
+    <!-- twitter:title -->
+    <?php if (is_singular('recruit')): ?>
+      <meta name="twitter:title" content="">
     <?php elseif (is_tax()): ?>
-      <meta property="og:description" content="">
-    <?php elseif (is_singular('recruit')): ?>
-      <meta property="og:description" content="">
-    <?php elseif (is_post_type_archive('news')): ?>
-      <meta property="og:description" content="">
+      <meta name="twitter:title" content="<?php echo esc_attr($title); ?>">
     <?php elseif (is_post_type_archive('recruit')): ?>
-      <meta property="og:description" content="">
+      <meta name="twitter:title" content="">
+    <?php endif; ?>
+
+    <!-- twitter:description -->
+    <?php if (is_singular() && !is_singular('shop-guide') && !is_singular('event') && !is_singular('recruit') && !is_singular('information') && !is_page()): ?>
+      <meta name="twitter:description" content="<?php echo esc_attr($description); ?>ページです。">
+    <?php elseif (is_post_type_archive()): ?>
+      <meta name="twitter:description" content="<?php echo esc_attr($title); ?>ページです。">
+    <?php elseif (is_tax()): ?>
+      <meta name="twitter:description" content="<?php echo esc_attr($title); ?>ページです。">
     <?php endif; ?>
 
     <!-- twitter:card -->
-    <meta name="twitter:card" content="summary_large_image">
-
-    <?php if (is_home() || is_front_page()): ?>
-      <meta name="twitter:title" content="アピタ長久手">
-    <?php elseif (is_page('group')): ?>
-      <meta name="twitter:title" content="">
-    <?php elseif (is_page('about')): ?>
-      <meta name="twitter:title" content="">
-    <?php elseif (is_page('contact')): ?>
-      <meta name="twitter:title" content="">
-    <?php elseif (is_singular('recruit')): ?>
-      <meta name="twitter:title" content="">
-    <?php elseif (is_post_type_archive('news')): ?>
-      <meta name="twitter:title" content="">
-    <?php elseif (is_post_type_archive('recruit')): ?>
-      <meta name="twitter:title" content="">
-    <?php endif; ?>
-
-
-    <?php if (is_home() || is_front_page()): ?>
-      <meta name="twitter:description" content="アピタ長久手のTOPページです">
-    <?php elseif (is_page('group')): ?>
-      <meta name="twitter:description" content="">
-    <?php elseif (is_page('about')): ?>
-      <meta name="twitter:description" content="">
-    <?php elseif (is_page('contact')): ?>
-      <meta name="twitter:description" content="">
-    <?php elseif (is_singular('recruit')): ?>
-      <meta name="twitter:description" content="">
-    <?php elseif (is_post_type_archive('news')): ?>
-      <meta name="twitter:description" content="">
-    <?php elseif (is_post_type_archive('recruit')): ?>
-      <meta name="twitter:description" content="">
-    <?php endif; ?>
-
-    <!-- og:type -->
-    <meta property="og:type" content="<?php if (is_singular()) {
-                                        echo 'article';
-                                      } else {
-                                        echo 'website';
-                                      } ?>" />
-
-    <!-- twitter:card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>">
+    <meta name="twitter:image" content="<?php echo get_theme_file_uri('/assets/images/common/ogp/twitter.jpg'); ?>">
 
     <!-- サイトカラー -->
-    <meta name="theme-color" content="#8EC11F">
+    <meta name="theme-color" content="#008C4F">
 
     <!-- モバイル検索結果にサムネイル画像を表示させるためのthumbnailタグ -->
-    <meta name="thumbnail" content="<?php echo get_theme_file_uri('images/header/mobile-search.jpg'); ?>">
+    <meta name="thumbnail" content="<?php echo get_theme_file_uri('/assets/images/common/ogp/ogp.jpg'); ?>">
 
     <!-- ファビコン -->
     <link rel="icon" href="<?php echo get_theme_file_uri('./assets/images/common/favicon/favicon.ico'); ?>">
@@ -201,33 +148,31 @@
     <link rel="apple-touch-icon" href="<?php echo get_theme_file_uri('./assets/images/common/favicon/apple-touch-icon.png'); ?>" sizes="180x180">
     <link rel="icon" type="image/png" href="<?php echo get_theme_file_uri('./assets/images/common/favicon/android-chrome.png'); ?>" sizes="192x192">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+    <!-- ファーストビューの画像を先に読み込む -->
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/header/header-logo.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/header/header-eng.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/majica.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/ucs.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/icon-restaurants.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/icon-floor-guide.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/icon-shop-guide.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/icon-events.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/icon-shop-news.png'); ?>">
+    <link rel="preload" as="image" href="<?php echo get_theme_file_uri('./assets/images/common/icon/icon-about.png'); ?>">
 
     <!-- Googleフォント -->
-
-    <!-- canonical属性（類似ページがある場合、どのページをクロールさせるか指定する） -->
-    <!-- <link rel="canonical" href="④リンク（このページのURLを入力）"> -->
-
-    <!-- Google Tag Manager -->
-    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M38HFQSX');</script> -->
-    <!-- End Google Tag Manager -->
-
-    <!-- /Google Search Console -->
-    <!-- /Google Search Console -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" media="print" onload='this.media="all"' />
 
     <?php wp_head(); ?>
     </head>
 
   <body <?php body_class(); ?>><?php wp_body_open(); ?>
     <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K53XC74"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K53XC74"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="pc-background">
       <!-- welcome-banner -->
@@ -236,14 +181,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <a href="<?php echo esc_url(home_url('/')); ?>" class="welcome-banner__logo">
             <picture>
               <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="eager">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/pc-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="lazy">
             </picture>
           </a>
           <div class="welcome-banner__text">
             <p class="welcome-banner__title">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.webp'); ?>" type="image/webp">
-                <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.png'); ?>" alt="Welcome to Forest" loading="eager">
+                <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/welcome-title.png'); ?>" alt="Welcome to Forest" loading="lazy">
               </picture>
             </p>
             <p class="welcome-banner__description">
@@ -259,7 +204,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="welcome-banner__graphic">
             <picture>
               <source srcset="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.png'); ?>" alt="自然をモチーフにした木と動物のイラスト" loading="eager">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/welcome-banner/forest-graphic.png'); ?>" alt="自然をモチーフにした木と動物のイラスト" loading="lazy">
             </picture>
           </div>
         </div>
@@ -274,7 +219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.png'); ?>" alt="レストランアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-restaurants.png'); ?>" alt="レストランアイコン">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">RESTAURANTS</span>
@@ -285,7 +230,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.png'); ?>" alt="フロアガイドアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-floor-guide.png'); ?>" alt="フロアガイドアイコン">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">FLOOR GUIDE</span>
@@ -296,7 +241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.png'); ?>" alt="ショップガイドアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-guide.png'); ?>" alt="ショップガイドアイコン">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">SHOP GUIDE</span>
@@ -307,7 +252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.png'); ?>" alt="イベントアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-events.png'); ?>" alt="イベントアイコン">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">EVENTS</span>
@@ -318,7 +263,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.png'); ?>" alt="ショップニュースアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-shop-news.png'); ?>" alt="ショップニュースアイコン">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">SHOP NEWS</span>
@@ -329,7 +274,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pc-navigation__image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.png'); ?>" alt="アバウトアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/icon-about.png'); ?>" alt="アバウトアイコン">
                   </picture>
                 </div>
                 <span class="pc-navigation__text">ABOUT</span>
@@ -340,14 +285,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="pc-navigation__payment-link">
               <picture>
                 <source srcset="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.webp'); ?>" type="image/webp">
-                <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.png'); ?>" alt="majica UCSカード利用可能店舗一覧" loading="eager">
+                <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-payment.png'); ?>" alt="majica UCSカード利用可能店舗一覧" loading="lazy">
               </picture>
             </a>
           </div>
           <div class="pc-navigation__graphic">
             <picture>
               <source srcset="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.webp'); ?>" type="image/webp">
-              <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.png'); ?>" alt="自然をモチーフにした木々と動物のイラスト" loading="eager">
+              <img src="<?php echo get_theme_file_uri('/assets/images/common/pc-navigation/pc-navigation-bc.png'); ?>" alt="自然をモチーフにした木々と動物のイラスト" loading="lazy">
             </picture>
           </div>
         </div>
@@ -363,7 +308,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.png'); ?>" alt="アピタ長久手店のロゴ" loading="eager">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.png'); ?>" alt="アピタ長久手店のロゴ">
                     </picture>
                   </a>
                 </h1>
@@ -372,7 +317,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
                     <picture>
                       <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-logo.webp'); ?>" type="image/webp">
-                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.jpg'); ?>" alt="アピタ長久手店のロゴ" loading="eager">
+                      <img src="<?php echo get_theme_file_uri('/assets/images/header/header-logo.jpg'); ?>" alt="アピタ長久手店のロゴ">
                     </picture>
                   </a>
                 </p>
@@ -381,7 +326,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="header__eng-image">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/header/header-eng.webp'); ?>" type="image/webp">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/header/header-eng.png'); ?>" alt="Englishアイコン" loading="eager">
+                    <img src="<?php echo get_theme_file_uri('/assets/images/header/header-eng.png'); ?>" alt="Englishアイコン">
                   </picture>
                 </div>
                 <p class="header__eng-text">English</p>
@@ -389,20 +334,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
 
             <div class="header__right">
-              <div class="header__payment">
-                <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="header__majica">
+              <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="header__payment">
+                <div class="header__majica">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.webp'); ?>" type="image/webp">
                     <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/majica.png'); ?>" alt="majicaのアイコン" loading="eager">
                   </picture>
-                </a>
-                <a href="<?php echo esc_url(home_url('/majica-ucs/')); ?>" class="header__ucs">
+                </div>
+                <div class="header__ucs">
                   <picture>
                     <source srcset="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.webp'); ?>" type="image/webp">
                     <img src="<?php echo get_theme_file_uri('/assets/images/common/icon/ucs.png'); ?>" alt="ucsのアイコン" loading="eager">
                   </picture>
-                </a>
-              </div>
+                </div>
+              </a>
               <button type="button" id="hamburger" class="hamburger js-hamburger" aria-expanded="false" aria-controls="headerDrawer" aria-label="メニューを開く">
                 <span class="hamburger__line"></span>
                 <span class="hamburger__line"></span>

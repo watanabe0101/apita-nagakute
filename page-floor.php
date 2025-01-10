@@ -48,7 +48,9 @@ get_header(); ?>
           </picture>
         <?php endif; ?>
       </div>
-      <a href="<?php the_field('b1マップpdf'); ?>" class="floor-map__pdf">マップPDF</a>
+      <?php if (get_field('b1マップpdf')): ?>
+        <a href="<?php the_field('b1マップpdf'); ?>" class="floor-map__pdf" target="_blank" rel="noopener">マップPDF</a>
+      <?php endif; ?>
 
       <div class="accordion">
         <details class="accordion__details js-details">
@@ -73,29 +75,29 @@ get_header(); ?>
                 <ul class="shop-guide-card">
                   <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
                     <li class="shop-guide-card__item">
-                      <article>
-                        <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
-                          <?php if (has_post_thumbnail()): ?>
-                            <div class="shop-guide-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                          <?php elseif (!has_post_thumbnail()): ?>
-                            <div class="shop-guide-card__image">
-                              <picture>
-                                <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                                <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                              </picture>
-                            </div>
-                          <?php endif; ?>
-                          <p class="shop-guide-card__title"><?php the_title(); ?></p>
-                          <div class="shop-guide-card__content">
-                            <?php $custom_field = get_field('業種');
-                            if ($custom_field) { ?>
-                              <p class="shop-guide-card__industry">
-                                <?php echo $custom_field; ?>
-                              </p>
-                            <?php } ?>
+                      <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
+                        <?php if (get_field('ロゴ画像')): ?>
+                          <div class="shop-guide-card__image">
+                            <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
                           </div>
-                        </a>
-                      </article>
+                        <?php else: ?>
+                          <div class="shop-guide-card__image shop-guide-card__no-image">
+                            <picture>
+                              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                              <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                            </picture>
+                          </div>
+                        <?php endif; ?>
+                        <p class="shop-guide-card__title"><?php the_title(); ?></p>
+                        <div class="shop-guide-card__content">
+                          <?php $custom_field = get_field('業種');
+                          if ($custom_field) { ?>
+                            <p class="shop-guide-card__industry">
+                              <?php echo $custom_field; ?>
+                            </p>
+                          <?php } ?>
+                        </div>
+                      </a>
                     </li>
                   <?php endwhile; ?>
                   <?php wp_reset_postdata(); ?>
@@ -126,7 +128,9 @@ get_header(); ?>
           </picture>
         <?php endif; ?>
       </div>
-      <a href="<?php the_field('1fマップpdf'); ?>" class="floor-map__pdf">マップPDF</a>
+      <?php if (get_field('1fマップpdf')): ?>
+        <a href="<?php the_field('1fマップpdf'); ?>" class="floor-map__pdf" target="_blank" rel="noopener">マップPDF</a>
+      <?php endif; ?>
 
       <div class="accordion">
         <details class="accordion__details js-details">
@@ -151,29 +155,29 @@ get_header(); ?>
                 <ul class="shop-guide-card">
                   <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
                     <li class="shop-guide-card__item">
-                      <article>
-                        <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
-                          <?php if (has_post_thumbnail()): ?>
-                            <div class="shop-guide-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                          <?php elseif (!has_post_thumbnail()): ?>
-                            <div class="shop-guide-card__image">
-                              <picture>
-                                <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                                <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                              </picture>
-                            </div>
-                          <?php endif; ?>
-                          <p class="shop-guide-card__title"><?php the_title(); ?></p>
-                          <div class="shop-guide-card__content">
-                            <?php $custom_field = get_field('業種');
-                            if ($custom_field) { ?>
-                              <p class="shop-guide-card__industry">
-                                <?php echo $custom_field; ?>
-                              </p>
-                            <?php } ?>
+                      <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
+                        <?php if (get_field('ロゴ画像')): ?>
+                          <div class="shop-guide-card__image">
+                            <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
                           </div>
-                        </a>
-                      </article>
+                        <?php else: ?>
+                          <div class="shop-guide-card__image shop-guide-card__no-image">
+                            <picture>
+                              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                              <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                            </picture>
+                          </div>
+                        <?php endif; ?>
+                        <p class="shop-guide-card__title"><?php the_title(); ?></p>
+                        <div class="shop-guide-card__content">
+                          <?php $custom_field = get_field('業種');
+                          if ($custom_field) { ?>
+                            <p class="shop-guide-card__industry">
+                              <?php echo $custom_field; ?>
+                            </p>
+                          <?php } ?>
+                        </div>
+                      </a>
                     </li>
                   <?php endwhile; ?>
                   <?php wp_reset_postdata(); ?>
@@ -204,7 +208,9 @@ get_header(); ?>
           </picture>
         <?php endif; ?>
       </div>
-      <a href="<?php the_field('2fマップpdf'); ?>" class="floor-map__pdf">マップPDF</a>
+      <?php if (get_field('2fマップpdf')): ?>
+        <a href="<?php the_field('2fマップpdf'); ?>" class="floor-map__pdf" target="_blank" rel="noopener">マップPDF</a>
+      <?php endif; ?>
 
       <div class="accordion">
         <details class="accordion__details js-details">
@@ -229,29 +235,29 @@ get_header(); ?>
                 <ul class="shop-guide-card">
                   <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
                     <li class="shop-guide-card__item">
-                      <article>
-                        <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
-                          <?php if (has_post_thumbnail()): ?>
-                            <div class="shop-guide-card__image"><?php the_post_thumbnail('full', array('alt' => get_the_title() . 'のサムネイル')); ?></div>
-                          <?php elseif (!has_post_thumbnail()): ?>
-                            <div class="shop-guide-card__image">
-                              <picture>
-                                <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
-                                <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
-                              </picture>
-                            </div>
-                          <?php endif; ?>
-                          <p class="shop-guide-card__title"><?php the_title(); ?></p>
-                          <div class="shop-guide-card__content">
-                            <?php $custom_field = get_field('業種');
-                            if ($custom_field) { ?>
-                              <p class="shop-guide-card__industry">
-                                <?php echo $custom_field; ?>
-                              </p>
-                            <?php } ?>
+                      <a href="<?php the_permalink(); ?>" class="shop-guide-card__link">
+                        <?php if (get_field('ロゴ画像')): ?>
+                          <div class="shop-guide-card__image">
+                            <img src="<?php the_field('ロゴ画像'); ?>" alt="<? the_title() ?>のロゴ画像" loading="lazy">
                           </div>
-                        </a>
-                      </article>
+                        <?php else: ?>
+                          <div class="shop-guide-card__image shop-guide-card__no-image">
+                            <picture>
+                              <source srcset="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.webp'); ?>" type="image/webp">
+                              <img src="<?php echo get_theme_file_uri('/assets/images/common/other/no-image.jpeg'); ?>" alt="ダミー画像" loading="lazy">
+                            </picture>
+                          </div>
+                        <?php endif; ?>
+                        <p class="shop-guide-card__title"><?php the_title(); ?></p>
+                        <div class="shop-guide-card__content">
+                          <?php $custom_field = get_field('業種');
+                          if ($custom_field) { ?>
+                            <p class="shop-guide-card__industry">
+                              <?php echo $custom_field; ?>
+                            </p>
+                          <?php } ?>
+                        </div>
+                      </a>
                     </li>
                   <?php endwhile; ?>
                   <?php wp_reset_postdata(); ?>

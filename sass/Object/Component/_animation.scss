@@ -63,6 +63,7 @@
   opacity: 0;
   &.js-show {
     animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    animation-delay: 0.5s, 0.5s; // ここはそれぞれの遅延に応じて変更
   }
 }
 

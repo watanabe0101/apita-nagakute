@@ -24,6 +24,7 @@
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
   order: 4;
+  white-space: normal;
 }
 
 .singleRecruit-job-listing__shop-name {
@@ -33,8 +34,11 @@
   order: 1;
 }
 
-.singleShopNews-store-info__logo {
+.singleRecruit-store-info__logo {
   margin-block-start: 22px;
+  margin-inline: auto;
+  justify-self: center;
+  max-inline-size: 140px;
   order: 3;
 }
 
@@ -62,6 +66,10 @@
 /* ===============================================
 # もどるボタン
 =============================================== */
+.singleShopNews-store-info__button-wrapper {
+  margin-block-start: 33px;
+}
+
 .button-wrapper + .returnButton {
   margin-block-start: 40px;
 }

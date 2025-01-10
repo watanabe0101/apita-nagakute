@@ -25,6 +25,7 @@
   --_duration: .5s;
 
   transition: all var(--_duration);
+  will-change: opacity;
 
   &:any-link:hover {
     @media (any-hover: hover) {

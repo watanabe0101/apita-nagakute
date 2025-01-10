@@ -23,7 +23,7 @@
 }
 
 .about-menu__item {
-  display: block grid;
+  display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 0.8em;
   align-items: start;
@@ -75,6 +75,7 @@
 }
 
 .about-businessHours__table__header {
+  inline-size: 100%;
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--bold);
   text-align-last: left;
@@ -82,6 +83,7 @@
 }
 
 .about-businessHours__table__cell {
+  inline-size: 100%;
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
 }
@@ -117,8 +119,13 @@
 .about-serviceCounter__location {
   margin-block: var(--leading-trim);
   padding-block-start: 20px;
+  display: inline-block;
   color: var(--color-green4);
+  font-size: calc(14 * var(--rem-ratio));
+  font-weight: var(--regular);
+  line-height: calc(20 / 14);
   text-decoration: underline;
+  @include link;
 }
 
 .about-serviceCounter__list {
@@ -130,7 +137,7 @@
 }
 
 .about-serviceCounter__item {
-  display: block grid;
+  display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 0.714em;
   align-items: start;
@@ -162,10 +169,13 @@
 }
 
 .about-postalCounter__location {
+  display: inline-block;
+  color: var(--color-green4);
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
   line-height: calc(20 / 14);
   text-decoration: underline;
+  @include link;
 }
 
 .about-postalCounter__list {
@@ -177,7 +187,7 @@
 }
 
 .about-postalCounter__item {
-  display: block grid;
+  display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 0.714em;
   align-items: start;
@@ -202,14 +212,29 @@
 =============================================== */
 .about-atm {
   margin-block-start: 73px;
-
-  .infoTable {
-    margin-block-start: 5px;
-  }
 }
 
 .about-atm__content {
   margin-block-start: 32px;
+}
+
+.about-atm__table1 {
+  margin-block-start: 5px;
+
+  .infoTable__header {
+    white-space: nowrap;
+  }
+  .infoTable__cell {
+    padding-inline-start: 34px;
+  }
+}
+
+.about-atm__table2 {
+  margin-block-start: 5px;
+
+  .infoTable__cell {
+    padding-inline-start: 68px;
+  }
 }
 
 .about-atm__location {
@@ -218,17 +243,31 @@
   font-weight: var(--regular);
   line-height: calc(20 / 14);
   text-decoration: underline;
+  display: inline-block;
+  @include link;
 
   &:nth-of-type(2) {
     margin-block-start: 30px;
   }
 }
 
-.about-atm__note {
+.about-atm__footer {
   margin-block-start: 30px;
+}
+
+.about-atm__note {
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--regular);
   line-height: calc(20 / 14);
+  text-wrap: nowrap;
+
+  @include mq("sp") {
+    text-wrap: wrap;
+  }
+
+  &:not(:first-child) {
+    text-wrap: wrap;
+  }
 }
 
 /* ===============================================
@@ -273,12 +312,21 @@
   padding-block-start: 20px;
   color: var(--color-green4);
   text-decoration: underline;
+  display: inline-block;
+  @include link;
 }
 
 .about-naturalPureWater__description {
   margin-block: var(--leading-trim);
   padding-block-start: 25px;
   padding-block-end: 6px;
+}
+
+.about-naturalPureWater__table {
+  .infoTable__cell {
+    display: grid;
+    align-items: center;
+  }
 }
 
 /* ===============================================
@@ -295,7 +343,7 @@
   line-height: calc(20 / 14);
 }
 
-.about-aed__imag {
+.about-aed__image {
   inline-size: calc(200 * var(--large-fluid-ratio));
   margin-inline: auto;
 
@@ -318,6 +366,8 @@
   padding-block-start: 20px;
   color: var(--color-green4);
   text-decoration: underline;
+  display: inline-block;
+  @include link;
 }
 
 .about-aed__description {
@@ -351,6 +401,8 @@
   padding-block-start: 20px;
   color: var(--color-green4);
   text-decoration: underline;
+  display: inline-block;
+  @include link;
 }
 
 .about-recyclingStation__description {
@@ -388,6 +440,8 @@
   padding-block-start: 20px;
   color: var(--color-green4);
   text-decoration: underline;
+  display: inline-block;
+  @include link;
 }
 
 .about-npia__description {
@@ -395,22 +449,6 @@
   padding-block-start: 25px;
 }
 
-.infoTable {
-
-}
-
-.infoTable__tbody {
-
-}
-
-.infoTable__row {
-
-}
-
-.infoTable__header {
-
-}
-
-.infoTable__cell {
-
+.about-npia__table {
+  margin-block-start: 6px;
 }

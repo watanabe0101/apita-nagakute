@@ -7,7 +7,7 @@
   <section class="singleShopGuide-header page-header">
     <div class="inner">
       <hgroup class="page-header__title">
-        <h1 class="page-header__eng">information</h1>
+        <h1 class="page-header__eng">Information</h1>
         <p class="page-header__jp">施設からのお知らせ</p>
       </hgroup>
       <?php breadcrumb('breadcrumb'); ?>
@@ -17,7 +17,7 @@
   <div class="information-content">
     <div class="information-content__inner inner">
       <?php $args = array(
-        'posts_per_page' => 2, // 表示する投稿数
+        'posts_per_page' => 10, // 表示する投稿数
         'paged' => $paged, //ページング
         'post_type' => 'information', // 取得する投稿タイプのスラッグ
         'orderby' => 'date', //日付で並び替え

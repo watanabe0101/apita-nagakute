@@ -4,7 +4,7 @@
 # fv
 =============================================== */
 .fv {
-  padding-block-start: var(--header-block-size);
+  padding-block-start: calc(10px + var(--header-block-size));
   opacity: 0;
   animation: fadeIn 1.5s ease forwards, opacity 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
   
@@ -39,19 +39,15 @@
     position: relative;
   }
   
-  .splide-sub__list {
-    --_gap: 10px;
-    
-    column-gap: var(--_gap);
+  .splide-sub__list {    
     position: relative;
-    left: -10px;
   }
 
   .splide-sub__item {
     --_duration: .5s;
 
     cursor: pointer;
-    transition: all var(--_duration);
+    transition: opacity var(--_duration);
 
     &:hover {
       @media (any-hover: hover) {
@@ -63,6 +59,10 @@
       opacity: .6;
     }
   }
+}
+
+.fv__link {
+  @include link;
 }
 
 /* ===============================================
@@ -77,7 +77,7 @@
 
 .menu__list {
   position: relative;
-  display: block grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   max-inline-size: 600px;
@@ -89,7 +89,7 @@
 
   padding-block-start: 10px;
   padding-block-end: 13px;
-  display: block grid;
+  display: grid;
   grid-template-rows: subgrid;
   grid-row: span 2;
   row-gap: 16px;
@@ -157,12 +157,6 @@
     right: -28px;
   }
   
-  .splide__list {
-    column-gap: 10px;
-    position: relative;
-    left: -10px;
-  }
-  
   .splide__slide {
     img {
       aspect-ratio: 335/100;
@@ -170,6 +164,10 @@
     }
   }
 
+}
+
+.banner__link {
+  @include link;
 }
 
 /* ===============================================
@@ -227,6 +225,12 @@
   margin-block-start: 67px;
 }
 
+.event__eng {
+  span {
+    margin-inline-start: 0;
+  }
+}
+
 .event-card {
   margin-block-start: 20px;
 }
@@ -267,6 +271,12 @@
 .recommend {
   margin-block-start: 70px;
 }
+
+.recommend__list {
+  max-inline-size: 500px;
+  margin-inline: auto;
+}
+
 .recommend__item {
   margin-block-start: 20px;
   @include mq("md") {
@@ -302,17 +312,6 @@
   background: #EEEEEE;
   border-radius: 30px;
   font-weight: var(--bold);
-
-  @include mq("md") {
-    --_clamp-min: 16;
-    --_clamp-max: 26;
-    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
-    
-    font-size: var(--_clamp);
-    margin-block-start: calc(10 * var(--min-fluid-ratio));
-    padding-block: calc(4 * var(--min-fluid-ratio));
-    padding-inline: calc(31 * var(--min-fluid-ratio));
-  }
 }
 
 .recommend__name {
@@ -323,15 +322,6 @@
   font-size: calc(12 * var(--rem-ratio));
   font-weight: var(--bold);
   color: var(--color-green4);
-
-  @include mq("md") {
-    --_clamp-min: 12;
-    --_clamp-max: 20;
-    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
-    
-    font-size: var(--_clamp);
-    padding-block-start: calc(13 * var(--min-fluid-ratio));
-  }
 }
 
 .recommend__link {
@@ -351,19 +341,7 @@
   font-size: calc(14 * var(--rem-ratio));
   font-weight: var(--bold);
   color: var(--color-green4);
-
-  @include mq("md") {
-    --_clamp-min: 14;
-    --_clamp-max: 24;
-    --_clamp: clamp(var(--_clamp-min) * var(--rem-ratio), (var(--_clamp-min) - (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * var(--_min-layout-width)) * var(--rem-ratio) + (var(--_clamp-max) - var(--_clamp-min)) / (var(--_max-layout-width) - var(--_min-layout-width)) * 100dvi, var(--_clamp-max) * var(--rem-ratio));
-    
-    font-size: var(--_clamp);
-    margin-block-start: calc(12 * var(--min-fluid-ratio));
-    padding-block: calc(8 * var(--min-fluid-ratio));
-    inline-size: calc(158 * var(--min-fluid-ratio));
-    column-gap: calc(5 * var(--min-fluid-ratio));
-    border-radius: calc(30 * var(--min-fluid-ratio));
-  }
+  @include link;
 
   &::before {
     content: "";
@@ -375,11 +353,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-
-    @include mq("md") {
-      inline-size: calc(18 * var(--min-fluid-ratio));
-      block-size: calc(20 * var(--min-fluid-ratio));
-    }
   }
 }
 

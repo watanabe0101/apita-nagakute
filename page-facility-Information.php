@@ -102,7 +102,9 @@ get_header(); ?>
               </picture>
             <?php endif; ?>
           </div>
-          <a href="<?php the_field('b1英語マップpdf', 285); ?>" class="facilityInformation-floorGuide__pdf">PDF</a>
+          <?php if (get_field('b1英語マップpdf', 285)): ?>
+            <a href="<?php the_field('b1英語マップpdf', 285); ?>" class="facilityInformation-floorGuide__pdf" target="_blank" rel="noopener">PDF</a>
+          <?php endif; ?>
         </li>
         <li class="facilityInformation-floorGuide__item">
           <p class="facilityInformation-floorGuide__floor">1F</p>
@@ -116,7 +118,9 @@ get_header(); ?>
               </picture>
             <?php endif; ?>
           </div>
-          <a href="<?php the_field('b1英語マップpdf', 285); ?>" class="facilityInformation-floorGuide__pdf">PDF</a>
+          <?php if (get_field('1f英語マップpdf', 285)): ?>
+            <a href="<?php the_field('1f英語マップpdf', 285); ?>" class="facilityInformation-floorGuide__pdf" target="_blank" rel="noopener">PDF</a>
+          <?php endif; ?>
         </li>
         <li class="facilityInformation-floorGuide__item">
           <p class="facilityInformation-floorGuide__floor">2F</p>
@@ -130,7 +134,9 @@ get_header(); ?>
               </picture>
             <?php endif; ?>
           </div>
-          <a href="<?php the_field('b1英語マップpdf', 285); ?>" class="facilityInformation-floorGuide__pdf">PDF</a>
+          <?php if (get_field('2f英語マップpdf', 285)): ?>
+            <a href="<?php the_field('2f英語マップpdf', 285); ?>" class="facilityInformation-floorGuide__pdf" target="_blank" rel="noopener">PDF</a>
+          <?php endif; ?>
         </li>
       </ul>
     </div>
@@ -200,7 +206,7 @@ get_header(); ?>
           </tbody>
         </table>
         <div class="websiteButton">
-          <a href="https://www.donki.com/store/shop_list.php?pref=24&pre=ss" class="websiteButton-btn topButton__btn" target="_blank" rel="noopener">Official Website</a>
+          <a href="https://www.donki.com/" class="websiteButton-btn topButton__btn" target="_blank" rel="noopener">Official Website</a>
         </div>
       </div>
     </div>
